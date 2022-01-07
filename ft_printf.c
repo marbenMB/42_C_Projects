@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbenbajj <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/06 16:58:23 by mbenbajj          #+#    #+#             */
+/*   Updated: 2022/01/06 16:59:57 by mbenbajj         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 void	deal_with_flags(const char *format, Check_FLAGS *flags)
@@ -35,25 +47,25 @@ void	deal_with_flags(const char *format, Check_FLAGS *flags)
 
 int	ft_printf(const char *format, ...)
 {
-    int			len;
+	int			len;
 	Check_FLAGS	*flags;
 
-    len = 0;
-    while (*format)
-    {
-        if (*format == '%')
+	len = 0;
+	while (*format)
+	{
+		if (*format == '%')
 		{
 			deal_with_flags(++format, flags);
 		}
-        else
-            len += ft_putchar(*format);
-        format++;
-    }
-    return (len);
+		else
+			len += ft_putchar(*format);
+		format++;
+	}
+	return (len);
 }
 
 #include <stdio.h>
 int	main()
 {  
-    printf("\n%d", ft_printf("he--%"));
+	printf("\n%d", ft_printf("he--%"));
 }
