@@ -22,3 +22,20 @@ void	ft_putnbr(long long n, char c)
 		ft_putnbr(nb / 10, c);
 	ft_putchar(nb % 10 + 48);
 }
+
+void	ft_puthex(long long nbr, char c)
+{
+	char *base;
+
+	if (c == 'x')
+		base = LOW_BASE;
+	else if (c == 'X')
+		base = UP_BASE;
+	if (nbr / 16 != 0 )
+	{
+		ft_puthex(nbr / 16, c);
+		ft_putchar(base[nbr % 16]);
+	}
+	else if (nbr / 16 == 0)
+		ft_putchar(base[nbr]);
+}

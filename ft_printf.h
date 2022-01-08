@@ -21,6 +21,10 @@
 # include <fcntl.h>
 # include <stdarg.h>
 
+// definitions :
+# define LOW_BASE "0123456789abcdef"
+# define UP_BASE "0123456789ABCDEF"
+
 typedef struct flags
 {
 // Check the existence : 0 || 1
@@ -45,6 +49,8 @@ typedef struct flags
 int		ft_printf(const char *format, ...);
 // libft functions :
 int ft_putchar(char c);
+void	ft_putnbr(long long n, char c);
+void	ft_puthex(long long nbr, char c);
 int	ft_isdigit(int c);
 int	ft_atoi(const char *str);
 // src functions :
