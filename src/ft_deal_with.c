@@ -38,8 +38,9 @@ void	deal_with_av_flags(const char *format, Check_FLAGS *flags)
 	}
 }
 
-void	deal_with_spec(char spec, Check_FLAGS *flags, va_list args)
+void	deal_with_spec(char spec, Check_FLAGS *flags)
 {
+	flags->spec = spec;
 	if (spec == 'd' || spec == 'i' || spec == 'u')
-		ft_putnbr(va_arg(args));
+		ft_putnbr(va_arg(flags->args, long long), flags->spec);
 }

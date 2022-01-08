@@ -38,6 +38,8 @@ typedef struct flags
 	int width;
 // get the specifier
 	char spec;
+// get the args 
+	va_list	args;
 }Check_FLAGS;
 // main function :
 int		ft_printf(const char *format, ...);
@@ -49,5 +51,5 @@ int	ft_atoi(const char *str);
 // src functions :
 void	deal_with_nor_flags(const char *format, Check_FLAGS *flags);
 void	deal_with_av_flags(const char *format, Check_FLAGS *flags);
-void	deal_with_spec(char format, Check_FLAGS *flags, va_list args);
+void	deal_with_spec(char format, Check_FLAGS *flags);
 #endif

@@ -15,11 +15,10 @@
 int	ft_printf(const char *format, ...)
 {
 	// int			len;
-	va_list		args;
 	Check_FLAGS	*sub_spec;
 
 	// len = 0;
-	va_start(args, format);
+	va_start(sub_spec->args, format);
 	while (*format)
 	{
 		if (*format == '%')
@@ -29,7 +28,7 @@ int	ft_printf(const char *format, ...)
 			deal_with_av_flags(format, sub_spec);
 			while (!find_spec(format))
 				format++;
-			deal_with_spec(*format, sub_spec, args);
+			deal_with_spec(*format, sub_spec);
 			format++;
 		}
 		else
