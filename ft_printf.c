@@ -12,56 +12,31 @@
 
 #include "ft_printf.h"
 
-void	deal_with_flags(const char *format, Check_FLAGS *flags)
-{
-	int	len;
-
-	len = 0;
-	while (!find_spec(*format))
-	{
-		if (*format == '0')
-			flags->zero = 1;
-		else if (*format == ' ')
-			flags->space = 1;
-		else if (*format == '#')
-			flags->hash = 1;
-		else if (*format == '+')
-			flags->plus = 1;
-		else if (*format == '-')
-			flags->mins = 1;
-		else if (*format == '.')
-		{
-			flags->point = 1;
-			format++;
-			if (ft_isdigit(*format))
-			{
-				flags->pres = 1;
-				flags->v_pres = ft_atoi(format);
-				format += ft_nb_len(flags->v_pres);
-				continue;
-			}
-		}
-		format++;
-	}
-}
-
 int	ft_printf(const char *format, ...)
 {
-	int			len;
-	Check_FLAGS	*flags;
+	// int			len;
+	va_list		args;
+	Check_FLAGS	*sub_spec;
 
-	len = 0;
+	// len = 0;
+	va_start(args, format);
 	while (*format)
 	{
 		if (*format == '%')
 		{
-			deal_with_flags(++format, flags);
+			format++;
+			deal_with_nor_flags(format, sub_spec);
+			deal_with_av_flags(format, sub_spec);
+			while (!find_spec(format))
+				format++;
+			deal_with_spec(*format, sub_spec, args);
+			format++;
 		}
 		else
-			len += ft_putchar(*format);
+			ft_putchar(*format);
 		format++;
 	}
-	return (len);
+	//return (len);
 }
 
 #include <stdio.h>

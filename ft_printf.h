@@ -36,14 +36,18 @@ typedef struct flags
 	int	pres; // if there is a v_pres == 1 , if not == 0
 	int v_pres;
 	int width;
+// get the specifier
+	char spec;
 }Check_FLAGS;
-
-// functions utils :
+// main function :
+int		ft_printf(const char *format, ...);
+// libft functions :
 int	find_spec(char c);
 int ft_putchar(char c);
 int	ft_isdigit(int c);
 int	ft_atoi(const char *str);
-// functions :
-int		ft_printf(const char *format, ...);
-void	deal_with_flags(const char *format, Check_FLAGS *flags);
+// src functions :
+void	deal_with_nor_flags(const char *format, Check_FLAGS *flags);
+void	deal_with_av_flags(const char *format, Check_FLAGS *flags);
+void	deal_with_spec(char format, Check_FLAGS *flags, va_list args);
 #endif
