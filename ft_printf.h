@@ -44,7 +44,6 @@ typedef struct flags
 // main function :
 int		ft_printf(const char *format, ...);
 // libft functions :
-int	find_spec(char c);
 int ft_putchar(char c);
 int	ft_isdigit(int c);
 int	ft_atoi(const char *str);
@@ -52,4 +51,7 @@ int	ft_atoi(const char *str);
 void	deal_with_nor_flags(const char *format, Check_FLAGS *flags);
 void	deal_with_av_flags(const char *format, Check_FLAGS *flags);
 void	deal_with_spec(char format, Check_FLAGS *flags);
+// function utils :
+int	find_spec(char c);
+void	reset_data(Check_FLAGS *flags);
 #endif

@@ -18,6 +18,7 @@ int	ft_printf(const char *format, ...)
 	Check_FLAGS	*sub_spec;
 
 	// len = 0;
+	reset_data(sub_spec);
 	va_start(sub_spec->args, format);
 	while (*format)
 	{
@@ -26,13 +27,14 @@ int	ft_printf(const char *format, ...)
 			format++;
 			deal_with_nor_flags(format, sub_spec);
 			deal_with_av_flags(format, sub_spec);
-			while (!find_spec(format))
+			while (!find_spec(*format))
 				format++;
 			deal_with_spec(*format, sub_spec);
 			format++;
 		}
 		else
 			ft_putchar(*format);
+		reset_data(sub_spec);
 		format++;
 	}
 	//return (len);

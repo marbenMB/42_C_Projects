@@ -43,4 +43,6 @@ void	deal_with_spec(char spec, Check_FLAGS *flags)
 	flags->spec = spec;
 	if (spec == 'd' || spec == 'i' || spec == 'u')
 		ft_putnbr(va_arg(flags->args, long long), flags->spec);
+	if (spec == 'x' || spec == 'X')
+		ft_puthex(va_arg(flags->args, long long), flags->spec);
 }

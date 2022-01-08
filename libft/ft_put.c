@@ -13,7 +13,7 @@ void	ft_putnbr(long long n, char c)
 		nb = (unsigned)n;
 	else if (n < 0)
 	{
-		ft_putchar_fd('-');
+		ft_putchar('-');
 		nb = (unsigned int)(-1 * n);
 	}
 	else
