@@ -25,7 +25,6 @@ int main(int ac, char **av)
 			while (!find_spec(*p))
 				p++;
 			deal_with_spec(*p, &flags);
-			//p++;
 			printf("\033[0;32m/ ------------------------------	------------------------------ \\ \n\t\t\t TESTING NORMAL FLAGS : %d\n\\ ------------------------------	------------------------------ /\n",i);
 			printf(" \033[0;31m\t-\tplus = %d \n \t-\tspace = %d \n \t-\thash = %d\n", flags.plus, flags.space, flags.hash);
 			printf("\033[0;32m/ ------------------------------	------------------------------ \\ \n\t\t\t TESTING ADVANC FLAGS : %d\n\\ ------------------------------	------------------------------ /\n",i);

@@ -39,8 +39,8 @@ int	ft_printf(const char *format, ...)
 	//return (len);
 }
 
-#include <stdio.h>
+/* #include <stdio.h>
 int	main()
 {  
 	printf("\n%d", ft_printf("he--%"));
-}
+} */
