@@ -15,26 +15,25 @@
 int	ft_printf(const char *format, ...)
 {
 	// int			len;
-	Check_FLAGS	*sub_spec;
+	Check_FLAGS	sub_spec;
 
 	// len = 0;
-	reset_data(sub_spec);
-	va_start(sub_spec->args, format);
+	reset_data(&sub_spec);
+	va_start(sub_spec.args, format);
 	while (*format)
 	{
 		if (*format == '%')
 		{
 			format++;
-			deal_with_nor_flags(format, sub_spec);
-			deal_with_av_flags(format, sub_spec);
+			deal_with_nor_flags(format, &sub_spec);
+			deal_with_av_flags(format, &sub_spec);
 			while (!find_spec(*format))
 				format++;
-			deal_with_spec(*format, sub_spec);
-			format++;
+			deal_with_spec(*format, &sub_spec);
 		}
 		else
 			ft_putchar(*format);
-		reset_data(sub_spec);
+		reset_data(&sub_spec);
 		format++;
 	}
 	//return (len);

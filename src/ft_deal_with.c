@@ -41,11 +41,11 @@ void	deal_with_av_flags(const char *format, Check_FLAGS *flags)
 void	deal_with_spec(char spec, Check_FLAGS *flags)
 {
 	flags->spec = spec;
-	if (spec == 'd' || spec == 'i' || spec == 'u')
-		ft_putnbr(va_arg(flags->args, long long), flags->spec);
-	else if (spec == 'x' || spec == 'X')
-		ft_puthex(va_arg(flags->args, long long), flags->spec);
-	else if (spec == 'p')
-		ft_puthex(va_arg(flags->args, long long), flags->spec);
+	// if (spec == 'd' || spec == 'i' || spec == 'u')
+	// 	ft_putnbr(va_arg(flags->args, long long), flags->spec);
+	// else if (spec == 'x' || spec == 'X')
+	// 	ft_puthex(va_arg(flags->args, long long), flags->spec);
+	// else if (spec == 'p')
+	// 	ft_puthex(va_arg(flags->args, long long), flags->spec);
 	
 }
