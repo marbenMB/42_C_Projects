@@ -3,7 +3,7 @@
 #include <limits.h>
 #include "ft_printf.h"
 
-int main(int ac, char **av)
+/* int main(int ac, char **av)
 {
 	int i = 1;
 	Check_FLAGS flags;
@@ -35,18 +35,20 @@ int main(int ac, char **av)
 		reset_data(&flags);
 		p++;
 	}
-}
+} */
 
 
 /* ------------------------------------------------------------------------- */
 
-/* int	main()
+int	main()
 {
-	char *format = "hello";
-	int k;
-	k = 012;
-	printf("%d", k);
-} */
+	Check_FLAGS test;
+	test.spec = 'x';
+	test.length = 0;
+
+	ft_puthex(-1445, &test);
+	printf("\n%p", &test);
+}
 
 
 /* ------------------------------------------------------------------------- */

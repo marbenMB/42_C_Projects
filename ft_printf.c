@@ -14,10 +14,9 @@
 
 int	ft_printf(const char *format, ...)
 {
-	// int			len;
 	Check_FLAGS	sub_spec;
 
-	// len = 0;
+	sub_spec.length = 0;
 	reset_data(&sub_spec);
 	va_start(sub_spec.args, format);
 	while (*format)
@@ -27,7 +26,7 @@ int	ft_printf(const char *format, ...)
 			format++;
 			if (*format == '%')
 			{
-				ft_putchar(*format++);
+				ft_putchar(*format++, &sub_spec);
 				continue;
 			}
 			deal_with_nor_flags(format, &sub_spec);
@@ -37,9 +36,9 @@ int	ft_printf(const char *format, ...)
 			deal_with_spec(*format, &sub_spec);
 		}
 		else
-			ft_putchar(*format);
+			ft_putchar(*format, &sub_spec);
 		reset_data(&sub_spec);
 		format++;
 	}
-	//return (len);
+	return (sub_spec.length);
 }

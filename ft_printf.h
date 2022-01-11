@@ -45,15 +45,15 @@ typedef struct flags
 // get the args 
 	va_list	args;
 // get the len that are printed :
-//	int	len;
+	int	length;
 }Check_FLAGS;
 // main function :
 int		ft_printf(const char *format, ...);
 // libft functions :
-void	ft_putchar(char c);
-void	ft_putnbr(long long n, char c);
-void	ft_puthex(long long nbr, char c);
-void	ft_putstr(char *str);
+void	ft_putchar(char c, Check_FLAGS *flags);
+void	ft_putnbr(long long n, Check_FLAGS *flags);
+void	ft_puthex(long long nbr, Check_FLAGS *flags);
+void	ft_putstr(char *str, Check_FLAGS *flags);
 int	ft_isdigit(int c);
 int	ft_atoi(const char *str);
 // src functions :
