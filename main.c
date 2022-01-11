@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdarg.h>
+#include <limits.h>
 #include "ft_printf.h"
-
-
 
 int main(int ac, char **av)
 {
@@ -10,7 +9,7 @@ int main(int ac, char **av)
 	Check_FLAGS flags;
 	char	*p;
 	ac = 2;
-	//av[1] = "hello world %+#x%-4.2s";
+	//yav[1] = "hello world %+#x%-4.2s yes it is in the table %.s";
 	p = av[1];
 	if (ac != 2)
 		return (0);
@@ -39,18 +38,18 @@ int main(int ac, char **av)
 }
 
 
+/* ------------------------------------------------------------------------- */
+
+/* int	main()
+{
+	char *format = "hello";
+	int k;
+	k = 012;
+	printf("%d", k);
+} */
 
 
-
-
-
-
-
-
-
-
-
-
+/* ------------------------------------------------------------------------- */
 /* ------------------------------------------------------------------------- */
 
 

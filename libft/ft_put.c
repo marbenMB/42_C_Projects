@@ -1,8 +1,8 @@
 #include "../ft_printf.h"
 
-int ft_putchar(char c)
+void ft_putchar(char c)
 {
-    return (write(1, &c, 1));
+    write(1, &c, 1);
 }
 
 void	ft_putnbr(long long n, char c)
@@ -31,6 +31,8 @@ void	ft_puthex(long long nbr, char c)
 		base = LOW_BASE;
 	else if (c == 'X')
 		base = UP_BASE;
+	if (nbr < 0)
+			nbr = (unsigned)nbr;
 	if (nbr / 16 != 0 )
 	{
 		ft_puthex(nbr / 16, c);
@@ -38,4 +40,13 @@ void	ft_puthex(long long nbr, char c)
 	}
 	else if (nbr / 16 == 0)
 		ft_putchar(base[nbr]);
+}
+
+void	ft_putstr(char *str)
+{
+	while (*str != '\0')
+	{
+		ft_putchar(*str);
+		str++;
+	}
 }

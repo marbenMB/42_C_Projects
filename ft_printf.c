@@ -25,6 +25,11 @@ int	ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
+			if (*format == '%')
+			{
+				ft_putchar(*format++);
+				continue;
+			}
 			deal_with_nor_flags(format, &sub_spec);
 			deal_with_av_flags(format, &sub_spec);
 			while (!find_spec(*format))
@@ -38,9 +43,3 @@ int	ft_printf(const char *format, ...)
 	}
 	//return (len);
 }
-
-/* #include <stdio.h>
-int	main()
-{  
-	printf("\n%d", ft_printf("he--%"));
-} */

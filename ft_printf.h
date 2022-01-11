@@ -44,13 +44,16 @@ typedef struct flags
 	char spec;
 // get the args 
 	va_list	args;
+// get the len that are printed :
+//	int	len;
 }Check_FLAGS;
 // main function :
 int		ft_printf(const char *format, ...);
 // libft functions :
-int ft_putchar(char c);
+void	ft_putchar(char c);
 void	ft_putnbr(long long n, char c);
 void	ft_puthex(long long nbr, char c);
+void	ft_putstr(char *str);
 int	ft_isdigit(int c);
 int	ft_atoi(const char *str);
 // src functions :
