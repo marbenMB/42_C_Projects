@@ -56,11 +56,14 @@ void	ft_puthex(long long nbr, Check_FLAGS *flags);
 void	ft_putstr(char *str, Check_FLAGS *flags);
 int	ft_isdigit(int c);
 int	ft_atoi(const char *str);
-// src functions :
-void	deal_with_nor_flags(const char *format, Check_FLAGS *flags);
-void	deal_with_av_flags(const char *format, Check_FLAGS *flags);
-void	deal_with_spec(char format, Check_FLAGS *flags);
 // function utils :
 int	find_spec(char c);
 void	reset_data(Check_FLAGS *flags);
+// src functions :
+	// ft_deal_wiht :
+void	deal_with_nor_flags(const char *format, Check_FLAGS *flags);
+void	deal_with_av_flags(const char *format, Check_FLAGS *flags);
+void	deal_with_spec(char format, Check_FLAGS *flags);
+	// process_cases :
+void	process_char(Check_FLAGS *flags);
 #endif
