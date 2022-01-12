@@ -21,9 +21,9 @@ void	ft_putnbr(long long n, Check_FLAGS *flags)
 {
 	unsigned int	nb;
 
-	if (flags->spec == 'u' && n < 0)
-		nb = (unsigned)n;
-	else if (n < 0)
+	/* if (flags->spec == 'u' && n < 0)
+		nb = (unsigned)n; */
+	/* else */ if (n < 0)
 	{
 		ft_putchar('-', flags);
 		nb = (unsigned int)(-1 * n);
