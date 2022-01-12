@@ -50,14 +50,17 @@ typedef struct flags
 // main function :
 int		ft_printf(const char *format, ...);
 // libft functions :
+	// ft_put :
 void	ft_putchar(char c, Check_FLAGS *flags);
 void	ft_putnbr(long long n, Check_FLAGS *flags);
 void	ft_puthex(long long nbr, Check_FLAGS *flags);
 void	ft_putstr(char *str, Check_FLAGS *flags);
-int	ft_isdigit(int c);
-int	ft_atoi(const char *str);
+	// auto_func :
+size_t	ft_strlen(const char *s);
+int		ft_isdigit(int c);
+int		ft_atoi(const char *str);
 // function utils :
-int	find_spec(char c);
+int		find_spec(char c);
 void	reset_data(Check_FLAGS *flags);
 // src functions :
 	// ft_deal_wiht :
@@ -66,4 +69,5 @@ void	deal_with_av_flags(const char *format, Check_FLAGS *flags);
 void	deal_with_spec(char format, Check_FLAGS *flags);
 	// process_cases :
 void	process_char(Check_FLAGS *flags);
+void	process_str(Check_FLAGS *flags);
 #endif

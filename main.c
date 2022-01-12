@@ -67,8 +67,8 @@ int	main()
 	test.width = 4;
 	//test.length = 0;
 
-	process_char(&test);
-	printf("\n%-4c\n", test.spec);
+	//process_char(&test);
+	printf("\n%s\n", "hello");
 }
 
 

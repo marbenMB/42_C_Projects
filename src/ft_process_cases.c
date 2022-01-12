@@ -12,3 +12,11 @@ void	process_char(Check_FLAGS *flags)
 			ft_putchar(' ', flags);
 	}
 }
+
+void	process_str(Check_FLAGS *flags)
+{
+	char *str;
+
+	str = va_arg(flags->args, char *);
+	if 
+}

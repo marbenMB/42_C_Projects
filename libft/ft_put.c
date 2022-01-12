@@ -58,7 +58,12 @@ void	ft_puthex(long long nbr, Check_FLAGS *flags)
 
 void	ft_putstr(char *str, Check_FLAGS *flags)
 {
-	while (*str != '\0')
+	int	i;
+
+	i = 0;
+	/* if (flags->v_pres == 0)
+		flags->v_pres = ft_strlen(str); */
+	while (*str && i++ < flags->v_pres)
 	{
 		ft_putchar(*str, flags);
 		str++;
