@@ -16,6 +16,8 @@ void	deal_with_nor_flags(const char *format, Check_FLAGS *flags)
 {
 	while(!find_spec(*format) && *format)
 	{
+		if (ft_isdigit(*format))
+			flags->width = ft_atoi(format);
 		if (*format == '+')
 			flags->plus = 1;
 		else if (*format == ' ')

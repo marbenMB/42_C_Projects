@@ -62,13 +62,18 @@
 int	main()
 {
 	Check_FLAGS test;
-	test.spec = 'x';
+	test.spec = 's';
 	test.mins = 1;
-	test.width = 4;
+	test.width = 0;
+	test.point = 1;
+	test.pres = 1;
+	test.v_pres = 4;
 	//test.length = 0;
 
-	//process_char(&test);
-	printf("\n%s\n", "hello");
+	process_str(&test);
+	char *str = NULL;
+	printf("\n%-.4s\n", str);
+
 }
 
 
