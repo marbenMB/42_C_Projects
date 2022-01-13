@@ -19,9 +19,9 @@ void	process_str(Check_FLAGS *flags)
 	int		i;
 	int		str_len;
 
-	/* str = va_arg(flags->args, char *); */	str = NULL;
+	str = va_arg(flags->args, char *);	/* 	str = NULL; */
 	if (!str)
-		str = "(null)";
+		str = "(null)"; 	/* !!!! CHEKC THIS AGAIN AFTER THE AV TESTING */
 	str_len = ft_strlen(str);
 	if (!flags->pres || !flags->v_pres)
 		str_len = 0;

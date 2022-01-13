@@ -57,11 +57,11 @@
 /* ------------------------------------------------------------------------- */
 						/* TESTING THE FUNCTIONS */
 /* ------------------------------------------------------------------------- */
-
+#define TEST(str) "%-.4s\n", str
 
 int	main()
 {
-	Check_FLAGS test;
+	/* Check_FLAGS test;
 	test.spec = 's';
 	test.mins = 1;
 	test.width = 0;
@@ -70,9 +70,10 @@ int	main()
 	test.v_pres = 4;
 	//test.length = 0;
 
-	process_str(&test);
+	process_str(&test); */
 	char *str = NULL;
-	printf("\n%-.4s\n", str);
+	ft_printf(TEST(str));
+	printf(TEST(str));
 
 }
 
