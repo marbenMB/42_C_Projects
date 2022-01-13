@@ -24,7 +24,7 @@ void	process_str(Check_FLAGS *flags)
 		str = "(null)"; 	/* !!!! CHEKC THIS AGAIN AFTER THE AV TESTING */
 	str_len = ft_strlen(str);
 	if (!flags->pres || !flags->v_pres)
-		str_len = 0;
+		flags->v_pres = str_len;
 	else if (flags->v_pres)
 		str_len = flags->v_pres;
 	ft_putstr(str, flags);

@@ -57,7 +57,7 @@
 /* ------------------------------------------------------------------------- */
 						/* TESTING THE FUNCTIONS */
 /* ------------------------------------------------------------------------- */
-#define TEST(str) "%-.4s\n", str
+#define TEST " NULL %s NULL ", NULL
 
 int	main()
 {
@@ -71,9 +71,11 @@ int	main()
 	//test.length = 0;
 
 	process_str(&test); */
-	char *str = NULL;
-	ft_printf(TEST(str));
-	printf(TEST(str));
+	//char *str = NULL;
+	//char *s2 = "Mussum Ipsum, cacilds vidis litro abertis. Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi. Atirei o pau no gatis, per gatis num morreus.";
+	ft_printf(TEST);
+	printf("\n------------\n");
+	printf(TEST);
 
 }
 
