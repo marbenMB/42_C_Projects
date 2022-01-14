@@ -27,11 +27,44 @@ void	process_str(Check_FLAGS *flags)
 		flags->v_pres = str_len;
 	else if (flags->v_pres)
 		str_len = flags->v_pres;
-	ft_putstr(str, flags);
-	if (flags->mins)
+	if (!flags->mins && flags->width)
 	{
 			i = 0;
 			while (i++ < flags->width - str_len)
 				ft_putchar(' ', flags);
-	}	
+	}
+	ft_putstr(str, flags);
+	if (flags->mins && flags->width)
+	{
+			i = 0;
+			while (i++ < flags->width - str_len)
+				ft_putchar(' ', flags);
+	}
+}
+
+void	process_ints(Check_FLAGS *flags)
+{
+	int	num;
+
+	num = va_arg(flags->args, int);
+	// Normal Flags without width :
+	if (flags->plus && num >= 0)
+		ft_putchar('+', flags);
+	else if (flags->space && num >= 0)
+		ft_putchar(' ', flags);
+	/* if (!flags->v_pres)
+		ft_putnbr(num, flags); */
+	// Advanced Flags :	
+	if (flags->v_pres)
+	{
+		if (flags->mins && flags->width)
+			flags->width = flags->width - flags->v_pres;
+		flags->v_pres = flags->v_pres - ft_nbrlen(num);
+		while (flags->v_pres-- > 0)
+			ft_putchar('0', flags);
+	}
+	ft_putnbr(num, flags);
+	if (flags->mins && flags->width)
+		while (flags->width-- > 0)
+			ft_putchar(' ', flags);
 }

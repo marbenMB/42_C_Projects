@@ -57,6 +57,7 @@ void	ft_puthex(long long nbr, Check_FLAGS *flags);
 void	ft_putstr(char *str, Check_FLAGS *flags);
 	// auto_func :
 size_t	ft_strlen(const char *s);
+size_t	ft_nbrlen(int num);
 int		ft_isdigit(int c);
 int		ft_atoi(const char *str);
 // function utils :
@@ -70,4 +71,5 @@ void	deal_with_spec(char format, Check_FLAGS *flags);
 	// process_cases :
 void	process_char(Check_FLAGS *flags);
 void	process_str(Check_FLAGS *flags);
+void	process_ints(Check_FLAGS *flags);
 #endif

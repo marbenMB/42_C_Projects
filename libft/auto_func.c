@@ -22,6 +22,23 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
+size_t	ft_nbrlen(int num)
+{
+	size_t	i;
+
+	if (!num)
+		return(1);
+	else if (num < 0)
+		num = num * -1;
+	i = 0;
+	while (num > 0)
+	{
+		num = num / 10;
+		i++;
+	}
+	return (i);
+}
+
 int	ft_isdigit(int c)
 {
 	return(c >= 48 && c <= 57);
