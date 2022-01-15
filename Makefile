@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = FT_PRINTF.a
+NAME = libftprintf.a
 SRC = ft_printf.c ./src/ft_printf_utils.c ./src/ft_deal_with.c \
 		./src/ft_process_cases.c ./libft/ft_put.c ./libft/auto_func.c
 
@@ -21,6 +21,8 @@ all : $(NAME)
 
 $(NAME) : $(OBJECT) ft_printf.h
 	ar rc $(NAME) $(OBJECT)
+
+bonus : all
 
 clean :
 	rm -rf $(OBJECT)
