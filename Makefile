@@ -21,6 +21,7 @@ all : $(NAME)
 
 $(NAME) : $(OBJECT) ft_printf.h
 	ar rc $(NAME) $(OBJECT)
+	gcc -g $(CFLAGS) main.c $(SRC)
 
 bonus : all
 

@@ -22,15 +22,18 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-size_t	ft_nbrlen(int num)
+size_t	ft_nbrlen(long long num)
 {
 	size_t	i;
 
+	i = 0;
 	if (!num)
 		return(1);
 	else if (num < 0)
+	{
 		num = num * -1;
-	i = 0;
+		i++;
+	}
 	while (num > 0)
 	{
 		num = num / 10;

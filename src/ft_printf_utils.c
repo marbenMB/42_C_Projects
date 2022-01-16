@@ -15,7 +15,7 @@
 int	find_spec(char c)
 {
 	return (c == 'd'|| c == 'i'|| c == 'u'|| c == 's'
-			|| c == 'c' || c == 'x' || c == 'X'|| c == 'p');
+			|| c == 'c' || c == 'x' || c == 'X'|| c == 'p' || c == '%');
 }
 
 void	reset_data(Check_FLAGS *flags)

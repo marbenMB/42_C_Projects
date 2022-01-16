@@ -35,21 +35,29 @@ void	deal_with_av_flags(const char *format, Check_FLAGS *flags)
 		if (*format == '0')
 		{
 			flags->zero = 1;
-			flags->width = ft_atoi(++format);
+			while (*format == '0')
+				format++;
+			if (ft_isdigit(*(format)))
+				flags->width = ft_atoi(format);
 		}
 		if (*format == '-')
 		{
 			flags->mins = 1;
-			if (ft_isdigit(*(++format)))
+			while (*format == '-')
+				format++;
+			if (ft_isdigit(*(format)))
 				flags->width = ft_atoi(format);
 		}
 		if (*format == '.')
 		{
 			flags->point = 1;
-			flags->pres = ft_isdigit(*(++format));
-			flags->v_pres = ft_atoi(format);
+			while (*format == '.')
+				format++;
+			if ((flags->pres = ft_isdigit(*(++format))))
+				flags->v_pres = ft_atoi(format);
 		}
-		format++;
+		if (*format)
+			format++;
 	}
 }
 
