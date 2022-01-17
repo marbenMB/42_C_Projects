@@ -14,8 +14,6 @@
 
 void	deal_with_nor_flags(const char *format, Check_FLAGS *flags)
 {
-	if (*format > '0' && *format <= '9')
-			flags->width = ft_atoi(format);
 	while(!find_spec(*format) && *format)
 	{
 		if (*format == '+')
@@ -30,6 +28,11 @@ void	deal_with_nor_flags(const char *format, Check_FLAGS *flags)
 
 void	deal_with_av_flags(const char *format, Check_FLAGS *flags)
 {
+	if (*format > '0' && *format <= '9')
+	{
+			flags->width = ft_atoi(format);
+			format += ft_nbrlen(flags->width);
+	}
 	while (!find_spec(*format) && *format)
 	{
 		if (*format == '0')
@@ -53,7 +56,7 @@ void	deal_with_av_flags(const char *format, Check_FLAGS *flags)
 			flags->point = 1;
 			while (*format == '.')
 				format++;
-			if ((flags->pres = ft_isdigit(*(++format))))
+			if ((flags->pres = ft_isdigit(*(format))))
 				flags->v_pres = ft_atoi(format);
 		}
 		if (*format)
@@ -69,7 +72,7 @@ void	deal_with_spec(char spec, Check_FLAGS *flags)
 	else if (spec == 's')
 		process_str(flags);
 	else if (spec == 'd' || spec == 'i')
-		/* ft_putnbr(va_arg(flags->args, int), flags); */	process_ints(flags);
+		process_ints(flags);
 	else if (spec == 'u')
 		ft_putnbr(va_arg(flags->args, unsigned int), flags);
 	else if (spec == 'x' || spec == 'X')

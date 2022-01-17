@@ -61,8 +61,6 @@ void	ft_putstr(char *str, Check_FLAGS *flags)
 	int	i;
 
 	i = 0;
-	/* if (flags->v_pres == 0)
-		flags->v_pres = ft_strlen(str); */
 	while (*str && i++ < flags->v_pres)
 	{
 		ft_putchar(*str, flags);
