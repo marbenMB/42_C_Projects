@@ -54,47 +54,48 @@ void	process_ints(Check_FLAGS *flags)
 
 	num = va_arg(flags->args, int);
 	nbr_len = ft_nbrlen(num);
-	// Normal Flags without width :
+	/* // Normal Flags without width : ********************************************************** */
 	if (flags->plus && num >= 0)
 		ft_putchar('+', flags);
 	else if (flags->space && num >= 0)
 		ft_putchar(' ', flags);
-	// Advanced Flags :
-	if (flags->point && !flags->v_pres && num == 0)
-		return ;
-	i = 0;
-	if (flags->point && num < 0)
-		nbr_len--;
-	if (!flags->v_pres || flags->v_pres < nbr_len)
-		flags->v_pres = nbr_len;
-	if (flags->width > nbr_len && !flags->zero && !flags->mins)
-		while (i++ < flags->width - flags->v_pres)
-			ft_putchar(' ', flags);
-	if (num < 0)
-		ft_putchar('-', flags);
-	if (flags->v_pres && flags->v_pres > nbr_len)
+	/* // Advanced Flags : *********************************************************************  */
+	if (!(flags->point && !flags->v_pres && num == 0))
 	{
-		while (i++ < flags->v_pres - nbr_len)
-			ft_putchar('0', flags);
-	}
-	else if (!flags->v_pres)
-		flags->v_pres = nbr_len;
-	if (flags->width && flags->width > flags->v_pres)
-	{
-		if (flags->zero)
+		i = 0;
+		if (flags->point && num < 0)
+			nbr_len--;
+		if (!flags->v_pres || flags->v_pres < nbr_len)
+			flags->v_pres = nbr_len;
+		if (flags->width > nbr_len && !flags->zero && !flags->mins)
+			while (i++ < flags->width - flags->v_pres)
+				ft_putchar(' ', flags);
+		if (num < 0)
+			ft_putchar('-', flags);
+		if (flags->v_pres && flags->v_pres > nbr_len)
 		{
-			if (flags->point)
-				c = ' ';
-			else
-				c = '0';
-			i = 0;
-			while (i++ < flags->width - nbr_len - flags->v_pres)
-				ft_putchar(c, flags);
+			while (i++ < flags->v_pres - nbr_len)
+				ft_putchar('0', flags);
 		}
+/* 		else if (!flags->v_pres)
+			flags->v_pres = nbr_len; */
+		if (flags->width && flags->width > flags->v_pres)
+		{
+			if (flags->zero)
+			{
+				if (flags->point)
+					c = ' ';
+				else
+					c = '0';
+				i = 0;
+				while (i++ < flags->width - nbr_len - flags->v_pres)
+					ft_putchar(c, flags);
+			}
+		}
+		if (num < 0)
+			num = num * -1;
+		ft_putnbr(num, flags);
 	}
-	if (num < 0)
-		num = num * -1;
-	ft_putnbr(num, flags);
 	i = 0;
 	if (flags->mins && flags->width > flags->v_pres)
 	{
@@ -102,5 +103,4 @@ void	process_ints(Check_FLAGS *flags)
 		while (i++ < flags->width)
 			ft_putchar(' ', flags);
 	}
-	
 }

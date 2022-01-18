@@ -33,9 +33,7 @@ void	deal_with_av_flags(const char *format, Check_FLAGS *flags)
 			flags->width = ft_atoi(format);
 			format += ft_nbrlen(flags->width);
 	}
-	while (!find_spec(*format) && *format)
-	{
-		if (*format == '0')
+	if (*format == '0')
 		{
 			flags->zero = 1;
 			while (*format == '0')
@@ -43,6 +41,8 @@ void	deal_with_av_flags(const char *format, Check_FLAGS *flags)
 			if (ft_isdigit(*(format)))
 				flags->width = ft_atoi(format);
 		}
+	while (!find_spec(*format) && *format)
+	{
 		if (*format == '-')
 		{
 			flags->mins = 1;

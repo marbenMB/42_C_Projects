@@ -73,8 +73,8 @@ int	main()
 	process_str(&test); */
 	//char *str = NULL;
 	//char *s2 = "Mussum Ipsum, cacilds vidis litro abertis. Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi. Atirei o pau no gatis, per gatis num morreus.";
-	ft_printf("%.0s", "hi there");			printf("\n------------\n");
-	   printf("%.0s", "hi there");			printf("\n");
+	ft_printf("%012.4d", -10);			printf("\n------------\n");
+	   printf("%012.4d", -10);			printf("\n");
 }
 
 
