@@ -12,13 +12,8 @@
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+void	ft_body(const char *format, t_Check_FLAGS *sub_spec)
 {
-	Check_FLAGS	sub_spec;
-
-	sub_spec.length = 0;
-	reset_data(&sub_spec);
-	va_start(sub_spec.args, format);
 	while (*format)
 	{
 		if (*format == '%')
@@ -26,18 +21,28 @@ int	ft_printf(const char *format, ...)
 			format++;
 			if (*format == '%')
 			{
-				ft_putchar(*format++, &sub_spec);
-				continue;
+				ft_putchar(*format++, sub_spec);
+				continue ;
 			}
-			deal_with_nor_flags(format, &sub_spec);
+			deal_with_nor_flags(format, sub_spec);
 			while (!find_spec(*format))
 				format++;
-			deal_with_spec(*format, &sub_spec);
+			deal_with_spec(*format, sub_spec);
 		}
 		else
-			ft_putchar(*format, &sub_spec);
-		reset_data(&sub_spec);
+			ft_putchar(*format, sub_spec);
+		reset_data(sub_spec);
 		format++;
 	}
+}
+
+int	ft_printf(const char *format, ...)
+{
+	t_Check_FLAGS	sub_spec;
+
+	sub_spec.length = 0;
+	reset_data(&sub_spec);
+	va_start(sub_spec.args, format);
+	ft_body(format, &sub_spec);
 	return (sub_spec.length);
 }

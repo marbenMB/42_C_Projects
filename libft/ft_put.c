@@ -12,12 +12,12 @@
 
 #include "../ft_printf.h"
 
-void ft_putchar(char c, Check_FLAGS *flags)
+void	ft_putchar(char c, t_Check_FLAGS *flags)
 {
-    flags->length += write(1, &c, 1);
+	flags->length += write(1, &c, 1);
 }
 
-void	ft_putnbr(long long n, Check_FLAGS *flags)
+void	ft_putnbr(long long n, t_Check_FLAGS *flags)
 {
 	unsigned int	nb;
 
@@ -33,9 +33,9 @@ void	ft_putnbr(long long n, Check_FLAGS *flags)
 	ft_putchar(nb % 10 + 48, flags);
 }
 
-void	ft_puthex(unsigned long long nbr, Check_FLAGS *flags)
+void	ft_puthex(unsigned long long nbr, t_Check_FLAGS *flags)
 {
-	char *base;
+	char	*base;
 
 	if (flags->spec == 'x' || flags->spec == 'p')
 		base = LOW_BASE;
@@ -43,7 +43,7 @@ void	ft_puthex(unsigned long long nbr, Check_FLAGS *flags)
 		base = UP_BASE;
 	if (nbr < 0)
 			nbr = (unsigned int)nbr;
-	if (nbr / 16 != 0 )
+	if (nbr / 16 != 0)
 	{
 		ft_puthex(nbr / 16, flags);
 		ft_putchar(base[nbr % 16], flags);
@@ -52,7 +52,7 @@ void	ft_puthex(unsigned long long nbr, Check_FLAGS *flags)
 		ft_putchar(base[nbr], flags);
 }
 
-void	ft_putstr(char *str, Check_FLAGS *flags)
+void	ft_putstr(char *str, t_Check_FLAGS *flags)
 {
 	while (*str)
 	{

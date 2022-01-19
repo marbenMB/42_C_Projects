@@ -14,11 +14,11 @@
 
 int	find_spec(char c)
 {
-	return (c == 'd'|| c == 'i'|| c == 'u'|| c == 's'
-			|| c == 'c' || c == 'x' || c == 'X'|| c == 'p' || c == '%');
+	return (c == 'd' || c == 'i' || c == 'u' || c == 's'
+		|| c == 'c' || c == 'x' || c == 'X' || c == 'p' || c == '%');
 }
 
-void	reset_data(Check_FLAGS *flags)
+void	reset_data(t_Check_FLAGS *flags)
 {
 	flags->plus = 0;
 	flags->space = 0;

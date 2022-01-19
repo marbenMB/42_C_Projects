@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_process_cases.c                                 :+:      :+:    :+:   */
+/*   ft_process_char_cases.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbenbajj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,16 +12,16 @@
 
 #include "../ft_printf.h"
 
-void	process_char(Check_FLAGS *flags)
+void	process_char(t_Check_FLAGS *flags)
 {
 	ft_putchar(va_arg(flags->args, int), flags);
 }
 
-void	process_str(Check_FLAGS *flags)
+void	process_str(t_Check_FLAGS *flags)
 {
 	char	*str;
 
-	str = va_arg(flags->args, char *);	/* 	str = NULL; */	
+	str = va_arg(flags->args, char *);
 	if (!str)
 		ft_putstr("(null)", flags);
 	else

@@ -12,21 +12,21 @@
 
 #include "../ft_printf.h"
 
-void	deal_with_nor_flags(const char *format, Check_FLAGS *flags)
+void	deal_with_nor_flags(const char *format, t_Check_FLAGS *flags)
 {
-	while(!find_spec(*format) && *format)
+	while (!find_spec(*format) && *format)
 	{
 		if (*format == '+')
 			flags->plus = 1;
 		else if (*format == ' ')
 			flags->space = 1;
-		else if(*format == '#')
+		else if (*format == '#')
 			flags->hash = 1;
 		format++;
 	}
 }
 
-void	deal_with_spec(char spec, Check_FLAGS *flags)
+void	deal_with_spec(char spec, t_Check_FLAGS *flags)
 {
 	flags->spec = spec;
 	if (spec == 'c')
