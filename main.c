@@ -57,7 +57,7 @@
 /* ------------------------------------------------------------------------- */
 						/* TESTING THE FUNCTIONS */
 /* ------------------------------------------------------------------------- */
-/* #define TEST " %-9d %-10d %-11d %-12d %-13d %-14d %-15d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42 */
+#define TEST "%p", (void *)-2
 
 int	main()
 {
@@ -73,8 +73,8 @@ int	main()
 	process_str(&test); */
 	//char *str = NULL;
 	//char *s2 = "Mussum Ipsum, cacilds vidis litro abertis. Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi. Atirei o pau no gatis, per gatis num morreus.";
-	ft_printf("%012.4d", -10);			printf("\n------------\n");
-	   printf("%012.4d", -10);			printf("\n");
+	ft_printf(TEST);			printf("\n------------\n");
+	   printf(TEST);			printf("\n");
 }
 
 

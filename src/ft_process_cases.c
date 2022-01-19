@@ -60,9 +60,9 @@ void	process_str(Check_FLAGS *flags)
 void	process_ints(Check_FLAGS *flags)
 {
 	long long		num;
+	int		nbr_len;
 	char	c;
 	int		i;
-	int		nbr_len;
 
 	num = va_arg(flags->args, int);
 	nbr_len = ft_nbrlen(num);
@@ -100,13 +100,22 @@ void	process_ints(Check_FLAGS *flags)
 				else
 					c = '0';
 				i = 0;
-				while (i++ < flags->width - nbr_len - flags->v_pres)
+				while (i++ < flags->width - flags->v_pres)
 					ft_putchar(c, flags);
 			}
 		}
 		if (num < 0)
 			num = num * -1;
 		ft_putnbr(num, flags);
+	}
+	else
+	{
+		if (flags->zero && flags->width)
+		{
+			i = 0;
+			while (i++ < flags->width - flags->v_pres)
+					ft_putchar(' ', flags);
+		}
 	}
 	i = 0;
 	if (flags->mins && flags->width > flags->v_pres)
@@ -115,4 +124,72 @@ void	process_ints(Check_FLAGS *flags)
 		while (i++ < flags->width)
 			ft_putchar(' ', flags);
 	}
+}
+
+void	process_unsigned(Check_FLAGS *flags)
+{
+	unsigned int	num;
+	int				nbr_len;
+	int				i;
+	char			c;
+
+	num = va_arg(flags->args, unsigned int);
+	nbr_len = ft_nbrlen(num);
+	if (!(flags->point && !flags->v_pres && num == 0))
+	{
+		i = 0;
+		if (!flags->v_pres || flags->v_pres < nbr_len)
+			flags->v_pres = nbr_len;
+		if (flags->width > nbr_len && !flags->zero && !flags->mins)
+			while (i++ < flags->width - flags->v_pres)
+				ft_putchar(' ', flags);
+		if (flags->v_pres && flags->v_pres > nbr_len)
+		{
+			while (i++ < flags->v_pres - nbr_len)
+				ft_putchar('0', flags);
+		}
+		if (flags->width && flags->width > flags->v_pres)
+		{
+			if (flags->zero)
+			{
+				if (flags->point)
+					c = ' ';
+				else
+					c = '0';
+				i = 0;
+				while (i++ < flags->width - flags->v_pres)
+					ft_putchar(c, flags);
+			}
+		}
+		ft_putnbr(num, flags);
+	}
+	else
+	{
+		if (flags->zero && flags->width)
+		{
+			i = 0;
+			while (i++ < flags->width - flags->v_pres)
+					ft_putchar(' ', flags);
+		}
+	}
+	
+	i = 0;
+	if (flags->mins && flags->width > flags->v_pres)
+	{
+		flags->width -= flags->v_pres;
+		while (i++ < flags->width)
+			ft_putchar(' ', flags);
+	}
+}
+
+void	process_addrs(Check_FLAGS *flags)
+{
+	int	i;
+
+	i = 0;
+	/* if (!flags->mins && flags->width)
+		while (i++ < ) */
+	flags->v_pres = 2;
+	ft_putstr("0x", flags);
+	ft_puthex(va_arg(flags->args, long long), flags);
 }

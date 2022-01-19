@@ -35,7 +35,7 @@ void	ft_putnbr(long long n, Check_FLAGS *flags)
 	ft_putchar(nb % 10 + 48, flags);
 }
 
-void	ft_puthex(long long nbr, Check_FLAGS *flags)
+void	ft_puthex(unsigned long long nbr, Check_FLAGS *flags)
 {
 	char *base;
 
@@ -43,8 +43,6 @@ void	ft_puthex(long long nbr, Check_FLAGS *flags)
 		base = LOW_BASE;
 	else if (flags->spec == 'X')
 		base = UP_BASE;
-	if (flags->spec == 'p')
-		ft_putstr("0x", flags);
 	if (nbr < 0)
 			nbr = (unsigned int)nbr;
 	if (nbr / 16 != 0 )

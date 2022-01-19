@@ -53,7 +53,7 @@ int		ft_printf(const char *format, ...);
 	// ft_put :
 void	ft_putchar(char c, Check_FLAGS *flags);
 void	ft_putnbr(long long n, Check_FLAGS *flags);
-void	ft_puthex(long long nbr, Check_FLAGS *flags);
+void	ft_puthex(unsigned long long nbr, Check_FLAGS *flags);
 void	ft_putstr(char *str, Check_FLAGS *flags);
 	// auto_func :
 size_t	ft_strlen(const char *s);
@@ -75,4 +75,6 @@ void	process_ints(Check_FLAGS *flags);
 	// Needs of process :
 void	process_ints_nor(int num, Check_FLAGS *flags);
 void	process_ints_av(int num, Check_FLAGS *flags);
+void	process_unsigned(Check_FLAGS *flags);
+void	process_addrs(Check_FLAGS *flags);
 #endif

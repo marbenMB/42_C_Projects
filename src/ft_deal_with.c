@@ -74,9 +74,9 @@ void	deal_with_spec(char spec, Check_FLAGS *flags)
 	else if (spec == 'd' || spec == 'i')
 		process_ints(flags);
 	else if (spec == 'u')
-		ft_putnbr(va_arg(flags->args, unsigned int), flags);
+		process_unsigned(flags);
 	else if (spec == 'x' || spec == 'X')
 		ft_puthex(va_arg(flags->args, long long), flags);
 	else if (spec == 'p')
-		ft_puthex(va_arg(flags->args, unsigned long long), flags);	
+	/* 	ft_puthex(va_arg(flags->args, unsigned long long), flags); */	process_addrs(flags);
 }
