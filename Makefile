@@ -29,7 +29,7 @@ clean :
 	rm -rf $(OBJECT)
 
 fclean : clean
-	rm -rf $(NAME)
+	rm -rf $(NAME) a.out
 
 re : fclean all
 
