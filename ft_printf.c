@@ -44,5 +44,6 @@ int	ft_printf(const char *format, ...)
 	reset_data(&sub_spec);
 	va_start(sub_spec.args, format);
 	ft_body(format, &sub_spec);
+	va_end(sub_spec.args);
 	return (sub_spec.length);
 }
