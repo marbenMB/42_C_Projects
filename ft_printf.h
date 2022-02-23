@@ -60,6 +60,7 @@ size_t	ft_strlen(const char *s);
 size_t	ft_nbrlen(long long num);
 int		ft_isdigit(int c);
 int		ft_atoi(const char *str);
+int	ft_hexlen(unsigned long long nbr);
 // function utils :
 int		find_spec(char c);
 void	reset_data(Check_FLAGS *flags);
@@ -76,5 +77,6 @@ void	process_ints(Check_FLAGS *flags);
 void	process_ints_nor(int num, Check_FLAGS *flags);
 void	process_ints_av(int num, Check_FLAGS *flags);
 void	process_unsigned(Check_FLAGS *flags);
+void	process_hex(Check_FLAGS *flags);
 void	process_addrs(Check_FLAGS *flags);
 #endif

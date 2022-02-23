@@ -182,14 +182,66 @@ void	process_unsigned(Check_FLAGS *flags)
 	}
 }
 
+void	process_hex(Check_FLAGS *flags)
+{
+	long long	nbr;
+	int			nbr_len;
+	int			i;
+
+	nbr = va_arg(flags->args, long long);
+	nbr_len = ft_hexlen(nbr);
+	i = 0;
+	if (flags->point && flags->v_pres)
+	{
+		flags->v_pres = flags->v_pres - nbr_len;
+		while (i++ < flags->v_pres)
+			ft_putchar('0', flags);
+	}
+	if (!flags->mins && flags->width)
+	{
+		flags->width = flags->width - nbr_len - flags->v_pres;
+		while (i++ < flags->width)
+			ft_putchar(' ', flags);
+	}
+	if (flags->hash && nbr)
+	{
+		if (flags->spec == 'x')
+			ft_putstr("0x", flags);
+		else if (flags->spec == 'X')
+			ft_putstr("0X", flags);
+	}
+	if ((!(flags->pres && !flags->v_pres && !nbr)) || (!(flags->point && !flags->pres && !nbr)))
+		ft_puthex(nbr, flags);
+	if (flags->mins && flags->width)
+	{
+		flags->width = flags->width - nbr_len;
+		while (i++ < flags->width)
+			ft_putchar(' ', flags);
+	}
+}
+
 void	process_addrs(Check_FLAGS *flags)
 {
 	int	i;
+	unsigned long long nbr;
+	int	nbr_len;
 
+	nbr = va_arg(flags->args, long long);
+	nbr_len = ft_hexlen(nbr) + 2;
 	i = 0;
-	/* if (!flags->mins && flags->width)
-		while (i++ < ) */
+	if (flags->width && !flags->mins)
+	{
+		nbr_len = flags->width - nbr_len;
+		while (i++ < nbr_len)
+			ft_putchar(' ', flags);
+	}
 	flags->v_pres = 2;
 	ft_putstr("0x", flags);
-	ft_puthex(va_arg(flags->args, long long), flags);
+	ft_puthex(nbr, flags);
+	if (flags->width && flags->mins)
+	{
+		nbr_len = flags->width - nbr_len;
+		while (i++ < nbr_len)
+			ft_putchar(' ', flags);
+	}
 }

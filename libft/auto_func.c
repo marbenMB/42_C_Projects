@@ -69,3 +69,17 @@ int	ft_atoi(const char *str)
 	}
 	return (num * signe);
 }
+
+int	ft_hexlen(unsigned long long nbr)
+{
+	int i;
+
+	i = 0;
+	while (nbr > 15)
+	{
+		nbr = nbr / 16;
+		i++;
+	}
+	++i;
+	return (i);
+}
