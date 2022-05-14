@@ -23,3 +23,50 @@ void	check_name(char *name)
 		error_name();
 	free(extension);
 }
+
+void	check_wall(char **map)
+{
+	int		i;
+	int		j;
+	size_t	len;
+
+	i = -1;
+	len = ft_strlen(map[0]);
+	while (map[++i])
+	{
+		if (ft_strlen(map[i]) != len)
+			error_map(map);
+		if (i == 0 || i == map_height(map) - 1)
+		{
+			j = -1;
+			while (map[i][++j])
+			{
+				if (map[i][j] != '1')
+						error_map(map);
+			}
+		}
+		if (map[i][0] != '1' || map[i][ft_strlen(map[i]) - 1] != '1')
+			error_map(map);
+	}
+
+}
+
+void	check_components(char **map)
+{
+	check_wall(map);
+	// check_elem(map);
+}
+
+void	check_map(char *name)
+{
+	int		fd;
+	char	**map;
+
+	check_name(name);
+	fd = open(name, O_RDONLY, 0666);
+	if (fd < 0)
+		error_file();
+	map = get_map(fd);
+	check_components(map);
+	free_tab(map);
+}

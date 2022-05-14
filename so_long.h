@@ -21,13 +21,23 @@
 # include <string.h>
 # include <limits.h>
 # include "./libft/libft.h"
+# include "./get_next_line/get_next_line.h"
 
 //	***********		Functions	*********** :
 //	***********	Errors : 
 void	error_usage(void);
 void	error_name(void);
+void	error_file(void);
+void	error_map(char **tab);
 
 //	***********	Checks :
 void	check_name(char *name);
+void	check_map(char *map);
+
+//	***********	Utils :
+void	free_tab(char **tab);
+int		map_height(char **map);
+char	**get_map(int fd);
+
 
 #endif

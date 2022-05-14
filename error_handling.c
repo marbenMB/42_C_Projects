@@ -12,6 +12,20 @@
 
 #include "so_long.h"
 
+void	error_map(char **tab)
+{
+	free_tab(tab);
+	ft_putendl_fd("\033[31m Error ** Map Error **\033[0m", 2);
+	system("leaks so_long");
+	exit (EXIT_FAILURE);
+}
+
+void	error_file(void)
+{
+	ft_putendl_fd("\033[31m Error ** No such file **\033[0m", 2);
+	exit (EXIT_FAILURE);
+}
+
 void	error_name(void)
 {
 	ft_putendl_fd("\033[31m Error ** Map Name : name.ber **\033[0m", 2);

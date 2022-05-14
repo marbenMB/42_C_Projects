@@ -11,7 +11,8 @@
 # **************************************************************************** #
 
 NAME = so_long
-SRC = so_long.c error_handling.c ft_check.c
+SRC = so_long.c error_handling.c ft_check.c ft_utils.c \
+		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 OBJ = $(SRC:.c=.o)
 CFLAGS = -Wall -Wextra -Werror
 
@@ -19,7 +20,7 @@ all : $(NAME)
 
 $(NAME) : $(OBJ) so_long.h
 	make bonus -C ./libft
-	gcc $(OBJ) -o $(NAME) ./libft/libft.a -g
+	gcc $(SRC) -o $(NAME) ./libft/libft.a -g
 
 clean :
 	make clean -C ./libft
