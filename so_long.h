@@ -22,6 +22,7 @@
 # include <limits.h>
 # include "./libft/libft.h"
 # include "./get_next_line/get_next_line.h"
+# include <mlx.h>
 
 //	***********		Structs		*********** :
 typedef struct compo
@@ -31,6 +32,17 @@ typedef struct compo
 	int	collec;
 	int	player;
 }	t_comp;
+
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+	void	*wall;
+	void	*player;
+	void	*bg;
+	void	*collect;
+	void	*out;
+}	t_mlx;
 
 //	***********		Functions	*********** :
 //	***********	Errors : 
@@ -43,7 +55,7 @@ void	error_map(char **tab);
 void	check_name(char *name);
 void	check_wall(char **map);
 void	check_components(char **map);
-void	check_map(char *map);
+char	**check_map(char *map);
 
 //	***********	Parsing Utils :
 void	free_tab(char **tab);
@@ -54,5 +66,8 @@ char	**get_map(int fd);
 void	comp_init(t_comp *verf);
 int		verf_comp(char c);
 void	find_comp(char c, t_comp *verf);
+
+//	***********	Drawing Funcitons :
+void	open_wind(char **map, t_mlx *stc);
 
 #endif

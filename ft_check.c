@@ -74,7 +74,7 @@ void	check_components(char **map)
 	check_elem(map);
 }
 
-void	check_map(char *name)
+char	**check_map(char *name)
 {
 	int		fd;
 	char	**map;
@@ -87,5 +87,5 @@ void	check_map(char *name)
 	if (map_height(map) <= 2 || ft_strlen(map[0]) <= 2)
 		error_map(map);
 	check_components(map);
-	free_tab(map);
+	return (map);
 }

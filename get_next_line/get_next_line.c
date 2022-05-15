@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
-#define BUFFER_SIZE 1
 
 char	*ft_get_line(char *str)
 {
