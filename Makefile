@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = so_long
-SRC = so_long.c error_handling.c ft_check.c ft_parsing_utils.c \
+SRC = so_long.c error_handling.c ft_check.c ft_parsing_utils.c ft_utils_parsing.c \
 		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 OBJ = $(SRC:.c=.o)
 CFLAGS = -Wall -Wextra -Werror
@@ -28,7 +28,7 @@ clean :
 
 fclean :
 	make fclean -C ./libft
-	rm -rf $(OBJ) $(NAME)
+	rm -rf $(OBJ) $(NAME) so_long.dSYM
 
 re : fclean all
 

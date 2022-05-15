@@ -23,6 +23,14 @@
 # include "./libft/libft.h"
 # include "./get_next_line/get_next_line.h"
 
+//	***********		Structs		*********** :
+typedef struct compo
+{
+	int	space;
+	int	exit;
+	int	collec;
+	int	player;
+}	t_comp;
 //	***********		Functions	*********** :
 //	***********	Errors : 
 void	error_usage(void);
@@ -32,11 +40,18 @@ void	error_map(char **tab);
 
 //	***********	Checks :
 void	check_name(char *name);
+void	check_wall(char **map);
+void	check_components(char **map);
 void	check_map(char *map);
 
-//	***********	Utils :
+//	***********	Parsing Utils :
 void	free_tab(char **tab);
 int		map_height(char **map);
+char	*joining(char *str, char *line);
+void	check_map_form(char *str, char *line, size_t len);
 char	**get_map(int fd);
+void	comp_init(t_comp *verf);
+int		verf_comp(char c);
+void	find_comp(char c, t_comp *verf);
 
 #endif
