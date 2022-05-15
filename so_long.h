@@ -31,6 +31,7 @@ typedef struct compo
 	int	collec;
 	int	player;
 }	t_comp;
+
 //	***********		Functions	*********** :
 //	***********	Errors : 
 void	error_usage(void);
