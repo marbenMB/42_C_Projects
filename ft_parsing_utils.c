@@ -22,7 +22,7 @@ void	free_tab(char **tab)
 	free(tab);
 }
 
-int		map_height(char **map)
+int	map_height(char **map)
 {
 	int		i;
 
@@ -32,16 +32,40 @@ int		map_height(char **map)
 	return (i);
 }
 
+char	*joining(char *str, char *line)
+{
+	char	*tmp;
+
+	tmp = str;
+	str = ft_strjoin(str, line);
+	free(tmp);
+	tmp = str;
+	str = ft_strjoin(str, "\n");
+	free(tmp);
+	return (str);
+}
+
+void	check_map_form(char *str, char *line, size_t len)
+{
+	if (ft_strlen(line) != len)
+	{
+		free(line);
+		free(str);
+		error_map(NULL);
+	}
+}
+
 char	**get_map(int fd)
 {
 	char	*line;
 	char	*str;
-	char	*tmp;
 	char	**tab;
+	size_t	len;
 
 	line = get_next_line(fd);
 	if (!line)
 		error_map(NULL);
+	len = ft_strlen(line);
 	str = ft_strjoin(line, "\n");
 	while (line)
 	{
@@ -49,9 +73,8 @@ char	**get_map(int fd)
 		line = get_next_line(fd);
 		if (line)
 		{
-			tmp = str;
-			str = ft_strjoin(str, line);
-			free(tmp);
+			str = joining(str, line);
+			check_map_form(str, line, len);
 		}
 	}
 	tab = ft_split(str, '\n');

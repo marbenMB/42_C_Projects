@@ -39,5 +39,4 @@ void	free_tab(char **tab);
 int		map_height(char **map);
 char	**get_map(int fd);
 
-
 #endif

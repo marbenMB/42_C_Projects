@@ -17,7 +17,6 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		error_usage();
 	check_map(av[1]);
-
 	ft_putendl_fd("\033[32m ** CHECKS DONE **\033[0m", 1);
 	system("leaks so_long");
 	return (0);

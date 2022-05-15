@@ -34,6 +34,6 @@ void	error_name(void)
 
 void	error_usage(void)
 {
-	ft_putendl_fd("\033[31m Error ** Usage : ./so_long  path/map.ber **\033[0m", 2);
+	ft_putendl_fd("\033[31m Error ** Usage : ./so_long  map/path **\033[0m", 2);
 	exit (EXIT_FAILURE);
 }
