@@ -14,6 +14,11 @@
 
 void	open_wind(char **map, t_mlx *stc)
 {
-	stc->win = mlx_new_window(stc->mlx, (int)ft_strlen(map[0]) * 50, map_height(map) * 50, "MAR_BEN");
+	int		size_x;
+	int		size_y;
+
+	size_x = (int)ft_strlen(map[0]) * 50;
+	size_y = map_height(map) * 50;
+	stc->win = mlx_new_window(stc->mlx, size_x, size_y, "MAR_BEN");
 	mlx_loop(stc->mlx);
 }

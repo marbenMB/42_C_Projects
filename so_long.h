@@ -60,7 +60,7 @@ char	**check_map(char *map);
 //	***********	Parsing Utils :
 void	free_tab(char **tab);
 int		map_height(char **map);
-char	*joining(char *str, char *line);
+char	*joining(char *str, char *line, char *temp, size_t len);
 void	check_map_form(char *str, char *line, size_t len);
 char	**get_map(int fd);
 void	comp_init(t_comp *verf);

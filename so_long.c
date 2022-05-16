@@ -24,7 +24,6 @@ int	main(int ac, char **av)
 	printf("%zu - %d\n", ft_strlen(map[0]), map_height(map));
 	stc.mlx = mlx_init();
 	open_wind(map, &stc);
-
 	free_tab(map);
 	system("leaks so_long");
 	return (0);

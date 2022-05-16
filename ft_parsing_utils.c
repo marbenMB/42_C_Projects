@@ -32,19 +32,6 @@ int	map_height(char **map)
 	return (i);
 }
 
-char	*joining(char *str, char *line)
-{
-	char	*tmp;
-
-	tmp = str;
-	str = ft_strjoin(str, line);
-	free(tmp);
-	tmp = str;
-	str = ft_strjoin(str, "\n");
-	free(tmp);
-	return (str);
-}
-
 void	check_map_form(char *str, char *line, size_t len)
 {
 	if (ft_strlen(line) != len)
@@ -55,28 +42,42 @@ void	check_map_form(char *str, char *line, size_t len)
 	}
 }
 
+char	*joining(char *str, char *line, char *temp, size_t len)
+{
+	char	*tmp;
+
+	tmp = str;
+	str = ft_strjoin(str, line);
+	free(tmp);
+	check_map_form(str, temp, len);
+	free(temp);
+	return (str);
+}
+
 char	**get_map(int fd)
 {
 	char	*line;
-	char	*str;
+	char	*temp[2];
 	char	**tab;
 	size_t	len;
 
 	line = get_next_line(fd);
 	if (!line)
 		error_map(NULL);
-	len = ft_strlen(line);
-	str = ft_strjoin(line, "\n");
+	temp[0] = ft_strtrim(line, "\n");
+	len = ft_strlen(temp[0]);
+	temp[1] = ft_strjoin(temp[0], "\n");
+	free(temp[0]);
 	while (line)
 	{
 		free(line);
 		line = get_next_line(fd);
+		temp[0] = ft_strtrim(line, "\n");
 		if (line)
-		{
-			str = joining(str, line);
-			check_map_form(str, line, len);
-		}
+			temp[1] = joining(temp[1], line, temp[0], len);
 	}
-	tab = ft_split(str, '\n');
-	return (free(str), tab);
+	if (temp[1][ft_strlen(temp[1]) - 1] == '\n')
+		error_map(NULL);
+	tab = ft_split(temp[1], '\n');
+	return (free(temp[1]), tab);
 }

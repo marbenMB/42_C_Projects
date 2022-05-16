@@ -25,6 +25,8 @@ char	*ft_get_line(char *str)
 	index = -1;
 	while (str[++index] != '\n' && str[index] != '\0')
 		line[index] = str[index];
+	if (str[index] && str[index] == '\n')
+		line[index++] = '\n';
 	line[index] = '\0';
 	return (line);
 }
