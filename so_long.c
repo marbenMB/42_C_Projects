@@ -14,17 +14,16 @@
 
 int	main(int ac, char **av)
 {
-	char	**map;
 	t_mlx	stc;
 
 	if (ac != 2)
 		error_usage();
-	map = check_map(av[1]);
+	stc.map = check_map(av[1]);
 	ft_putendl_fd("\033[32m ** CHECKS DONE **\033[0m", 1);
-	printf("%zu - %d\n", ft_strlen(map[0]), map_height(map));
+	printf("%zu - %d\n", ft_strlen(stc.map[0]), map_height(stc.map));
 	stc.mlx = mlx_init();
-	open_wind(map, &stc);
-	free_tab(map);
+	open_wind(stc.map, &stc);
+	free_tab(stc.map);
 	system("leaks so_long");
 	return (0);
 }

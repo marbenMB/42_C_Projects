@@ -35,6 +35,7 @@ typedef struct compo
 
 typedef struct s_mlx
 {
+	char	**map;
 	void	*mlx;
 	void	*win;
 	void	*wall;
@@ -69,5 +70,7 @@ void	find_comp(char c, t_comp *verf);
 
 //	***********	Drawing Funcitons :
 void	open_wind(char **map, t_mlx *stc);
+void	create_components(t_mlx *stc);
+void	ft_draw(t_mlx *stc);
 
 #endif
