@@ -69,8 +69,13 @@ int		verf_comp(char c);
 void	find_comp(char c, t_comp *verf);
 
 //	***********	Drawing Funcitons :
-void	open_wind(char **map, t_mlx *stc);
+void	open_wind(t_mlx *stc);
 void	create_components(t_mlx *stc);
 void	ft_draw(t_mlx *stc);
+
+//	***********	Utils Funcitons :
+void	stc_init(t_mlx *stc);
+int		key_hook(int key, t_mlx *stc);
+void	move_player(int key, t_mlx *stc);
 
 #endif

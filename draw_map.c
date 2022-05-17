@@ -14,14 +14,15 @@
 
 void	create_components(t_mlx *stc)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 
 	stc->wall = mlx_xpm_file_to_image(stc->mlx, "img_src/grass.xpm", &x, &y);
 	stc->bg = mlx_xpm_file_to_image(stc->mlx, "img_src/enemy.xpm", &x, &y);
 	stc->player = mlx_xpm_file_to_image(stc->mlx, "img_src/player.xpm", &x, &y);
 	stc->out = mlx_xpm_file_to_image(stc->mlx, "img_src/door.xpm", &x, &y);
 	stc->collect = mlx_xpm_file_to_image(stc->mlx, "img_src/coin.xpm", &x, &y);
+	stc->bg = mlx_xpm_file_to_image(stc->win, "img_src/space.xpm", &x, &y);
 }
 
 void	ft_draw(t_mlx *stc)
@@ -37,7 +38,7 @@ void	ft_draw(t_mlx *stc)
 	{
 		dy = -1;
 		x = 0;
-		while(stc->map[dx][++dy])
+		while (stc->map[dx][++dy])
 		{
 			if (stc->map[dx][dy] == '1')
 				mlx_put_image_to_window(stc->mlx, stc->win, stc->wall, x, y);
@@ -47,21 +48,25 @@ void	ft_draw(t_mlx *stc)
 				mlx_put_image_to_window(stc->mlx, stc->win, stc->player, x, y);
 			else if (stc->map[dx][dy] == 'E')
 				mlx_put_image_to_window(stc->mlx, stc->win, stc->out, x, y);
+			else if (stc->map[dx][dy] == '0')
+				mlx_put_image_to_window(stc->mlx, stc->win, stc->bg, x, y);
 			x += 50;
 		}
 		y += 50;
 	}
 }
 
-void	open_wind(char **map, t_mlx *stc)
+void	open_wind(t_mlx *stc)
 {
 	int		size_x;
 	int		size_y;
 
-	size_x = (int)ft_strlen(map[0]) * 50;
-	size_y = map_height(map) * 50;
+	size_x = (int)ft_strlen(stc->map[0]) * 50;
+	size_y = map_height(stc->map) * 50;
+	stc->mlx = mlx_init();
 	stc->win = mlx_new_window(stc->mlx, size_x, size_y, "MAR_BEN");
 	create_components(stc);
 	ft_draw(stc);
+	mlx_key_hook(stc->win, key_hook, stc);
 	mlx_loop(stc->mlx);
 }

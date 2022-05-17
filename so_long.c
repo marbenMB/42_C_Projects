@@ -18,12 +18,12 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		error_usage();
+	stc_init(&stc);
 	stc.map = check_map(av[1]);
 	ft_putendl_fd("\033[32m ** CHECKS DONE **\033[0m", 1);
 	printf("%zu - %d\n", ft_strlen(stc.map[0]), map_height(stc.map));
-	stc.mlx = mlx_init();
-	open_wind(stc.map, &stc);
+	open_wind(&stc);
 	free_tab(stc.map);
-	system("leaks so_long");
+	// system("leaks so_long");
 	return (0);
 }
