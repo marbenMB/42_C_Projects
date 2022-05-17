@@ -18,11 +18,10 @@ void	create_components(t_mlx *stc)
 	int		y;
 
 	stc->wall = mlx_xpm_file_to_image(stc->mlx, "img_src/grass.xpm", &x, &y);
-	stc->bg = mlx_xpm_file_to_image(stc->mlx, "img_src/enemy.xpm", &x, &y);
 	stc->player = mlx_xpm_file_to_image(stc->mlx, "img_src/player.xpm", &x, &y);
 	stc->out = mlx_xpm_file_to_image(stc->mlx, "img_src/door.xpm", &x, &y);
 	stc->collect = mlx_xpm_file_to_image(stc->mlx, "img_src/coin.xpm", &x, &y);
-	stc->bg = mlx_xpm_file_to_image(stc->win, "img_src/space.xpm", &x, &y);
+	stc->bg = mlx_xpm_file_to_image(stc->mlx, "img_src/space.xpm", &x, &y);
 }
 
 void	ft_draw(t_mlx *stc)
