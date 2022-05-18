@@ -12,6 +12,12 @@
 
 #include "so_long.h"
 
+void	ft_put_moves(int n)
+{
+	ft_putnbr_fd(n, 1);
+	ft_putchar_fd('\n', 1);
+}
+
 void	ft_swap(char *c1, char *c2)
 {
 	char	tmp;
@@ -51,8 +57,6 @@ void	move_player(int key, t_mlx *stc)
 		move_right(stc, p);
 	if (key == 0)
 		move_left(stc, p);
-	ft_putnbr_fd(stc->count, 1);
-	ft_putchar_fd('\n', 1);
 	free(p);
 	ft_draw(stc);
 }

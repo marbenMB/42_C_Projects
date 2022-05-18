@@ -89,6 +89,7 @@ int		*get_pos(char **map);
 void	move_player(int key, t_mlx *stc);
 
 //	***********	Play Utils :
+void	ft_put_moves(int n);
 void	move_up(t_mlx *stc, int *p);
 void	move_down(t_mlx *stc, int *p);
 void	move_right(t_mlx *stc, int *p);

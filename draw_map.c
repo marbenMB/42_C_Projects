@@ -41,15 +41,15 @@ void	ft_draw(t_mlx *stc)
 		while (stc->map[dx][++dy])
 		{
 			if (stc->map[dx][dy] == '1')
-				ft_paint(stc, stc->wall, dy * 50 + 80, dx * 50);
+				ft_paint(stc, stc->wall, dy * 50, dx * 50);
 			else if (stc->map[dx][dy] == 'C')
-				ft_paint(stc, stc->collect, dy * 50 + 80, dx * 50);
+				ft_paint(stc, stc->collect, dy * 50, dx * 50);
 			else if (stc->map[dx][dy] == 'P')
-				ft_paint(stc, stc->player, dy * 50 + 80, dx * 50);
+				ft_paint(stc, stc->player, dy * 50, dx * 50);
 			else if (stc->map[dx][dy] == 'E')
-				ft_paint(stc, stc->out, dy * 50 + 80, dx * 50);
+				ft_paint(stc, stc->out, dy * 50, dx * 50);
 			else if (stc->map[dx][dy] == '0')
-				ft_paint(stc, stc->bg, dy * 50 + 80, dx * 50);
+				ft_paint(stc, stc->bg, dy * 50, dx * 50);
 		}
 	}
 }
@@ -59,7 +59,7 @@ void	open_wind(t_mlx *stc)
 	int		size_x;
 	int		size_y;
 
-	size_x = (int)ft_strlen(stc->map[0]) * 50 + 80;
+	size_x = (int)ft_strlen(stc->map[0]) * 50;
 	size_y = map_height(stc->map) * 50;
 	stc->mlx = mlx_init();
 	stc->win = mlx_new_window(stc->mlx, size_x, size_y, "MAR_BEN");

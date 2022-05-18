@@ -15,59 +15,83 @@
 void	move_up(t_mlx *stc, int *p)
 {
 	if (stc->map[p[0] - 1][p[1]] == '0')
+	{
 		ft_swap(&stc->map[p[0] - 1][p[1]], &stc->map[p[0]][p[1]]);
+		ft_put_moves(stc->count++);
+	}
 	if (stc->map[p[0] - 1][p[1]] == 'C')
 	{
 		stc->map[p[0] - 1][p[1]] = 'P';
 		stc->map[p[0]][p[1]] = '0';
 		stc->verf.collec--;
+		ft_put_moves(stc->count++);
 	}
 	if (stc->map[p[0] - 1][p[1]] == 'E' && !stc->verf.collec)
+	{	
 		ft_close(stc);
-	stc->count++;
+		ft_put_moves(stc->count++);
+	}
 }
 
 void	move_down(t_mlx *stc, int *p)
 {
 	if (stc->map[p[0] + 1][p[1]] == '0')
+	{
 		ft_swap(&stc->map[p[0] + 1][p[1]], &stc->map[p[0]][p[1]]);
+		ft_put_moves(stc->count++);
+	}
 	if (stc->map[p[0] + 1][p[1]] == 'C')
 	{
 		stc->map[p[0] + 1][p[1]] = 'P';
 		stc->map[p[0]][p[1]] = '0';
 		stc->verf.collec--;
+		ft_put_moves(stc->count++);
 	}
 	if (stc->map[p[0] + 1][p[1]] == 'E' && !stc->verf.collec)
+	{
 		ft_close(stc);
-	stc->count++;
+		ft_put_moves(stc->count++);
+	}
 }
 
 void	move_right(t_mlx *stc, int *p)
 {
 	if (stc->map[p[0]][p[1] + 1] == '0')
+	{
 		ft_swap(&stc->map[p[0]][p[1] + 1], &stc->map[p[0]][p[1]]);
+		ft_put_moves(stc->count++);
+	}
 	if (stc->map[p[0]][p[1] + 1] == 'C')
 	{
 		stc->map[p[0]][p[1] + 1] = 'P';
 		stc->map[p[0]][p[1]] = '0';
 		stc->verf.collec--;
+		ft_put_moves(stc->count++);
 	}
 	if (stc->map[p[0]][p[1] + 1] == 'E' && !stc->verf.collec)
+	{
 		ft_close(stc);
-	stc->count++;
+		ft_put_moves(stc->count++);
+	}
 }
 
 void	move_left(t_mlx *stc, int *p)
 {
 	if (stc->map[p[0]][p[1] - 1] == '0')
+	{
 		ft_swap(&stc->map[p[0]][p[1] - 1], &stc->map[p[0]][p[1]]);
+		ft_put_moves(stc->count++);
+	}
 	if (stc->map[p[0]][p[1] - 1] == 'C')
 	{
 		stc->map[p[0]][p[1] - 1] = 'P';
 		stc->map[p[0]][p[1]] = '0';
 		stc->verf.collec--;
+		ft_put_moves(stc->count++);
 	}
 	if (stc->map[p[0]][p[1] - 1] == 'E' && !stc->verf.collec)
+	{
 		ft_close(stc);
-	stc->count++;
+		ft_put_moves(stc->count++);
+	}
 }
