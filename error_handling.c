@@ -16,7 +16,6 @@ void	error_map(char **tab)
 {
 	free_tab(tab);
 	ft_putendl_fd("\033[31m Error ** Map Error **\033[0m", 2);
-	system("leaks so_long");
 	exit (EXIT_FAILURE);
 }
 

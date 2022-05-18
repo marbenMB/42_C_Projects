@@ -36,6 +36,7 @@ typedef struct compo
 typedef struct s_mlx
 {
 	char	**map;
+	t_comp	verf;
 	void	*mlx;
 	void	*win;
 	void	*wall;
@@ -43,6 +44,7 @@ typedef struct s_mlx
 	void	*bg;
 	void	*collect;
 	void	*out;
+	int		count;
 }	t_mlx;
 
 //	***********		Functions	*********** :
@@ -55,8 +57,9 @@ void	error_map(char **tab);
 //	***********	Checks :
 void	check_name(char *name);
 void	check_wall(char **map);
-void	check_components(char **map);
-char	**check_map(char *map);
+void	check_elem(char **map, t_comp *verf);
+void	check_components(char **map, t_comp *verf);
+char	**check_map(char *map, t_comp *verf);
 
 //	***********	Parsing Utils :
 void	free_tab(char **tab);
@@ -71,11 +74,24 @@ void	find_comp(char c, t_comp *verf);
 //	***********	Drawing Funcitons :
 void	open_wind(t_mlx *stc);
 void	create_components(t_mlx *stc);
+void	ft_paint(t_mlx *stc, void *img, int dy, int dx);
 void	ft_draw(t_mlx *stc);
 
-//	***********	Utils Funcitons :
+//	***********	Draw Utils :
+void	free_stc(t_mlx *stc);
 void	stc_init(t_mlx *stc);
 int		key_hook(int key, t_mlx *stc);
+int		ft_close(t_mlx *stc);
+
+//	***********	Play Utils :
+void	ft_swap(char *c1, char *c2);
+int		*get_pos(char **map);
 void	move_player(int key, t_mlx *stc);
+
+//	***********	Play Utils :
+void	move_up(t_mlx *stc, int *p);
+void	move_down(t_mlx *stc, int *p);
+void	move_right(t_mlx *stc, int *p);
+void	move_left(t_mlx *stc, int *p);
 
 #endif

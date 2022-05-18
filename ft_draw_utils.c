@@ -12,6 +12,17 @@
 
 #include "so_long.h"
 
+void	free_stc(t_mlx *stc)
+{
+	free(stc->bg);
+	free(stc->collect);
+	free(stc->player);
+	free(stc->wall);
+	free(stc->out);
+	free(stc->win);
+	free_tab(stc->map);
+}
+
 void	stc_init(t_mlx *stc)
 {
 	stc->bg = NULL;
@@ -22,22 +33,21 @@ void	stc_init(t_mlx *stc)
 	stc->player = NULL;
 	stc->wall = NULL;
 	stc->win = NULL;
+	stc->count = 0;
 }
 
 int	key_hook(int key, t_mlx *stc)
 {
 	if (key == 53)
-	{
-		mlx_destroy_window(stc->mlx, stc->win);
-		exit (EXIT_SUCCESS);
-	}
+		ft_close(stc);
 	if (key == 13 || key == 0 || key == 1 || key == 2)
 		move_player(key, stc);
 	return (0);
 }
 
-void	move_player(int key, t_mlx *stc)
+int	ft_close(t_mlx *stc)
 {
-	printf("%d\n", key);
-	printf("%s\n", stc->map[0]);
+	mlx_destroy_window(stc->mlx, stc->win);
+	exit (EXIT_SUCCESS);
+	return (0);
 }

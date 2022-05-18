@@ -31,7 +31,7 @@ void	find_comp(char c, t_comp *verf)
 	if (c == 'E')
 		verf->exit = 1;
 	else if (c == 'C')
-		verf->collec = 1;
+		verf->collec++;
 	else if (c == 'P')
 		verf->player++;
 	else if (c == '0')

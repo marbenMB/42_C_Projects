@@ -24,34 +24,33 @@ void	create_components(t_mlx *stc)
 	stc->bg = mlx_xpm_file_to_image(stc->mlx, "img_src/space.xpm", &x, &y);
 }
 
+void	ft_paint(t_mlx *stc, void *img, int dy, int dx)
+{
+	mlx_put_image_to_window(stc->mlx, stc->win, img, dy, dx);
+}
+
 void	ft_draw(t_mlx *stc)
 {
 	int	dx;
 	int	dy;
-	int	x;
-	int	y;
 
 	dx = -1;
-	y = 0;
 	while (stc->map[++dx])
 	{
 		dy = -1;
-		x = 0;
 		while (stc->map[dx][++dy])
 		{
 			if (stc->map[dx][dy] == '1')
-				mlx_put_image_to_window(stc->mlx, stc->win, stc->wall, x, y);
+				ft_paint(stc, stc->wall, dy * 50 + 80, dx * 50);
 			else if (stc->map[dx][dy] == 'C')
-				mlx_put_image_to_window(stc->mlx, stc->win, stc->collect, x, y);
+				ft_paint(stc, stc->collect, dy * 50 + 80, dx * 50);
 			else if (stc->map[dx][dy] == 'P')
-				mlx_put_image_to_window(stc->mlx, stc->win, stc->player, x, y);
+				ft_paint(stc, stc->player, dy * 50 + 80, dx * 50);
 			else if (stc->map[dx][dy] == 'E')
-				mlx_put_image_to_window(stc->mlx, stc->win, stc->out, x, y);
+				ft_paint(stc, stc->out, dy * 50 + 80, dx * 50);
 			else if (stc->map[dx][dy] == '0')
-				mlx_put_image_to_window(stc->mlx, stc->win, stc->bg, x, y);
-			x += 50;
+				ft_paint(stc, stc->bg, dy * 50 + 80, dx * 50);
 		}
-		y += 50;
 	}
 }
 
@@ -60,12 +59,13 @@ void	open_wind(t_mlx *stc)
 	int		size_x;
 	int		size_y;
 
-	size_x = (int)ft_strlen(stc->map[0]) * 50;
+	size_x = (int)ft_strlen(stc->map[0]) * 50 + 80;
 	size_y = map_height(stc->map) * 50;
 	stc->mlx = mlx_init();
 	stc->win = mlx_new_window(stc->mlx, size_x, size_y, "MAR_BEN");
 	create_components(stc);
 	ft_draw(stc);
-	mlx_key_hook(stc->win, key_hook, stc);
+	mlx_hook(stc->win, 02, 0, key_hook, stc);
+	mlx_hook(stc->win, 17, 0, ft_close, stc);
 	mlx_loop(stc->mlx);
 }

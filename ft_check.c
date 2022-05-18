@@ -46,13 +46,12 @@ void	check_wall(char **map)
 	}
 }
 
-void	check_elem(char **map)
+void	check_elem(char **map, t_comp *verf)
 {
 	int		idx;
 	int		zdx;
-	t_comp	verf;
 
-	comp_init(&verf);
+	comp_init(verf);
 	idx = -1;
 	while (map[++idx])
 	{
@@ -61,20 +60,20 @@ void	check_elem(char **map)
 		{
 			if (!verf_comp(map[idx][zdx]))
 				error_map(map);
-			find_comp(map[idx][zdx], &verf);
+			find_comp(map[idx][zdx], verf);
 		}
 	}
-	if (!verf.collec || !verf.exit || verf.player != 1)
+	if (!verf->collec || !verf->exit || verf->player != 1)
 		error_map(map);
 }
 
-void	check_components(char **map)
+void	check_components(char **map, t_comp *verf)
 {
 	check_wall(map);
-	check_elem(map);
+	check_elem(map, verf);
 }
 
-char	**check_map(char *name)
+char	**check_map(char *name, t_comp *verf)
 {
 	int		fd;
 	char	**map;
@@ -86,6 +85,6 @@ char	**check_map(char *name)
 	map = get_map(fd);
 	if (map_height(map) <= 2 || ft_strlen(map[0]) <= 2)
 		error_map(map);
-	check_components(map);
+	check_components(map, verf);
 	return (map);
 }
