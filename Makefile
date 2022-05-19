@@ -11,9 +11,10 @@
 # **************************************************************************** #
 
 NAME = so_long
-SRC = so_long.c error_handling.c ft_check.c ft_parsing_utils.c ft_utils_parsing.c \
-		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
-		draw_map.c ft_draw_utils.c ft_play_utils.c moves.c
+SRC = so_long.c error_handling.c ft_check.c draw_map.c \
+		ft_draw_utils.c ft_play_utils.c moves.c \
+		ft_parsing_utils.c ft_utils_parsing.c \
+		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 OBJ = $(SRC:.c=.o)
 CFLAGS = -Wall -Wextra -Werror
 FRAM = -lmlx -framework OpenGL -framework AppKit
