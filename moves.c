@@ -28,8 +28,9 @@ void	move_up(t_mlx *stc, int *p)
 	}
 	if (stc->map[p[0] - 1][p[1]] == 'E' && !stc->verf.collec)
 	{	
-		ft_close(stc);
 		ft_put_moves(stc->count++);
+		ft_putendl_fd("\033[32m ** YOU WIN **\033[0m", 1);
+		ft_close(stc);
 	}
 }
 
@@ -49,8 +50,9 @@ void	move_down(t_mlx *stc, int *p)
 	}
 	if (stc->map[p[0] + 1][p[1]] == 'E' && !stc->verf.collec)
 	{
-		ft_close(stc);
 		ft_put_moves(stc->count++);
+		ft_putendl_fd("\033[32m ** YOU WIN **\033[0m", 1);
+		ft_close(stc);
 	}
 }
 
@@ -70,8 +72,9 @@ void	move_right(t_mlx *stc, int *p)
 	}
 	if (stc->map[p[0]][p[1] + 1] == 'E' && !stc->verf.collec)
 	{
-		ft_close(stc);
 		ft_put_moves(stc->count++);
+		ft_putendl_fd("\033[32m ** YOU WIN **\033[0m", 1);
+		ft_close(stc);
 	}
 }
 
@@ -91,7 +94,8 @@ void	move_left(t_mlx *stc, int *p)
 	}
 	if (stc->map[p[0]][p[1] - 1] == 'E' && !stc->verf.collec)
 	{
-		ft_close(stc);
 		ft_put_moves(stc->count++);
+		ft_putendl_fd("\033[32m ** YOU WIN **\033[0m", 1);
+		ft_close(stc);
 	}
 }

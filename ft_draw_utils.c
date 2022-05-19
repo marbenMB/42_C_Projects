@@ -39,7 +39,10 @@ void	stc_init(t_mlx *stc)
 int	key_hook(int key, t_mlx *stc)
 {
 	if (key == 53)
+	{
+		ft_putendl_fd("\033[33m ** END GAME **\033[0m", 1);
 		ft_close(stc);
+	}
 	if (key == 13 || key == 0 || key == 1 || key == 2)
 		move_player(key, stc);
 	return (0);

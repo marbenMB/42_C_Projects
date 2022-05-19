@@ -20,8 +20,6 @@ int	main(int ac, char **av)
 		error_usage();
 	stc_init(&stc);
 	stc.map = check_map(av[1], &(stc.verf));
-	ft_putendl_fd("\033[32m ** CHECKS DONE **\033[0m", 1);
-	printf("%zu - %d\n", ft_strlen(stc.map[0]), map_height(stc.map));
 	open_wind(&stc);
 	free_stc(&stc);
 	system("leaks so_long");
