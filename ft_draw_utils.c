@@ -14,12 +14,6 @@
 
 void	free_stc(t_mlx *stc)
 {
-	free(stc->bg);
-	free(stc->collect);
-	free(stc->player);
-	free(stc->wall);
-	free(stc->out);
-	free(stc->win);
 	free_tab(stc->map);
 }
 
@@ -33,7 +27,7 @@ void	stc_init(t_mlx *stc)
 	stc->player = NULL;
 	stc->wall = NULL;
 	stc->win = NULL;
-	stc->count = 0;
+	stc->count = 1;
 }
 
 int	key_hook(int key, t_mlx *stc)
@@ -51,6 +45,7 @@ int	key_hook(int key, t_mlx *stc)
 int	ft_close(t_mlx *stc)
 {
 	mlx_destroy_window(stc->mlx, stc->win);
+	free_stc(stc);
 	exit (EXIT_SUCCESS);
 	return (0);
 }

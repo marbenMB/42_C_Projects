@@ -21,7 +21,5 @@ int	main(int ac, char **av)
 	stc_init(&stc);
 	stc.map = check_map(av[1], &(stc.verf));
 	open_wind(&stc);
-	free_stc(&stc);
-	system("leaks so_long");
 	return (0);
 }

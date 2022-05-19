@@ -84,12 +84,12 @@ int		key_hook(int key, t_mlx *stc);
 int		ft_close(t_mlx *stc);
 
 //	***********	Play Utils :
+void	ft_put_moves(int n);
 void	ft_swap(char *c1, char *c2);
 int		*get_pos(char **map);
 void	move_player(int key, t_mlx *stc);
 
-//	***********	Play Utils :
-void	ft_put_moves(int n);
+//	***********	Moves Functions :
 void	move_up(t_mlx *stc, int *p);
 void	move_down(t_mlx *stc, int *p);
 void	move_right(t_mlx *stc, int *p);
