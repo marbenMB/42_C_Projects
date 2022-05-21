@@ -11,28 +11,40 @@
 # **************************************************************************** #
 
 NAME = so_long
-SRC = so_long.c error_handling.c ft_check.c draw_map.c \
-		ft_draw_utils.c ft_play_utils.c moves.c \
-		ft_parsing_utils.c ft_utils_parsing.c \
+
+SRC = manda/so_long.c manda/error_handling.c manda/ft_check.c manda/draw_map.c \
+		manda/ft_draw_utils.c manda/ft_play_utils.c manda/moves.c \
+		manda/ft_parsing_utils.c manda/ft_utils_parsing.c \
 		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 OBJ = $(SRC:.c=.o)
+
+SRC_BNS = bonus/so_long.c bonus/error_handling.c bonus/ft_check.c bonus/draw_map.c \
+		bonus/ft_draw_utils.c bonus/ft_play_utils.c bonus/moves.c \
+		bonus/ft_parsing_utils.c bonus/ft_utils_parsing.c \
+		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
+OBJ_BNS = $(SRC_BNS:.c=.o)
+
 CFLAGS = -Wall -Wextra -Werror
 FRAM = -lmlx -framework OpenGL -framework AppKit
 
 all : $(NAME)
 
-$(NAME) : $(OBJ) so_long.h
+$(NAME) : $(OBJ) manda/so_long.h
 	make bonus -C ./libft
-	gcc $(SRC) $(FRAM) -o $(NAME) ./libft/libft.a -g
+	gcc $(SRC) $(FRAM) -o $(NAME) ./libft/libft.a
+
+bonus : $(OBJ_BNS) bonus/so_long.h
+	make bonus -C ./libft
+	gcc $(SRC_BNS) $(FRAM) -o $(NAME) ./libft/libft.a
 
 clean :
 	make clean -C ./libft
-	rm -rf $(OBJ)
+	rm -rf $(OBJ) $(OBJ_BNS)
 
 fclean :
 	make fclean -C ./libft
-	rm -rf $(OBJ) $(NAME) so_long.dSYM
+	rm -rf $(OBJ) $(OBJ_BNS) $(NAME) so_long.dSYM .vscode
 
 re : fclean all
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re bonus
