@@ -12,6 +12,16 @@
 
 #include "so_long.h"
 
+void	error_map_size(char **tab)
+{
+	if (ft_strlen(tab[0]) > 56 || map_height(tab) > 31)
+	{
+		free_tab(tab);
+		ft_putendl_fd("\033[33m* MAX SIZE : 56 / 31 *\033[0m", 2);
+		exit (EXIT_FAILURE);
+	}
+}
+
 void	error_map(char **tab)
 {
 	free_tab(tab);

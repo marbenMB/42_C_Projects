@@ -82,5 +82,6 @@ char	**get_map(int fd)
 	if (temp[1][ft_strlen(temp[1]) - 1] == '\n')
 		error_map(NULL);
 	tab = ft_split(temp[1], '\n');
+	error_map_size(tab);
 	return (free(temp[1]), tab);
 }

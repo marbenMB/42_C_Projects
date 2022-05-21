@@ -53,6 +53,7 @@ void	error_usage(void);
 void	error_name(void);
 void	error_file(void);
 void	error_map(char **tab);
+void	error_map_size(char **tab);
 
 //	***********	Checks :
 void	check_name(char *name);

@@ -22,6 +22,8 @@ void	create_components(t_mlx *stc)
 	stc->out = mlx_xpm_file_to_image(stc->mlx, "img_src/door.xpm", &x, &y);
 	stc->collect = mlx_xpm_file_to_image(stc->mlx, "img_src/coin.xpm", &x, &y);
 	stc->bg = mlx_xpm_file_to_image(stc->mlx, "img_src/space.xpm", &x, &y);
+	if (!stc->wall || !stc->player || !stc->out || !stc->collect || !stc->bg)
+		ft_close(stc);
 }
 
 void	ft_paint(t_mlx *stc, void *img, int dy, int dx)
