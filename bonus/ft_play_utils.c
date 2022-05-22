@@ -46,7 +46,7 @@ int	*get_pos(char **map, char c)
 	return (0);
 }
 
-void	move_enemy(t_mlx *stc)
+void	move_enemy(int key, t_mlx *stc)
 {
 	static int		*p;
 
@@ -54,13 +54,13 @@ void	move_enemy(t_mlx *stc)
 	p = get_pos(stc->map, '*');
 	if (!p)
 		return ;
-	if (stc->map[p[0] - 1][p[1]] == '0' && stc->map[p[0] + 1][p[1]] == '0')
+	if (stc->map[p[0] - 1][p[1]] == '0' && key == 13)
 		ft_swap(&stc->map[p[0] - 1][p[1]], &stc->map[p[0]][p[1]]);
-	else if (stc->map[p[0] + 1][p[1]] == '0')
+	else if (stc->map[p[0] + 1][p[1]] == '0' && key == 1)
 		ft_swap(&stc->map[p[0] + 1][p[1]], &stc->map[p[0]][p[1]]);
-	else if (stc->map[p[0]][p[1] - 1] == '0')
+	else if (stc->map[p[0]][p[1] - 1] == '0' && key == 0)
 		ft_swap(&stc->map[p[0]][p[1] - 1], &stc->map[p[0]][p[1]]);
-	else if (stc->map[p[0]][p[1] + 1] == '0')
+	else if (stc->map[p[0]][p[1] + 1] == '0' && key == 2)
 		ft_swap(&stc->map[p[0]][p[1] + 1], &stc->map[p[0]][p[1]]);
 	free(p);
 	ft_draw(stc);

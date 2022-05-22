@@ -12,6 +12,31 @@
 
 #include "so_long.h"
 
+int	animation(t_mlx *stc)
+{
+	static int	i;
+
+	if (i <= 20)
+	{
+		stc->collect = stc->coin;
+		play_animation(stc);
+	}
+	else if (i > 20 && i <= 40)
+	{
+		stc->collect = stc->coin_1;
+		play_animation(stc);
+	}
+	else if (i > 40 && i <= 60)
+	{
+		stc->collect = stc->coin_2;
+		play_animation(stc);
+	}
+	else
+		i = 0;
+	i++;
+	return (i);
+}
+
 void	create_components(t_mlx *stc)
 {
 	int		x;
@@ -21,10 +46,13 @@ void	create_components(t_mlx *stc)
 	stc->player = mlx_xpm_file_to_image(stc->mlx, "img_src/player.xpm", &x, &y);
 	stc->out = mlx_xpm_file_to_image(stc->mlx, "img_src/door.xpm", &x, &y);
 	stc->collect = mlx_xpm_file_to_image(stc->mlx, "img_src/coin.xpm", &x, &y);
+	stc->coin = mlx_xpm_file_to_image(stc->mlx, "img_src/coin.xpm", &x, &y);
+	stc->coin_1 = mlx_xpm_file_to_image(stc->mlx, "img_src/coin1.xpm", &x, &y);
+	stc->coin_2 = mlx_xpm_file_to_image(stc->mlx, "img_src/coin2.xpm", &x, &y);
 	stc->bg = mlx_xpm_file_to_image(stc->mlx, "img_src/space.xpm", &x, &y);
 	stc->enemy = mlx_xpm_file_to_image(stc->mlx, "img_src/enemy.xpm", &x, &y);
-	if (!stc->wall || !stc->player || !stc->out || !stc->collect \
-			|| !stc->bg || !stc->enemy)
+	if (!stc->wall || !stc->player || !stc->out || !stc->collect || !stc->bg \
+		|| !stc->enemy || !stc->coin_1 || !stc->coin_2 || !stc->coin)
 		ft_close(stc);
 }
 
@@ -71,6 +99,7 @@ void	open_wind(t_mlx *stc)
 	stc->win = mlx_new_window(stc->mlx, size_x, size_y, "MAR_BEN");
 	create_components(stc);
 	ft_draw(stc);
+	mlx_loop_hook(stc->mlx, animation, stc);
 	mlx_hook(stc->win, 02, 0, key_hook, stc);
 	mlx_hook(stc->win, 17, 0, ft_close, stc);
 	mlx_loop(stc->mlx);

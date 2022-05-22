@@ -43,6 +43,9 @@ typedef struct s_mlx
 	void	*player;
 	void	*bg;
 	void	*collect;
+	void	*coin;
+	void	*coin_1;
+	void	*coin_2;
 	void	*out;
 	void	*enemy;
 	int		count;
@@ -81,6 +84,7 @@ void	ft_draw(t_mlx *stc);
 
 //	***********	Draw Utils :
 void	free_stc(t_mlx *stc);
+void	play_animation(t_mlx *stc);
 void	stc_init(t_mlx *stc);
 int		key_hook(int key, t_mlx *stc);
 int		ft_close(t_mlx *stc);
@@ -89,7 +93,7 @@ int		ft_close(t_mlx *stc);
 void	ft_put_moves(t_mlx *stc, int n);
 void	ft_swap(char *c1, char *c2);
 int		*get_pos(char **map, char c);
-void	move_enemy(t_mlx *stc);
+void	move_enemy(int key, t_mlx *stc);
 void	move_player(int key, t_mlx *stc);
 
 //	***********	Moves Functions :

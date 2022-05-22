@@ -17,10 +17,20 @@ void	free_stc(t_mlx *stc)
 	free_tab(stc->map);
 }
 
+void	play_animation(t_mlx *stc)
+{
+	mlx_clear_window(stc->mlx, stc->win);
+	ft_draw(stc);
+	ft_put_moves(stc, stc->count);
+}
+
 void	stc_init(t_mlx *stc)
 {
 	stc->bg = NULL;
 	stc->collect = NULL;
+	stc->coin = NULL;
+	stc->coin_1 = NULL;
+	stc->coin_2 = NULL;
 	stc->map = NULL;
 	stc->mlx = NULL;
 	stc->out = NULL;
@@ -40,7 +50,7 @@ int	key_hook(int key, t_mlx *stc)
 	}
 	if (key == 13 || key == 0 || key == 1 || key == 2)
 	{
-		move_enemy(stc);
+		move_enemy(key, stc);
 		move_player(key, stc);
 	}
 	return (0);

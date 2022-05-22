@@ -31,11 +31,11 @@ all : $(NAME)
 
 $(NAME) : $(OBJ) manda/so_long.h
 	make bonus -C ./libft
-	cc $(SRC) $(FRAM) -o $(NAME) ./libft/libft.a
+	cc $(OBJ) $(FRAM) -o $(NAME) ./libft/libft.a
 
 bonus : $(OBJ_BNS) bonus/so_long.h
 	make bonus -C ./libft
-	cc $(SRC_BNS) $(FRAM) -o $(NAME) ./libft/libft.a
+	cc $(OBJ_BNS) $(FRAM) -o $(NAME) ./libft/libft.a
 
 clean :
 	make clean -C ./libft
