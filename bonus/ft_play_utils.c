@@ -19,6 +19,7 @@ void	ft_put_moves(t_mlx *stc, int n)
 	str = ft_itoa(n);
 	mlx_string_put(stc->mlx, stc->win, 10, 12, 'R', "MOVES : ");
 	mlx_string_put(stc->mlx, stc->win, 110, 12, 'R', str);
+	free(str);
 }
 
 void	ft_swap(char *c1, char *c2)
