@@ -44,6 +44,7 @@ typedef struct s_mlx
 	void	*bg;
 	void	*collect;
 	void	*out;
+	void	*enemy;
 	int		count;
 }	t_mlx;
 
@@ -85,9 +86,10 @@ int		key_hook(int key, t_mlx *stc);
 int		ft_close(t_mlx *stc);
 
 //	***********	Play Utils :
-void	ft_put_moves(int n);
+void	ft_put_moves(t_mlx *stc, int n);
 void	ft_swap(char *c1, char *c2);
-int		*get_pos(char **map);
+int		*get_pos(char **map, char c);
+void	move_enemy(t_mlx *stc);
 void	move_player(int key, t_mlx *stc);
 
 //	***********	Moves Functions :

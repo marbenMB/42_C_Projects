@@ -23,7 +23,7 @@ void	comp_init(t_comp *verf)
 int	verf_comp(char c)
 {
 	return (c == 'E' || c == 'C' || c == 'P' \
-			|| c == '0' || c == '1');
+			|| c == '0' || c == '1' || c == '*');
 }
 
 void	find_comp(char c, t_comp *verf)

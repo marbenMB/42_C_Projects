@@ -27,7 +27,8 @@ void	stc_init(t_mlx *stc)
 	stc->player = NULL;
 	stc->wall = NULL;
 	stc->win = NULL;
-	stc->count = 1;
+	stc->enemy = NULL;
+	stc->count = 0;
 }
 
 int	key_hook(int key, t_mlx *stc)
@@ -38,7 +39,10 @@ int	key_hook(int key, t_mlx *stc)
 		ft_close(stc);
 	}
 	if (key == 13 || key == 0 || key == 1 || key == 2)
+	{
+		move_enemy(stc);
 		move_player(key, stc);
+	}
 	return (0);
 }
 

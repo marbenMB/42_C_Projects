@@ -33,12 +33,12 @@ all : $(NAME)
 $(NAME) : $(OBJECT) libft.h
 	ar rc $(NAME) $(OBJECT) 
 $(OBJECT):	$(SRC)
-		gcc -Wall -Werror -Wextra -c  $(SRC)
+		cc -Wall -Werror -Wextra -c  $(SRC)
 
 bonus : $(OBJECT) $(BONUS_OBJECT)
 	ar rc $(NAME) $(OBJECT) $(BONUS_OBJECT)
 $(BONUS_OBJECT):	$(BONUS_SRC)
-		gcc -Wall -Werror -Wextra -c  $(BONUS_SRC)
+		cc -Wall -Werror -Wextra -c  $(BONUS_SRC)
 clean :
 	rm -f $(OBJECT) $(BONUS_OBJECT)
 fclean : clean

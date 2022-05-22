@@ -22,7 +22,9 @@ void	create_components(t_mlx *stc)
 	stc->out = mlx_xpm_file_to_image(stc->mlx, "img_src/door.xpm", &x, &y);
 	stc->collect = mlx_xpm_file_to_image(stc->mlx, "img_src/coin.xpm", &x, &y);
 	stc->bg = mlx_xpm_file_to_image(stc->mlx, "img_src/space.xpm", &x, &y);
-	if (!stc->wall || !stc->player || !stc->out || !stc->collect || !stc->bg)
+	stc->enemy = mlx_xpm_file_to_image(stc->mlx, "img_src/enemy.xpm", &x, &y);
+	if (!stc->wall || !stc->player || !stc->out || !stc->collect \
+			|| !stc->bg || !stc->enemy)
 		ft_close(stc);
 }
 
@@ -52,6 +54,8 @@ void	ft_draw(t_mlx *stc)
 				ft_paint(stc, stc->out, dy * 50, dx * 50);
 			else if (stc->map[dx][dy] == '0')
 				ft_paint(stc, stc->bg, dy * 50, dx * 50);
+			else if (stc->map[dx][dy] == '*')
+				ft_paint(stc, stc->enemy, dy * 50, dx * 50);
 		}
 	}
 }
