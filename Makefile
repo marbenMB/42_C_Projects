@@ -22,6 +22,9 @@ all : $(NAME)
 $(NAME) : $(OBJECT) ft_printf.h
 	ar rc $(NAME) $(OBJECT)
 
+%.o : %.c ft_printf.h
+	cc $(CFLAGS) -c $< -o $@
+
 bonus : all
 
 clean :
