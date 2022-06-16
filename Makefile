@@ -12,7 +12,7 @@
 
 NAME = libftprintf.a
 SRC = ft_printf.c ./src/ft_printf_utils.c ./src/ft_deal_with.c \
-		./src/ft_process_cases.c ./libft/ft_put.c ./libft/auto_func.c
+		./src/ft_process_char_cases.c ./src/ft_process_nbr_cases.c ./libft/ft_put.c
 
 OBJECT = $(SRC:.c=.o)
 CFLAGS = -Wall -Wextra -Werror
@@ -21,7 +21,9 @@ all : $(NAME)
 
 $(NAME) : $(OBJECT) ft_printf.h
 	ar rc $(NAME) $(OBJECT)
-	gcc -g $(CFLAGS) main.c $(SRC)
+
+%.o : %.c ft_printf.h
+	cc $(CFLAGS) -c $< -o $@
 
 bonus : all
 
@@ -29,7 +31,7 @@ clean :
 	rm -rf $(OBJECT)
 
 fclean : clean
-	rm -rf $(NAME) a.out
+	rm -rf $(NAME)
 
 re : fclean all
 
