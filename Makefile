@@ -33,6 +33,9 @@ $(NAME) : $(OBJ) manda/so_long.h
 	make bonus -C ./libft
 	cc $(OBJ) $(FRAM) -o $(NAME) ./libft/libft.a
 
+%.o : %.c manda/so_long.h bonus/so_long.h
+	cc $(CFLAGS) -c $< -o $@
+
 bonus : $(OBJ_BNS) bonus/so_long.h
 	make bonus -C ./libft
 	cc $(OBJ_BNS) $(FRAM) -o $(NAME) ./libft/libft.a
