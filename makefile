@@ -46,12 +46,18 @@ CC = cc
 
 CFlAGS = -Wall -Wextra -Werror
 
-HEADS = headers/includes.h headers/macros.h headers/structs.h
+HEADS = headers/includes.h headers/macros.h headers/structs.h execution/headers/execution.h
 
 READ_FLAGS    =  -lreadline  -I .brew/opt/readline/include
 
-SRC = minishell.c ./lexer/lexer_first_part.c ./lexer/lexer_utils.c ./lexer/tools.c ./lexer/syntax_error.c ./lexer/lexer_second_part.c \
+EXEC_SRC = execution/utils/proccess_buffer.c \
+			execution/builtins/ft_cd.c execution/builtins/ft_echo.c execution/builtins/ft_env.c execution/builtins/ft_exit.c \
+			execution/builtins/ft_export.c execution/builtins/ft_pwd.c execution/builtins/ft_unset.c  
+
+LEX_SRC = minishell.c ./lexer/lexer_first_part.c ./lexer/lexer_utils.c ./lexer/tools.c ./lexer/syntax_error.c ./lexer/lexer_second_part.c \
 		./expander/expander.c ./expander/expander_utils.c ./expander/get_env.c ./expander/expande_variable.c
+
+SRC = $(LEX_SRC) $(EXEC_SRC)	
 
 OBJ = $(SRC:.c=.o)
 

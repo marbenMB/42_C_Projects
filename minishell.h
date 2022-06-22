@@ -16,6 +16,7 @@
 # include "headers/includes.h"
 # include "headers/macros.h"
 # include "headers/structs.h"
+# include "execution/headers/execution.h"
 // *************************************** lexer 
 //------------------ utils
 t_data	*ft_lstnew_lexer(char *data, int token);
