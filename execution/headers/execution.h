@@ -9,6 +9,7 @@
 //	********		 UTILS		******** :
 int		proccess_cmd(t_shell *shell, char	*cmd);
 int		proccess_buff(t_shell *shell);
+int		fill_cmd(t_shell *shell);
 //	********		BUILTINS	******** :
 	//	->	ft_cd :
 int		ft_cd(t_shell *shell);

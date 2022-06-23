@@ -6,7 +6,7 @@
 #    By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 13:58:33 by abellakr          #+#    #+#              #
-#    Updated: 2022/06/18 07:01:10 by abellakr         ###   ########.fr        #
+#    Updated: 2022/06/22 23:58:16 by abellakr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	@echo  $(BPurple)"minishell by group sbaksi : done! "$(Color_Off)
 	@make -C ./libft
-	@$(CC) $(CFlAGS) $(READ_FLAGS) $(OBJ) ./libft/libft.a -o $(NAME)
+	@$(CC) $(CFlAGS) $(READ_FLAGS)  $(OBJ) ./libft/libft.a -o $(NAME)
 	@make clean
 
 clean : 

@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/20 12:35:20 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/23 02:18:26 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,17 @@
 t_data	*ft_lstnew_lexer(char *data, int token);
 void	ft_lstadd_back_lexer(t_data **lst, t_data *new);
 t_data	*ft_lstlast_lexer(t_data **lst);
-//------------------ lexer functions
+void	free_data(t_data **data);
+//---------- syntax error
 int		check_syntax_error(char *buffer);
 int		ft_is_operator(char c);
 int		ft_special_char(char c);
-int		check_the_operator(char c);
-t_data	*analyse_buffer(char *buffer);
 int		operator_error(char *buffer, int i);
-//-------------------- token and save data
-int		data_reconization(char *buffer, t_data **data);
-int		operator_type(char **buffer, t_data **data);
+//--------- token and save data
+t_data	*analyse_buffer(char *buffer);
+int		data_reconization1(char *buffer, t_data **data);
 int		word_token(char **buffer, t_data **data, char *quote);
 int		pipe_data(char **buffer, t_data **data);
-int		save_operator_data(char **buffer, t_data **data, int flag);
-void	check_flag(char **buffer, int flag);
-int		count_cmd_word_len(char **buffer);
-//------------------------------ utils
-void	free_data(t_data **data);
 //*************************************************** expander
 //--------------------------- utils
 t_env	*ft_lstnew_expander(char *var, char *value);
@@ -47,8 +41,8 @@ t_env	*ft_lstlast_expander(t_env **lst);
 void	free_data2(t_env **env);
 //---------------------------- get env
 t_env	*get_env(char **env);
-char *get_var(char *line);
-char *get_value(char *line);
+char 	*get_var(char *line);
+char 	*get_value(char *line);
 char	*var_finder(char *var, t_env *env);
 //-----------------------------------------
 void	quotes_checker(char quote, char *quote_type);
@@ -57,7 +51,20 @@ void	expander(t_shell *data_shell);
 int		dollar_var(char **str, t_env *env);
 char	*before(char *str);
 char	*after(char *str);
-char *in_var(char *str, t_env *env);
-//****************************************************** data orinizer 
-void	redirection_organizer(t_shell *global_data);
+char 	*in_var(char *str, t_env *env);
+//******************************************************************* hadchi new
+t_data	*simple_command_analyser(t_data **data);
+int	simple_command_check(t_data **new_data, char *simple_command);
+int data_reconization2(char *simple_command, t_data **simple_command_list);
+int	cmd_token(char **simple_command, t_data **simple_command_list, char *quote);
+int	operator_type(char **simple_command, t_data **simple_command_list);
+int	save_operator_data(char **simple_command, t_data **simple_command_list, int flag);
+void	check_flag(char **simple_command, int flag);
+int	files_lim_len(char **simple_command);
+t_data *oranize_simple_command_list(t_data **simple_command_list);
+void	look_for_heredoc(t_data *backup, t_data **new_list);
+void	look_for_rip(t_data *backup, t_data **new_list);
+void	look_for_rop(t_data *backup, t_data **new_list);
+void	look_for_cmd(t_data *backup, t_data **new_list);
+t_data	*join_cmds(t_data **new_list_cmd);
 #endif

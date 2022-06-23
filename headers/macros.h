@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 13:03:25 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/19 15:38:52 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/22 22:12:43 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 # define PIPE 3 // PIPE | 
 # define HEREDOC  4 // <<
 # define APND 5 // >>
-# define CMD_WORD 6 // COMMAND WORD
-# define EXIT_STATUS 7 // EXIR STATUS 
+# define SIMPLE_CMD 6 // COMMAND WORD
+# define EXIT_STATUS 7 // EXIR STATUS
+# define CMD 8 
 // //--------------------------------------------- build in commands
 // # define ECHO 11 // echo command 
 // # define CD 12 // cd command 
@@ -29,3 +30,6 @@
 // # define  ENV 16 // ENV  COMMAD
 // # define  EXIT 17 // EXIT  COMMAD
 #endif
+
+
+//	TODO : !!! Check exit status in new lexer algo

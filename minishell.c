@@ -6,12 +6,13 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:59:05 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/20 12:35:33 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/23 03:21:08 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+//--------------------------------------------------------- main
 int	main(int ac, char **av, char **env)
 {
 	char	*buffer;
@@ -34,62 +35,20 @@ int	main(int ac, char **av, char **env)
 			free(shell.env->value);
 			shell.env->value = ft_strdup("-1");
 		}
-		// 1: handle rio cases and 
-		// redirection_organizer(&shell);
-		// 2: save cmd data in list 
-		// 3: then exapande data
-			// expander(&shell);
+		// expander(&shell);
 		// while(shell.data)
 		// {
-		// 	printf("\n-------------------------- : node\n");
-		// 	printf("%s\n%d", shell.data->str, shell.data->token);
+		// 	printf("|%s|\n %d", shell.data->str, shell.data->token);
+		// 	printf("\n-------------------------------------------------\n");
 		// 	shell.data = shell.data->next;
 		// }
+
+//		*************** *************************************
+		// fill_cmd(&shell);				  // -> fill cmd list
+//		*************** *************************************
+
 		free_data(&(shell.data));
 	}
 	free_data2(&(shell.env));
 	return (0);
 }
-//-------------------------------------------------------------
-void	redirection_organizer(t_shell *global_data)
-{
-	t_data *back_up;
-	t_data *new_data;
-	int check_number;
-
-	back_up = global_data->data;
-	new_data = NULL;
-	check_number = 1;
-	while(back_up)
-	{
-		if(back_up->token == PIPE)
-			check_number++;
-		back_up = back_up->next;
-	}
-	back_up = global_data->data;
-	while(check_number)
-	{
-		if(check_number == 1)
-			// handle no pipe case 
-		{
-			while(back_up)
-			{
-				if(back_up->token != CMD_WORD)
-				{
-					ft_lstadd_back_lexer(&new_data, ft_lstnew_lexer(back_up->str, back_up->token));
-				}
-				back_up = back_up->next;
-			}
-		}
-		// else if(check_number > 1)
-			// handle multi pipe cases
-		check_number--;
-	}
-	while(new_data)
-	{
-		printf("\n-----------------------------------------\n");
-		printf("%s\ntoken:%d", new_data->str, new_data->token);
-		new_data = new_data->next;
-	}
-}
-//---------------------------------------------------------------
