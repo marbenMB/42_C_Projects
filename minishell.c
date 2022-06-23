@@ -25,7 +25,7 @@ int	main(int ac, char **av, char **env)
 	shell.env = get_env(env);
 	while (1)
 	{
-		buffer = readline ("\nminishell$ ");
+		buffer = readline ("minishell$ ");
 		add_history(buffer);
 		if (ft_strcmp(buffer, "exit") == 0)
 			exit(0);
@@ -44,7 +44,8 @@ int	main(int ac, char **av, char **env)
 		// }
 
 //		*************** *************************************
-		// fill_cmd(&shell);				  // -> fill cmd list
+		if (shell.data)
+			fill_cmd(&shell);				  // -> fill cmd list
 //		*************** *************************************
 
 		free_data(&(shell.data));

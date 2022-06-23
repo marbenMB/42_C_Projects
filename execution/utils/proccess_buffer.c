@@ -43,8 +43,8 @@ int	proccess_cmd(t_shell *shell, char *cmd)
 		ft_cd(shell);
 	else if (!ft_strcmp(cmd, "echo"))
 		ft_echo(shell);
-	// else if (!ft_strcmp(cmd, "env"))
-	// 	ft_env(shell);
+	else if (!ft_strcmp(cmd, "env"))
+		ft_env(shell);
 	// else if (!ft_strcmp(cmd, "exit"))
 	// 	ft_exit(shell);
 	// else if (!ft_strcmp(cmd, "export"))

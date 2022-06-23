@@ -24,7 +24,7 @@ int	ft_echo(t_shell *shell)
 
 	_n = 1;
 	idx = 1;
-	while (is_flag(shell->cmd->cmd_flags[idx]))
+	while (shell->cmd->cmd_flags[idx] && is_flag(shell->cmd->cmd_flags[idx]))
 	{
 		_n = 0;
 		idx++;

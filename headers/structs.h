@@ -39,6 +39,7 @@ typedef struct shell
 {
 	t_data	*data;
 	t_env	*env;
+	t_env	*export;
 	t_cmd	*cmd;
 }t_shell;
 
