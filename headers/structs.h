@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 13:03:28 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/22 21:42:14 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/24 10:21:14 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct env
 	struct env	*prev;
 	char		*var;
 	char		*value;
+	int			if_in_env;
 	struct env	*next;
 }t_env;
 //------------------------------- cmd data
@@ -39,7 +40,6 @@ typedef struct shell
 {
 	t_data	*data;
 	t_env	*env;
-	t_env	*export;
 	t_cmd	*cmd;
 }t_shell;
 

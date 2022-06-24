@@ -7,7 +7,8 @@ int	ft_env(t_shell *shell)
 	head = shell->env->next;
 	while (head)
 	{
-		printf("%s=%s\n", head->var, head->value);
+		if (head->if_in_env == 1)
+			printf("%s=%s\n", head->var, head->value);
 		head = head->next;
 	}
 	return (0);

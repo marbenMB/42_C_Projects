@@ -41,11 +41,11 @@ int	proccess_cmd(t_shell *shell, char *cmd)
 {
 	if (!ft_strcmp(cmd, "cd"))
 		ft_cd(shell);
-	else if (!ft_strcmp(cmd, "echo"))
+	else if (!ft_strcmp(cmd, "echo") || !ft_strcmp(cmd, "ECHO"))
 		ft_echo(shell);
-	else if (!ft_strcmp(cmd, "env"))
+	else if (!ft_strcmp(cmd, "env") || !ft_strcmp(cmd, "ENV"))
 		ft_env(shell);
-	else if (!ft_strcmp(cmd, "pwd"))
+	else if (!ft_strcmp(cmd, "pwd") || !ft_strcmp(cmd, "PWD"))
 		ft_pwd(shell);
 	// else if (!ft_strcmp(cmd, "exit"))
 	// 	ft_exit(shell);

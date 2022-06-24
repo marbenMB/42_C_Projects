@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+         #
+#    By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 13:58:33 by abellakr          #+#    #+#              #
-#    Updated: 2022/06/22 23:58:16 by abellakr         ###   ########.fr        #
+#    Updated: 2022/06/24 10:27:16 by mbenbajj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ HEADS = headers/includes.h headers/macros.h headers/structs.h execution/headers/
 
 READ_FLAGS    =  -lreadline  -I .brew/opt/readline/include
 
-EXEC_SRC = execution/utils/proccess_buffer.c \
+EXEC_SRC = execution/utils/proccess_buffer.c execution/utils/ft_check.c \
 			execution/builtins/ft_cd.c execution/builtins/ft_echo.c execution/builtins/ft_env.c execution/builtins/ft_exit.c \
 			execution/builtins/ft_export.c execution/builtins/ft_pwd.c execution/builtins/ft_unset.c  
 
