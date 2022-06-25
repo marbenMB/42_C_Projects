@@ -6,7 +6,7 @@
 #    By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 13:58:33 by abellakr          #+#    #+#              #
-#    Updated: 2022/06/25 16:26:52 by mbenbajj         ###   ########.fr        #
+#    Updated: 2022/06/25 20:45:24 by mbenbajj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ HEADS = headers/includes.h headers/macros.h headers/structs.h execution/headers/
 
 READ_FLAGS    =  -lreadline  -I .brew/opt/readline/include
 
-EXEC_SRC = execution/utils/proccess_buffer.c execution/utils/ft_check.c \
+EXEC_SRC = execution/utils/proccess_buffer.c execution/utils/ft_check.c execution/utils/ft_utils.c \
 			execution/builtins/ft_cd.c execution/builtins/ft_echo.c execution/builtins/ft_env.c execution/builtins/ft_exit.c \
 			execution/builtins/ft_export.c execution/builtins/ft_pwd.c execution/builtins/ft_unset.c  
 

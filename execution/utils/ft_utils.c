@@ -1,36 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pwd.c                                           :+:      :+:    :+:   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 20:42:31 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/06/25 20:55:36 by mbenbajj         ###   ########.fr       */
+/*   Created: 2022/06/25 20:44:09 by mbenbajj          #+#    #+#             */
+/*   Updated: 2022/06/25 20:44:10 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/execution.h"
 
-int	ft_pwd(t_shell *shell)
+size_t	lst_size(t_env *lst)
 {
-	t_env	*env;
-	char	*path;
-	char	cwd[PATH_MAX];
+	size_t	i;
 
-	env = shell->env;
-	while (env)
+	i = 0;
+	while (lst)
 	{
-		if (!ft_strcmp("PWD", env->var))
-			break ;
-		env = env->next;
+		i++;
+		lst = lst->next;
 	}
-	if (env)
-		path = env->value;
-	else
-		path = getcwd(cwd, sizeof(cwd));
-	// if (!path)
-		// error PWD not set
-	printf("%s\n", path);
-	return (0);
+	return (i);
+}
+
+size_t	tab_len(char **tab)
+{
+	size_t	i;
+
+	i = 0;
+	while (tab[i])
+		i++;
+	return (i);
+}
+
+void	free_tab(char **tab)
+{
+	int	i;
+
+	i = -1;
+	while (tab[++i])
+		free(tab[i]);
+	free(tab);
 }

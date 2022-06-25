@@ -1,33 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_export.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/25 20:42:14 by mbenbajj          #+#    #+#             */
+/*   Updated: 2022/06/25 20:54:38 by mbenbajj         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/execution.h"
-
-size_t	lst_size(t_env *lst)
-{
-	size_t	i;
-
-	i = 0;
-	while (lst)
-	{
-		i++;
-		lst = lst->next;
-	}
-	return (i);
-}
 
 char	**sort_tab(char **tab)
 {
 	int		i;
+	size_t	len;
 	char	*tmp;
 
-	i = 0;
-	while (tab[i + 1])
+	len = 0;
+	while (len <= tab_len(tab))
 	{
-		if (ft_strcmp(tab[i], tab[i + 1]) > 0)
+		i = 0;
+		while (tab[i + 1])
 		{
-			tmp = tab[i];
-			tab[i] = tab[i + 1];
-			tab[i + 1] = tmp;
+			if (ft_strcmp(tab[i], tab[i + 1]) > 0)
+			{
+				tmp = tab[i];
+				tab[i] = tab[i + 1];
+				tab[i + 1] = tmp;
+			}
+			i++;
 		}
-		i++;
+		len++;
 	}
 	return (tab);
 }
@@ -79,5 +84,7 @@ int	ft_export(t_shell *shell)
 {
 	if (!shell->cmd->cmd_flags[1])
 		print_sorted_env(shell->env);
+	// else
+	// 	add_env_var(shell);
 	return (0);
 }

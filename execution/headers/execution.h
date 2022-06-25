@@ -7,6 +7,10 @@
 //	***********		Functions	*********** :
 
 //	********		 UTILS		******** :
+	//	->	utils :
+size_t	lst_size(t_env *lst);
+size_t	tab_len(char **tab);
+void	free_tab(char **tab);
 	//	->	Proccessing :
 int		proccess_cmd(t_shell *shell, char	*cmd);
 int		proccess_buff(t_shell *shell);

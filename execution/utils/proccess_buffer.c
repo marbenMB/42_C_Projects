@@ -38,16 +38,6 @@ int	fill_cmd(t_shell *shell)
 	return (0);
 }
 
-void	free_tab(char **tab)
-{
-	int	i;
-
-	i = -1;
-	while (tab[++i])
-		free(tab[i]);
-	free(tab);
-}
-
 int	proccess_cmd(t_shell *shell, char *cmd)
 {
 	if (!ft_strcmp(cmd, "cd"))
