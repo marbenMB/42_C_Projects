@@ -4,6 +4,8 @@ int	ft_env(t_shell *shell)
 {
 	t_env	*head;
 
+	// if (shell->cmd->cmd_flags[1] != NULL)
+		// env : arg : No such file or directory
 	head = shell->env->next;
 	while (head)
 	{

@@ -34,7 +34,18 @@ int	fill_cmd(t_shell *shell)
 	}
 	shell->cmd = cmd;
 	proccess_buff(shell);
+	free(cmd);
 	return (0);
+}
+
+void	free_tab(char **tab)
+{
+	int	i;
+
+	i = -1;
+	while (tab[++i])
+		free(tab[i]);
+	free(tab);
 }
 
 int	proccess_cmd(t_shell *shell, char *cmd)
@@ -47,10 +58,10 @@ int	proccess_cmd(t_shell *shell, char *cmd)
 		ft_env(shell);
 	else if (!ft_strcmp(cmd, "pwd") || !ft_strcmp(cmd, "PWD"))
 		ft_pwd(shell);
+	else if (!ft_strcmp(cmd, "export"))
+		ft_export(shell);
 	// else if (!ft_strcmp(cmd, "exit"))
 	// 	ft_exit(shell);
-	// else if (!ft_strcmp(cmd, "export"))
-	// 	ft_export(shell);
 	// else if (!ft_strcmp(cmd, "unset"))
 	// 	ft_unset(shell);
 	else

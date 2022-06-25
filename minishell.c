@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:59:05 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/24 10:26:06 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/06/25 17:23:02 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int ac, char **av, char **env)
 //		*************** *************************************
 		check_in_env(&shell);
 		if (shell.data)
-			fill_cmd(&shell);				  // -> fill cmd list
+			fill_cmd(&shell);			  // -> fill cmd list
 //		*************** *************************************
 
 		free_data(&(shell.data));

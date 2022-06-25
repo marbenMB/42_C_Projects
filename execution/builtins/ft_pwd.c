@@ -17,6 +17,8 @@ int	ft_pwd(t_shell *shell)
 		path = env->value;
 	else
 		path = getcwd(cwd, sizeof(cwd));
+	if (!path)
+		// error PWD not set
 	printf("%s\n", path);
 	return (0);
 }

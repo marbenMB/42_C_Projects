@@ -1,65 +1,83 @@
 #include "../headers/execution.h"
 
-size_t	lst_size(t_env *env)
+size_t	lst_size(t_env *lst)
 {
 	size_t	i;
 
 	i = 0;
-	while (env)
+	while (lst)
 	{
-		env = env->next;
 		i++;
+		lst = lst->next;
 	}
 	return (i);
 }
 
-void	swap_node(t_env **lst)
+char	**sort_tab(char **tab)
 {
-	
+	int		i;
+	char	*tmp;
+
+	i = 0;
+	while (tab[i + 1])
+	{
+		if (ft_strcmp(tab[i], tab[i + 1]) > 0)
+		{
+			tmp = tab[i];
+			tab[i] = tab[i + 1];
+			tab[i + 1] = tmp;
+		}
+		i++;
+	}
+	return (tab);
 }
 
-void	sort_env(t_env **env)
+char	**get_var_tab(t_env *env)
 {
-	int		res;
-	t_env	*current;
-	t_env	*next;
-	size_t	i;
+	char	**tab_var;
+	int		i;
 
-	i =	0;
-	current = (*env);
-	while (i <= list_size(*env))
+	tab_var = (char **)malloc(sizeof(char *) * lst_size(env));
+	i = 0;
+	env = env ->next;
+	while (env)
 	{
-		next = current->next;
-		while (next)
-		{
-			res = ft_strcmp((*env), (*env)->next);
-			if (res > 0)
-				swap_nodes();
-		}
-		current = current->next;
+		tab_var[i] = ft_strdup(env->var);
+		env = env->next;
+		i++;
 	}
+	tab_var[i] = NULL;
+	tab_var = sort_tab(tab_var);
+	return (tab_var);
 }
 
 int	print_sorted_env(t_env *env)
 {
-	t_env	*s_env;
+	char	**tab_var;
+	t_env	*head;
+	int		i;
 
-	s_env = env;
-	if (s_env)
+	tab_var = get_var_tab(env);
+	head = env->next;
+	i = 0;
+	while (tab_var[i])
 	{
-		sort_env(&s_env);
-		while (s_env)
+		head = env->next;
+		while (head)
 		{
-			if (s_env->if_in_env == 1 || s_env->if_in_env == 0)
-				printf("declare -x %s=\"%s\"\n", s_env->var, s_env->value);
-			s_env = s_env->next;
+			if (!ft_strcmp(tab_var[i], head->var))
+				printf("declare -x %s=\"%s\"\n", head->var, head->value);
+			head = head->next;
 		}
+		i++;
 	}
+	free_tab(tab_var);
+	return (0);
 }
 
 int	ft_export(t_shell *shell)
 {
 	if (!shell->cmd->cmd_flags[1])
 		print_sorted_env(shell->env);
-	retunr (0);
+	return (0);
 }

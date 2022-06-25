@@ -10,6 +10,7 @@
 	//	->	Proccessing :
 int		proccess_cmd(t_shell *shell, char	*cmd);
 int		proccess_buff(t_shell *shell);
+void	free_tab(char **tab);
 int		fill_cmd(t_shell *shell);
 	//	->	Checking :
 void	check_in_env(t_shell *shell);
