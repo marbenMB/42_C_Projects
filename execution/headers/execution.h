@@ -11,6 +11,7 @@
 size_t	lst_size(t_env *lst);
 size_t	tab_len(char **tab);
 void	free_tab(char **tab);
+char	**sort_tab(char **tab);
 	//	->	Proccessing :
 int		proccess_cmd(t_shell *shell, char	*cmd);
 int		proccess_buff(t_shell *shell);
@@ -28,6 +29,8 @@ int		ft_env(t_shell *shell);
 int		ft_pwd(t_shell *shell);
 	//	->	ft_export :
 int		ft_export(t_shell *shell);
+char	**get_var_tab(t_env *env);
+int		print_sorted_env(t_env *env);
 	//	->	ft_cd :
 int		ft_cd(t_shell *shell);
 	//	->	ft_unset :

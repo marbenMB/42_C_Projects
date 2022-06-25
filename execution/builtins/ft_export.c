@@ -12,31 +12,6 @@
 
 #include "../headers/execution.h"
 
-char	**sort_tab(char **tab)
-{
-	int		i;
-	size_t	len;
-	char	*tmp;
-
-	len = 0;
-	while (len <= tab_len(tab))
-	{
-		i = 0;
-		while (tab[i + 1])
-		{
-			if (ft_strcmp(tab[i], tab[i + 1]) > 0)
-			{
-				tmp = tab[i];
-				tab[i] = tab[i + 1];
-				tab[i + 1] = tmp;
-			}
-			i++;
-		}
-		len++;
-	}
-	return (tab);
-}
-
 char	**get_var_tab(t_env *env)
 {
 	char	**tab_var;
@@ -79,6 +54,28 @@ int	print_sorted_env(t_env *env)
 	free_tab(tab_var);
 	return (0);
 }
+
+// int	add_env_var(t_shell *shell)
+// {
+// 	int		idx;
+// 	char	*new_var;
+// 	char	*new_value;
+
+// 	while (*shell->cmd->cmd_flags)
+// 	{
+// 		idx = 0;
+// 		while (*shell->cmd->cmd_flags[idx] != '=')
+// 			idx++;
+// 		new_var = ft_substr(*shell->cmd->cmd_flags, 0, idx);
+// 		idx++;
+// 		new_value = ft_substr(*shell->cmd->cmd_flags, idx, ft_strlen(*shell->cmd->cmd_flags));
+// 		ft_lstadd_back_expander(&shell->env, ft_lstnew_expander(new_var, new_value));
+// 		free(new_value);
+// 		free(new_var);
+// 		(*shell->cmd->cmd_flags)++;
+// 	}
+// 	return (0);
+// }
 
 int	ft_export(t_shell *shell)
 {

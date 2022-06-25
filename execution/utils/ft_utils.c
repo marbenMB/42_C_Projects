@@ -44,3 +44,28 @@ void	free_tab(char **tab)
 		free(tab[i]);
 	free(tab);
 }
+
+char	**sort_tab(char **tab)
+{
+	int		i;
+	size_t	len;
+	char	*tmp;
+
+	len = 0;
+	while (len <= tab_len(tab))
+	{
+		i = 0;
+		while (tab[i + 1])
+		{
+			if (ft_strcmp(tab[i], tab[i + 1]) > 0)
+			{
+				tmp = tab[i];
+				tab[i] = tab[i + 1];
+				tab[i + 1] = tmp;
+			}
+			i++;
+		}
+		len++;
+	}
+	return (tab);
+}
