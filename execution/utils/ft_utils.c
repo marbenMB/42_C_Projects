@@ -12,60 +12,40 @@
 
 #include "../headers/execution.h"
 
-size_t	lst_size(t_env *lst)
+t_cmd	*lstnew(char	**cmd)
 {
-	size_t	i;
+	t_cmd	*new_list;
 
-	i = 0;
-	while (lst)
+	new_list = (t_cmd *)malloc(sizeof(*new_list));
+	if (new_list == NULL)
+		return (NULL);
+	new_list -> cmd_flags =  cmd;
+	new_list -> next = NULL;
+	return (new_list);
+}
+
+void	add_back(t_cmd **lst, t_cmd *cmd)
+{
+	if (!*lst)
+		*lst = cmd;
+	else
+		(*lst)->next = cmd;
+}
+
+int	fill_cmd(t_shell *shell)
+{
+	t_data		*head;
+	t_cmd		*cmd;
+
+	head = shell->data;
+	while (head)
 	{
-		i++;
-		lst = lst->next;
+		if (head->token == 8)
+			add_back(&cmd, lstnew(ft_split(head->str, ' ')));
+		head = head->next;
 	}
-	return (i);
-}
-
-size_t	tab_len(char **tab)
-{
-	size_t	i;
-
-	i = 0;
-	while (tab[i])
-		i++;
-	return (i);
-}
-
-void	free_tab(char **tab)
-{
-	int	i;
-
-	i = -1;
-	while (tab[++i])
-		free(tab[i]);
-	free(tab);
-}
-
-char	**sort_tab(char **tab)
-{
-	int		i;
-	size_t	len;
-	char	*tmp;
-
-	len = 0;
-	while (len <= tab_len(tab))
-	{
-		i = 0;
-		while (tab[i + 1])
-		{
-			if (ft_strcmp(tab[i], tab[i + 1]) > 0)
-			{
-				tmp = tab[i];
-				tab[i] = tab[i + 1];
-				tab[i + 1] = tmp;
-			}
-			i++;
-		}
-		len++;
-	}
-	return (tab);
+	shell->cmd = cmd;
+	proccess_buff(shell);
+	free(cmd);
+	return (0);
 }

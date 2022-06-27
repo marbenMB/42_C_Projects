@@ -52,8 +52,8 @@ READ_FLAGS    =  -lreadline  -I .brew/opt/readline/include
 
 EXEC_SRC = execution/utils/proccess_buffer.c execution/utils/ft_check.c execution/utils/ft_utils.c \
 			execution/builtins/ft_cd/ft_cd.c execution/builtins/ft_echo/ft_echo.c execution/builtins/ft_env/ft_env.c \
-			execution/builtins/ft_exit/ft_exit.c execution/builtins/ft_export/ft_export.c execution/builtins/ft_pwd/ft_pwd.c \
-			execution/builtins/ft_unset/ft_unset.c  
+			execution/builtins/ft_exit/ft_exit.c execution/builtins/ft_export/ft_export.c execution/builtins/ft_export/export_utils.c \
+			execution/builtins/ft_pwd/ft_pwd.c execution/builtins/ft_unset/ft_unset.c  
 
 LEX_SRC = minishell.c ./lexer/lexer_first_part.c ./lexer/lexer_utils.c ./lexer/tools.c ./lexer/syntax_error.c ./lexer/lexer_second_part.c \
 		./expander/expander.c ./expander/expander_utils.c ./expander/get_env.c ./expander/expande_variable.c

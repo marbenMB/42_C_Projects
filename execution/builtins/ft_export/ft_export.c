@@ -31,19 +31,6 @@ char	**get_var_tab(t_env *env)
 	return (tab_var);
 }
 
-void	print_env_var(char *var_name, char *value)
-{
-	ft_putstr_fd("declare -x ", 1);
-	ft_putstr_fd(var_name, 1);
-	if (*value)
-	{
-		ft_putstr_fd("=\"", 1);
-		ft_putstr_fd(value, 1);
-		ft_putchar_fd('\"', 1);
-	}
-	ft_putchar_fd('\n', 1);
-}
-
 int	print_sorted_env(t_env *env)
 {
 	char	**tab_var;
@@ -68,42 +55,55 @@ int	print_sorted_env(t_env *env)
 	return (0);
 }
 
-int	add_env_var(t_shell *shell)
+int	add_env_var(t_env **env, char *var_str)
 {
-	int		idx[2];
+	int		idx;
 	int		if_in_env;
 	char	*new_var;
 	char	*new_value;
 
-	idx[0] = 1;
-	while (shell->cmd->cmd_flags[idx[0]])
+	if_in_env = 0;
+	idx = 0;
+	while (var_str[idx] && var_str[idx] != '=')
+		idx++;
+	new_var = ft_substr(var_str, 0, idx);
+	if (var_str[idx] && var_str[idx] == '=')
 	{
-		if_in_env = 0;
-		idx[1] = 0;
-		while (shell->cmd->cmd_flags[idx[0]][idx[1]] && shell->cmd->cmd_flags[idx[0]][idx[1]] != '=')
-			idx[1]++;
-		new_var = ft_substr(shell->cmd->cmd_flags[idx[0]], 0, idx[1]);
-		if (shell->cmd->cmd_flags[idx[0]][idx[1]] && shell->cmd->cmd_flags[idx[0]][idx[1]] == '=')
-		{
-			if_in_env = 1;
-			idx[1]++;
-		}
-		new_value = ft_substr(shell->cmd->cmd_flags[idx[0]], idx[1], ft_strlen(shell->cmd->cmd_flags[0]));
-		ft_lstadd_back_expander(&shell->env, ft_lstnew_expander(new_var, new_value));
-		ft_lstlast_expander(&shell->env)->if_in_env = if_in_env;
-		free(new_value);
-		free(new_var);
-		idx[0]++;
+		if_in_env = 1;
+		idx++;
 	}
+	new_value = ft_substr(var_str, idx, ft_strlen(var_str));
+	ft_lstadd_back_expander(env, ft_lstnew_expander(new_var, new_value));
+	ft_lstlast_expander(env)->if_in_env = if_in_env;
+	free(new_value);
+	free(new_var);
 	return (0);
 }
 
+//	*************************************************************************	//
+//	                                                                         	//
+//	                                                                         	//
+//	                                                                         	//
+//	*************************************************************************	//
 
-//	*************************************************************************	//
-//	                                                                         	//
-//	                                                                         	//
-//	                                                                         	//
-//	*************************************************************************	//
+// void	valid_name(t_shell *shell)
+// {
+
+// }
+
+int	env_var(t_shell *shell)
+{	
+	int		i;
+
+	i = 1;
+	while (shell->cmd->cmd_flags[i])
+	{
+		// valid_name(shell);
+		add_env_var(&shell->env, shell->cmd->cmd_flags[i]);
+		i++;
+	}
+	return (0);
+}
 
 int	ft_export(t_shell *shell)
 {
@@ -111,7 +111,7 @@ int	ft_export(t_shell *shell)
 		print_sorted_env(shell->env);
 	else
 	{
-		add_env_var(shell);
+		env_var(shell);
 	}
 	return (0);
 }
