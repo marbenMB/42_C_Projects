@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/execution.h"
+#include "../../headers/execution.h"
 
 int	is_flag(char *word)
 {

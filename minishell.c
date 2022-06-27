@@ -23,6 +23,11 @@ int	main(int ac, char **av, char **env)
 	ac = 0;
 	av = NULL;
 	shell.env = get_env(env);
+
+	//		*************** *************************************
+	check_in_env(&shell);
+	//		*************** *************************************
+	
 	while (1)
 	{
 		buffer = readline ("minishell$ ");
@@ -44,7 +49,6 @@ int	main(int ac, char **av, char **env)
 		// }
 
 //		*************** *************************************
-		check_in_env(&shell);
 		if (shell.data)
 			fill_cmd(&shell);			  // -> fill cmd list
 //		*************** *************************************
