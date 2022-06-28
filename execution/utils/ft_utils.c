@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:44:09 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/06/28 13:54:30 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/06/28 15:28:39 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,19 @@ int	fill_cmd(t_shell *shell)
 	proccess_buff(shell);
 	free(cmd);
 	return (0);
+}
+
+//	***********************************************************	   //
+//	                                                       	       //
+//	                                                               //
+//	                                                               //
+//	***********************************************************	   //
+
+void	ft_status(t_env **env, char *stats)
+{
+	if ((*env)->if_in_env == -1)
+	{
+		free((*env)->value);
+		(*env)->value = ft_strdup(stats);
+	}
 }

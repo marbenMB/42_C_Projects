@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:46 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/06/28 13:45:41 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/06/28 16:23:30 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,3 @@ char	**sort_tab(char **tab)
 	return (tab);
 }
 
-void	print_env_var(char *var_name, char *value)
-{
-	ft_putstr_fd("declare -x ", 1);
-	ft_putstr_fd(var_name, 1);
-	if (*value)
-	{
-		ft_putstr_fd("=\"", 1);
-		ft_putstr_fd(value, 1);
-		ft_putchar_fd('\"', 1);
-	}
-	ft_putchar_fd('\n', 1);
-}

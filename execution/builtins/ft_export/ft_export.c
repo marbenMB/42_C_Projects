@@ -6,90 +6,43 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:42:14 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/06/28 13:50:26 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/06/28 18:01:41 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/execution.h"
 
-char	**get_var_tab(t_env *env)
+int	export_special_char(char c)
 {
-	char	**tab_var;
-	int		i;
-
-	tab_var = (char **)malloc(sizeof(char *) * lst_size(env));
-	i = 0;
-	env = env ->next;
-	while (env)
-	{
-		tab_var[i] = ft_strdup(env->var);
-		env = env->next;
-		i++;
-	}
-	tab_var[i] = NULL;
-	tab_var = sort_tab(tab_var);
-	return (tab_var);
-}
-
-int	print_sorted_env(t_env *env)
-{
-	char	**tab_var;
-	t_env	*head;
-	int		i;
-
-	tab_var = get_var_tab(env);
-	head = env->next;
-	i = 0;
-	while (tab_var[i])
-	{
-		head = env->next;
-		while (head)
-		{
-			if (!ft_strcmp(tab_var[i], head->var))
-				print_env_var(head->var, head->value);
-			head = head->next;
-		}
-		i++;
-	}
-	free_tab(tab_var);
+	if (ft_strchr("/|\\#`[]!{};()*&~,-+@%%^<>", c))
+		return (1);
 	return (0);
 }
 
-int	add_env_var(t_env **env, char *var_str)
+int	valid_name(char *var_str)
 {
 	int		idx;
-	int		if_in_env;
-	char	*new_var;
-	char	*new_value;
+	char	*var;
 
-	if_in_env = 0;
 	idx = 0;
-	while (var_str[idx] && var_str[idx] != '=')
-		idx++;
-	new_var = ft_substr(var_str, 0, idx);
-	if (var_str[idx] && var_str[idx] == '=')
+	var = get_var_name(var_str);
+	if (ft_isdigit(var[idx]))
 	{
-		if_in_env = 1;
+		free(var);
+		return (1);		
+	}
+	while (var[idx])
+	{
+		if (export_special_char(var[idx]))
+		{
+			free(var);
+			return (1);
+		}
 		idx++;
 	}
-	new_value = ft_substr(var_str, idx, ft_strlen(var_str));
-	ft_lstadd_back_expander(env, ft_lstnew_expander(new_var, new_value));
-	ft_lstlast_expander(env)->if_in_env = if_in_env;
-	free(new_value);
-	free(new_var);
+	free(var);
 	return (0);
 }
-
-//	***********************************************************	   //
-//	                                                       	       //
-//	                                                               //
-//	                                                               //
-//	***********************************************************	   //
-
-// int	valid_name(t_shell *shell)
-// {
-
-// }
 
 int	env_var(t_shell *shell)
 {	
@@ -98,10 +51,10 @@ int	env_var(t_shell *shell)
 	i = 1;
 	while (shell->cmd->cmd_flags[i])
 	{
-		if (valid_name(shell))
-			add_env_var(&shell->env, shell->cmd->cmd_flags[i]);
+		if (valid_name(shell->cmd->cmd_flags[i]))
+			error_cmd_arg(&shell->env, shell->cmd->cmd_flags[0], shell->cmd->cmd_flags[i], NVI);
 		else
-			// error_cmd_arg();
+			parse_var_str(&shell->env, shell->cmd->cmd_flags[i]);
 		i++;
 	}
 	return (0);
@@ -112,8 +65,6 @@ int	ft_export(t_shell *shell)
 	if (!shell->cmd->cmd_flags[1])
 		print_sorted_env(shell->env);
 	else
-	{
 		env_var(shell);
-	}
 	return (0);
 }
