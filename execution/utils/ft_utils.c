@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:44:09 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/06/25 20:44:10 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/06/28 13:54:30 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_cmd	*lstnew(char	**cmd)
 	new_list = (t_cmd *)malloc(sizeof(*new_list));
 	if (new_list == NULL)
 		return (NULL);
-	new_list -> cmd_flags =  cmd;
+	new_list -> cmd_flags = cmd;
 	new_list -> next = NULL;
 	return (new_list);
 }
