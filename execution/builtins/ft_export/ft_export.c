@@ -86,7 +86,7 @@ int	add_env_var(t_env **env, char *var_str)
 //	                                                               //
 //	***********************************************************	   //
 
-// void	valid_name(t_shell *shell)
+// int	valid_name(t_shell *shell)
 // {
 
 // }
@@ -98,8 +98,10 @@ int	env_var(t_shell *shell)
 	i = 1;
 	while (shell->cmd->cmd_flags[i])
 	{
-		// valid_name(shell);
-		add_env_var(&shell->env, shell->cmd->cmd_flags[i]);
+		if (valid_name(shell))
+			add_env_var(&shell->env, shell->cmd->cmd_flags[i]);
+		else
+			// error_cmd_arg();
 		i++;
 	}
 	return (0);

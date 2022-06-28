@@ -16,8 +16,10 @@
 //	***********		Includes	*********** :
 # include "../../minishell.h"
 
+//	***********		DEFINES		*********** :
+# define NSFD "No such file or directory"
+# define NVI "Not a valid identifier"
 //	***********		Functions	*********** :
-
 //	********		 UTILS		******** :
 	//	->	utils :
 int		fill_cmd(t_shell *shell);
