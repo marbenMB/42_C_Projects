@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:25:07 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/06/28 18:21:12 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/06/28 20:24:34 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,12 @@ int	add_env_var(t_env **env, char *var, char *value, int _if)
 	{
 		head = (*env)->next;
 		head = get_existed_var(&head, var);
-		free(head->value);
-		head->value = ft_strdup(value);
+		if (value)
+		{	
+			free(head->value);
+			head->value = ft_strdup(value);
+			head->if_in_env = 1;
+		}
 	}
 	else
 	{
@@ -42,7 +46,7 @@ int	add_env_var(t_env **env, char *var, char *value, int _if)
 	return (0);
 }
 
-int	join_env_value(t_env **env, char *var, char *value)
+int	join_env_value(t_env **env, char *var, char *value, int _if)
 {
 	char	*new_value;
 	t_env	*head;
@@ -56,9 +60,13 @@ int	join_env_value(t_env **env, char *var, char *value)
 			new_value = ft_strjoin(head->value, value);
 			free(head->value);
 			head->value = new_value;
+			head->if_in_env = 1;
 		}
 		else
+		{
 			head->value = ft_strdup(value);
+			head->if_in_env = _if;
+		}
 	}
 	else
 		add_env_var(env, var, value, 1);
@@ -72,16 +80,16 @@ void    parse_var_str(t_env **env, char *var_str)
 	int     i;
 	int     _if;
 	
-	i = 0;
+	i = 1;
 	_if = 0;
 	var = get_var_name(var_str);
 	if (var_str[ft_strlen(var)] == '+')
-		i = 1;
+		i = 2;
 	if (var_str[ft_strlen(var)] == '=' || var_str[ft_strlen(var) + i] == '=')
 		_if = 1;
 	value = ft_substr(var_str, ft_strlen(var) + i, ft_strlen(var_str));
-	if (i)
-		join_env_value(env, var, value);
+	if (i == 2)
+		join_env_value(env, var, value, _if);
 	else
 		add_env_var(env, var, value, _if);
 	free(var);
