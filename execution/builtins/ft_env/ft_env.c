@@ -16,8 +16,11 @@ int	ft_env(t_shell *shell)
 {
 	t_env	*head;
 
-	// if (shell->cmd->cmd_flags[1] != NULL)
-		// env : arg : No such file or directory
+	if (shell->cmd->cmd_flags[1] != NULL)
+	{
+		error_cmd_arg(&shell->env, "env", shell->cmd->cmd_flags[1], NSFD);
+		return (1);
+	}
 	head = shell->env->next;
 	while (head)
 	{
@@ -25,5 +28,6 @@ int	ft_env(t_shell *shell)
 			printf("%s=%s\n", head->var, head->value);
 		head = head->next;
 	}
+	ft_status(&shell->env, SUCC_STAT);
 	return (0);
 }

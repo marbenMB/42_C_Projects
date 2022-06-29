@@ -83,5 +83,4 @@ void	parse_var_str(t_env **env, char *var_str)
 		add_env_var(env, var, value, _if);
 	free(var);
 	free(value);
-	ft_status(env, "0");
 }

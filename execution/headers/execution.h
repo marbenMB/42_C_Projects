@@ -17,6 +17,9 @@
 # include "../../minishell.h"
 
 //	***********		DEFINES		*********** :
+# define SUCC_STAT "0"
+# define FAIL_STAT "1"
+# define ERROR_STAT "-1"
 # define NSFD "No such file or directory"
 # define NVI "Not a valid identifier"
 
@@ -26,7 +29,7 @@ void	error_cmd_arg(t_env **env, char *cmd, char *arg, char *msg);
 //	********		 UTILS		******** :
 	//	->	utils :
 void	ft_status(t_env **env, char *stats);
-char	*get_env_var(t_env **env, char *var_name);
+t_env	*get_env_var(t_env **env, char *var_name);
 	//	->	Proccessing :
 int		proccess_cmd(t_shell *shell, char	*cmd);
 int		proccess_buff(t_shell *shell);

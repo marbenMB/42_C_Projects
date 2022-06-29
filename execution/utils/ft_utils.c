@@ -21,12 +21,12 @@ void	ft_status(t_env **env, char *stats)
 	}
 }
 
-char	*get_env_var(t_env **env, char *var_name)
+t_env	*get_env_var(t_env **env, char *var_name)
 {
 	t_env	*head;
 
 	head = (*env)->next;
-	while (ft_strcmp(head->var), var_name)
+	while (ft_strcmp((head->var), var_name))
 		head = head->next;
 	return (head);
 }

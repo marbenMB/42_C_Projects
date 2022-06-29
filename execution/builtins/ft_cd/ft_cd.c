@@ -17,7 +17,7 @@ int	ft_cd(t_shell *shell)
 	char	*path;
 
 	path = shell->cmd->cmd_flags[1];
-	if (!path || ft_strcmp(path, "~"))
+	if (!path)
 	{
 		//	cd -> HOME
 		/* 	set -> NEW_ENV
@@ -26,7 +26,7 @@ int	ft_cd(t_shell *shell)
 				set -> NEW_OLDPWD
 		} */
 	}
-	else if (!ft_strcmp(path, "~-") || !ft_strcmp(path, "-"))
+	else if (!ft_strcmp(path, "-") || !ft_strcmp(path, "-"))
 	{
 		//	cd -> OLDPWD
 		/* 	set -> NEW_ENV

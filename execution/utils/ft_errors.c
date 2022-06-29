@@ -19,5 +19,5 @@ void	error_cmd_arg(t_env **env, char *cmd, char *arg, char *msg)
 	ft_putstr_fd(arg, 2);
 	ft_putstr_fd(" : ", 2);
 	ft_putendl_fd(msg, 2);
-	ft_status(env, "1");
+	ft_status(env, FAIL_STAT);
 }

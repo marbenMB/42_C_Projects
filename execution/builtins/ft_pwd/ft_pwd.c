@@ -23,6 +23,8 @@ int	ft_pwd(t_shell *shell)
 	
 	printf("%s\n", path);
 	if (path)
-		ft_status(&shell->env, "0");
+		ft_status(&shell->env, SUCC_STAT);
+	else
+		ft_status(&shell->env, FAIL_STAT);
 	return (0);
 }

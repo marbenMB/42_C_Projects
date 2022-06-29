@@ -50,5 +50,6 @@ int	ft_echo(t_shell *shell)
 	}
 	if (_n)
 		printf("\n");
+	ft_status(&shell->env, SUCC_STAT);
 	return (0);
 }

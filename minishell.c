@@ -26,7 +26,7 @@ int	main(int ac, char **av, char **env)
 	check_in_env(&shell);
 	while (1)
 	{
-		buffer = readline ("\nminishell$ ");
+		buffer = readline ("minishell$ ");
 		add_history(buffer);
 		if (ft_strcmp(buffer, "exit") == 0)
 			exit(0);

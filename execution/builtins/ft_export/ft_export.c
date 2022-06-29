@@ -55,7 +55,10 @@ int	env_var(t_shell *shell)
 			error_cmd_arg(&shell->env, shell->cmd->cmd_flags[0], \
 							shell->cmd->cmd_flags[i], NVI);
 		else
+		{
 			parse_var_str(&shell->env, shell->cmd->cmd_flags[i]);
+			ft_status(&shell->env, SUCC_STAT);
+		}
 		i++;
 	}
 	return (0);
