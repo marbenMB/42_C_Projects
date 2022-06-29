@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:42:31 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/06/25 20:55:36 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/06/29 13:33:43 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,15 @@
 
 int	ft_pwd(t_shell *shell)
 {
-	t_env	*env;
 	char	*path;
 	char	cwd[PATH_MAX];
 
-	env = shell->env;
-	while (env)
-	{
-		if (!ft_strcmp("PWD", env->var))
-			break ;
-		env = env->next;
-	}
-	if (env)
-		path = env->value;
-	else
-		path = getcwd(cwd, sizeof(cwd));
+	path = getcwd(cwd, sizeof(cwd));
 	// if (!path)
-		// error PWD not set
+	// 	error();
+	
 	printf("%s\n", path);
+	if (path)
+		ft_status(&shell->env, "0");
 	return (0);
 }
