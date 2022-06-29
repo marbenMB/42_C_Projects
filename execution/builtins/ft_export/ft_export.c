@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:42:14 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/06/28 18:01:41 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/06/29 11:58:32 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	valid_name(char *var_str)
 	if (ft_isdigit(var[idx]))
 	{
 		free(var);
-		return (1);		
+		return (1);
 	}
 	while (var[idx])
 	{
@@ -52,7 +52,8 @@ int	env_var(t_shell *shell)
 	while (shell->cmd->cmd_flags[i])
 	{
 		if (valid_name(shell->cmd->cmd_flags[i]))
-			error_cmd_arg(&shell->env, shell->cmd->cmd_flags[0], shell->cmd->cmd_flags[i], NVI);
+			error_cmd_arg(&shell->env, shell->cmd->cmd_flags[0], \
+							shell->cmd->cmd_flags[i], NVI);
 		else
 			parse_var_str(&shell->env, shell->cmd->cmd_flags[i]);
 		i++;

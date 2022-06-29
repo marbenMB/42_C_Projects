@@ -6,13 +6,13 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:49:02 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/06/28 18:21:50 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/06/29 11:48:02 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/execution.h"
 
-char    *get_var_name(char *var_str)
+char	*get_var_name(char *var_str)
 {
 	int		idx;
 	char	*var;
@@ -31,13 +31,13 @@ t_env	*get_existed_var(t_env **env, char *var)
 	while ((*env))
 	{
 		if (!ft_strcmp(var, (*env)->var))
-			break;
+			break ;
 		(*env) = (*env)->next;
 	}
 	return ((*env));
 }
 
-int existed_var(t_env *env, char *var)
+int	existed_var(t_env *env, char *var)
 {
 	while (env)
 	{

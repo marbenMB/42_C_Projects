@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:58 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/06/28 18:20:36 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/06/29 12:52:53 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ int		print_sorted_env(t_env *env);
 //*			add_env_var :
 int		add_env_var(t_env **env, char *var, char *value, int _if);
 int		join_env_value(t_env **env, char *var, char *value, int _if);
-char    *get_var_name(char *var_str);
+char	*get_var_name(char *var_str);
 t_env	*get_existed_var(t_env **env, char *var);
 int		existed_var(t_env *env, char *var);
-void    parse_var_str(t_env **env, char *var_str);
+void	parse_var_str(t_env **env, char *var_str);
 int		export_special_char(char c);
 int		valid_name(char *var_str);
 int		env_var(t_shell *shell);

@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:25:07 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/06/28 20:24:34 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/06/29 11:59:39 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ int	join_env_value(t_env **env, char *var, char *value, int _if)
 	return (0);
 }
 
-void    parse_var_str(t_env **env, char *var_str)
+void	parse_var_str(t_env **env, char *var_str)
 {
-	char    *var;
-	char    *value;
-	int     i;
-	int     _if;
-	
+	char	*var;
+	char	*value;
+	int		i;
+	int		_if;
+
 	i = 1;
 	_if = 0;
 	var = get_var_name(var_str);
@@ -83,4 +83,5 @@ void    parse_var_str(t_env **env, char *var_str)
 		add_env_var(env, var, value, _if);
 	free(var);
 	free(value);
+	ft_status(env, "0");
 }
