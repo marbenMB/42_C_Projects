@@ -26,6 +26,17 @@ char    *get_var_name(char *var_str)
 	return (var);
 }
 
+t_env	*get_existed_var(t_env **env, char *var)
+{
+	while ((*env))
+	{
+		if (!ft_strcmp(var, (*env)->var))
+			break;
+		(*env) = (*env)->next;
+	}
+	return ((*env));
+}
+
 int existed_var(t_env *env, char *var)
 {
 	while (env)

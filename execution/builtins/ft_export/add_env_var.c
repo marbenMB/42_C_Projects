@@ -12,17 +12,6 @@
 
 #include "../../headers/execution.h"
 
-t_env	*get_existed_var(t_env **env, char *var)
-{
-	while ((*env))
-	{
-		if (!ft_strcmp(var, (*env)->var))
-			break;
-		(*env) = (*env)->next;
-	}
-	return ((*env));
-}
-
 int	add_env_var(t_env **env, char *var, char *value, int _if)
 {
 	t_env	*head;
@@ -31,7 +20,7 @@ int	add_env_var(t_env **env, char *var, char *value, int _if)
 	{
 		head = (*env)->next;
 		head = get_existed_var(&head, var);
-		if (value)
+		if (value && _if)
 		{	
 			free(head->value);
 			head->value = ft_strdup(value);
