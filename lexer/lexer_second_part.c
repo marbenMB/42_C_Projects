@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 15:34:02 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/22 22:57:38 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/28 22:05:48 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	pipe_data(char **buffer, t_data **data)
 		return (1);
 	return (0);
 }
+
 // ------------------------------------------------------------------------
 int	operator_type(char **simple_command, t_data **simple_command_list)
 {
@@ -40,8 +41,10 @@ int	operator_type(char **simple_command, t_data **simple_command_list)
 		return (1);
 	return (0);
 }
+
 //-------------------------------------------  3 other operators data
-int	save_operator_data(char **simple_command, t_data **simple_command_list, int flag)
+int	save_operator_data(char **simple_command, \
+t_data **simple_command_list, int flag)
 {
 	int		i;
 	char	*str1;
@@ -49,10 +52,15 @@ int	save_operator_data(char **simple_command, t_data **simple_command_list, int 
 
 	check_flag(simple_command, flag);
 	str1 = *simple_command;
-	i = 	files_lim_len(simple_command);
+	i = files_lim_len(simple_command);
+	if (i == 0)
+		return (1);
 	str1 = ft_substr(str1, 0, i);
 	str2 = ft_strtrim(str1, " ");
-	if (ft_strcmp(str2, "|") == 0 || ft_strcmp(str2, "<") == 0 || ft_strcmp(str2, "<<") == 0 || ft_strcmp(str2, ">") == 0 || ft_strcmp(str2, ">>") == 0)
+	if (ft_strcmp(str2, "|") == 0 || ft_strcmp(str2, "<") == 0 || \
+	ft_strcmp(str2, "<<") == 0 || \
+	ft_strcmp(str2, ">") == 0 || ft_strcmp(str2, ">>") == 0 || \
+	ft_is_operator(str2[0]) == 1)
 	{
 		free(str1);
 		free(str2);
@@ -63,6 +71,7 @@ int	save_operator_data(char **simple_command, t_data **simple_command_list, int 
 	free(str2);
 	return (0);
 }
+
 //------------------------------------------------------------- 4 check flag 
 void	check_flag(char **simple_command, int flag)
 {
@@ -73,21 +82,22 @@ void	check_flag(char **simple_command, int flag)
 	while (**simple_command == ' ')
 		(*simple_command)++;
 }
+
 //--------------------------------------------------- 5 count cmd_word
 int	files_lim_len(char **simple_command)
 {
-	int	i;
-
-	i = 0;
+	int		i;
 	char	quote;
 
+	i = 0;
 	quote = 0;
 	while (**simple_command != '\0')
 	{
 		quotes_checker(**simple_command, &quote);
 		i++;
 		(*simple_command)++;
-		if ((ft_is_operator(**simple_command) == 1 || **simple_command == ' ') && quote == 0)
+		if ((ft_is_operator(**simple_command) == 1 || \
+		**simple_command == ' ') && quote == 0)
 			break ;
 	}
 	while (**simple_command == ' ')

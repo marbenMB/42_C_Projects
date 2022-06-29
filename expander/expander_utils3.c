@@ -1,54 +1,61 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_utils.c                                      :+:      :+:    :+:   */
+/*   expander_utils3.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/30 13:34:54 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/28 22:11:02 by abellakr         ###   ########.fr       */
+/*   Created: 2022/06/27 16:46:03 by abellakr          #+#    #+#             */
+/*   Updated: 2022/06/28 23:27:08 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//------------------------ create  a new node in my list
-t_data	*ft_lstnew_lexer(char *data, int token)
+//------------------------ 
+t_cmd	*ft_lstnew_cmd(char **cmd_flags)
 {
-	t_data	*element;
+	t_cmd	*element;
+	int		len;
 
-	element = (t_data *)malloc(sizeof(t_data));
+	len = 0;
+	element = (t_cmd *)malloc(sizeof(t_cmd));
+	while (cmd_flags[len])
+		len++;
+	element->cmd_flags = (char **)malloc(sizeof(char *) * len + 1);
+	len = 0;
+	while (cmd_flags[len])
+	{
+		element->cmd_flags[len] = ft_strdup(cmd_flags[len]);
+		len++;
+	}
+	element->cmd_flags[len] = NULL;
 	if (!element)
 		return (0);
-	if (data == NULL)
-		element->str = NULL;
-	else if (data != NULL)
-		element->str = ft_strdup(data);
-	element->token = token;
-	element->next = NULL;
 	element->prev = NULL;
+	element->next = NULL;
 	return (element);
 }
 
 //------------------------------------ ft_add_back
-void	ft_lstadd_back_lexer(t_data **lst, t_data *new)
+void	ft_lstadd_back_cmd(t_cmd **lst, t_cmd *new)
 {
-	t_data	*lastnode;
+	t_cmd	*lastnode;
 
 	if (*lst == NULL)
 	{
 		(*lst) = new;
 		return ;
 	}
-	lastnode = ft_lstlast_lexer(lst);
+	lastnode = ft_lstlast_cmd(lst);
 	new->prev = lastnode;
 	lastnode->next = new;
 }
 
 //---------------------------------------- find last node int list 
-t_data	*ft_lstlast_lexer(t_data **lst)
+t_cmd	*ft_lstlast_cmd(t_cmd **lst)
 {
-	t_data	*backup;
+	t_cmd	*backup;
 
 	backup = *lst;
 	if (backup == NULL)
@@ -56,20 +63,4 @@ t_data	*ft_lstlast_lexer(t_data **lst)
 	while (backup->next != NULL)
 		backup = backup->next;
 	return (backup);
-}
-
-//----------------------------------------------- check if operator
-int	ft_is_operator(char c)
-{
-	if (ft_strchr("<>|", c))
-		return (1);
-	return (0);
-}
-
-//------------------------------------------------- check special char
-int	ft_special_char(char c)
-{
-	if (ft_strchr("\\#`[]!{};()*&~", c))
-		return (1);
-	return (0);
 }

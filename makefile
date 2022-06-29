@@ -6,7 +6,7 @@
 #    By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 13:58:33 by abellakr          #+#    #+#              #
-#    Updated: 2022/06/28 18:24:06 by mbenbajj         ###   ########.fr        #
+#    Updated: 2022/06/29 14:34:32 by mbenbajj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ NAME = minishell
 
 CC = cc
 
-CFlAGS = -Wall -Wextra -Werror #-fsanitize=address
+CFlAGS = -Wall -Wextra -Werror
 
 HEADS = headers/includes.h headers/macros.h headers/structs.h execution/headers/execution.h
 
@@ -57,7 +57,8 @@ EXEC_SRC = execution/utils/proccess_buffer.c execution/utils/ft_check.c executio
 			execution/builtins/ft_pwd/ft_pwd.c execution/builtins/ft_unset/ft_unset.c  
 
 LEX_SRC = minishell.c ./lexer/lexer_first_part.c ./lexer/lexer_utils.c ./lexer/tools.c ./lexer/syntax_error.c ./lexer/lexer_second_part.c \
-		./expander/expander.c ./expander/expander_utils.c ./expander/get_env.c ./expander/expande_variable.c
+		./expander/expander.c ./expander/expander_utils1.c ./expander/get_env.c ./expander/expande_variable.c ./expander/expander_utils2.c \
+		./expander/expander_utils3.c ./lexer/lexer_third_part.c ./lexer/lexer_part_four.c
 
 SRC = $(LEX_SRC) $(EXEC_SRC)	
 
