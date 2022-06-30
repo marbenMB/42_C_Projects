@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:44:09 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/06/30 17:43:29 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/06/30 20:01:33 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void	ft_status(t_env **env, char *stats)
 	}
 }
 
-t_env	*get_env_var(t_env *env, char *var_name)
+t_env	*get_env_var(t_env **env, char *var_name)
 {
 	t_env	*head;
 
-	head = env->next;
+	head = (*env)->next;
 	while (head && ft_strcmp((head->var), var_name))
 		head = head->next;
 	return (head);

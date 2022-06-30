@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:34 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/06/30 18:45:29 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/06/30 20:01:54 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ int	update_wd(t_env **env, char *old, char *current)
 
 	old_pwd = (*env);
 	pwd = (*env);
-	old_pwd = get_env_var(old_pwd, "OLDPWD");
+	old_pwd = get_env_var(&old_pwd, "OLDPWD");
 	if (old_pwd)
 	{
 		free(old_pwd->value);
 		old_pwd->value = ft_strdup(old);
 	}
-	pwd = get_env_var(pwd, "PWD");
+	pwd = get_env_var(&pwd, "PWD");
 	if (pwd)
 	{
 		free(pwd->value);

@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:58 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/06/30 17:41:49 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/06/30 20:01:23 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	error_cmd_arg(t_env **env, char *cmd, char *arg, char *msg);
 //	********		 UTILS		******** :
 	//	->	utils :
 void	ft_status(t_env **env, char *stats);
-t_env	*get_env_var(t_env *env, char *var_name);
+t_env	*get_env_var(t_env **env, char *var_name);
 	//	->	Proccessing :
 int		proccess_cmd(t_shell *shell, char	*cmd);
 int		proccess_buff(t_shell *shell);
