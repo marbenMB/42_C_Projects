@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expande_variable.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 06:58:44 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/28 23:35:54 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/07/01 15:34:10 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ char	*in_var(char *str, t_env *env)
 	while (*str != '$')
 		str++;
 	str++;
+	if(*str == '\0')
+		return (ft_strdup("$"));
 	var1 = ft_strdup(str);
 	while (*str != '$' && *str && *str != ' ' && *str != '"' \
 	&& *str != '\'' && ft_is_operator(*str) == 0)
