@@ -59,7 +59,7 @@ int	main(int ac, char **av, char **env)
 			
 		// }
 		//----------------------------------------- print data 
-		if (buffer)
+		if (shell.data)
 			proccess_buff(&shell);  // hadi rah kadir segfault f syntax error o chi cmd makhdamach
 		free_data(&(shell.data));
 		free_data3(&(shell.cmd));
