@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:41:34 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/02 02:17:35 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/02 02:21:43 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ int	ft_echo(t_shell *shell)
 	}
 	while (shell->cmd->cmd_flags[idx])
 	{
-		printf("%s", shell->cmd->cmd_flags[idx]);
+		ft_putstr_fd(shell->cmd->cmd_flags[idx], STDOUT);
 		if (shell->cmd->cmd_flags[idx + 1])
-			printf(" ");
+			ft_putstr_fd(" ", STDOUT);
 		idx++;
 	}
 	if (_n)
-		printf("\n");
+		ft_putstr_fd("\n", STDOUT);
 	ft_status(&shell->env, SUCC_STAT);
 	return (0);
 }

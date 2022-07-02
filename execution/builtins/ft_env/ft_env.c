@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:41:48 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/06/25 20:41:51 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/02 02:23:00 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,11 @@ int	ft_env(t_shell *shell)
 	while (head)
 	{
 		if (head->if_in_env == 1)
-			printf("%s=%s\n", head->var, head->value);
+		{
+			ft_putstr_fd(head->var, STDOUT);
+			ft_putchar_fd('=', STDOUT);
+			ft_putendl_fd(head->value, STDOUT);
+		}
 		head = head->next;
 	}
 	ft_status(&shell->env, SUCC_STAT);
