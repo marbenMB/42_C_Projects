@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:58 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/02 02:16:23 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/02 02:35:49 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ int		env_var(t_shell *shell);
 int		ft_export(t_shell *shell);
 //*	->	ft_cd :
 int		ft_cd(t_shell *shell);
+int		chdir_path(t_shell *shell, char *path);
+int		chdir_old(t_shell *shell);
+int		chdir_home(t_shell *shell);
 char	*get_wd(void);
 int		update_wd(t_env **env, char *old, char *current);
 int		check_path(char *path);

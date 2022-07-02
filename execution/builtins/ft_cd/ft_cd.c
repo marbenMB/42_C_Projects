@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:34 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/02 02:12:18 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/02 02:33:49 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,16 @@ int	chdir_old(t_shell *shell)
 	return (0);
 }
 
+int	chdir_path(t_shell *shell, char *path)
+{
+	if (chdir(path) == -1)
+	{
+		error_cd(&shell->env, path, NSFD);
+		return (1);
+	}
+	return (0);
+}
+
 int	ft_cd(t_shell *shell)
 {
 	char	*path;
@@ -86,6 +96,8 @@ int	ft_cd(t_shell *shell)
 		chdir_home(shell);
 	else if (!ft_strcmp(path, "-"))
 		chdir_old(shell);
+	else
+		chdir_path(shell, path);
 	current = ft_strdup(get_wd());
 	update_wd(&shell->env, old, current);
 	free(old);
