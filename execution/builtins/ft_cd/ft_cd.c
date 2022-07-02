@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:34 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/02 02:33:49 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/02 22:08:09 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ int	ft_cd(t_shell *shell)
 	char	*old;
 	char	*current;
 
+	old = NULL;
+	current = NULL;
 	path = shell->cmd->cmd_flags[1];
 	if (check_path(path))
 	{
