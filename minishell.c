@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:59:05 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/01 15:35:10 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/02 02:12:33 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ int	main(int ac, char **av, char **env)
 			proccess_buff(&shell);  // hadi rah kadir segfault f syntax error o chi cmd makhdamach
 		free_data(&(shell.data));
 		free_data3(&(shell.cmd));
-		// printf("\033[0;33m----------------------------\n");
-		// system("leaks minishell");
-		// printf("\n----------------------------\n\033[0m");
+		printf("\033[0;33m----------------------------\n");
+		system("leaks minishell");
+		printf("\n----------------------------\n\033[0m");
 	}
 	free_data2(&(shell.env));
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:45:02 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/06/28 13:53:59 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/02 00:31:06 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	check_in_env(t_shell *shell)
 {
 	t_env	*back_up;
+	t_env	*head;
 
 	shell->env->if_in_env = -1;
 	back_up = shell->env->next;
@@ -26,4 +27,7 @@ void	check_in_env(t_shell *shell)
 			back_up = back_up->next;
 		}
 	}
+	head = get_env_var(shell->env, "OLDPWD");
+	if (!head)
+		add_env_var(&shell->env, "OLDPWD", "", 0);
 }

@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:58 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/06/30 20:01:23 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/02 02:16:23 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,23 @@
 # define SUCC_STAT "0"
 # define FAIL_STAT "1"
 # define ERROR_STAT "-1"
+# define STDIN 0
+# define STDOUT 1
+# define STDERROR 2
 # define NSFD "No such file or directory"
 # define NVI "Not a valid identifier"
+# define HNS "HOME not set"
+# define ONS "OLDPWD not set"
 
 //	***********		Functions	*********** :
 //	********		 ERRORS		******** :
 void	error_cmd_arg(t_env **env, char *cmd, char *arg, char *msg);
+void	error_cd(t_env **env, char *arg, char *msg);
 //	********		 UTILS		******** :
+void	debug_print(char *str, int d);
 	//	->	utils :
 void	ft_status(t_env **env, char *stats);
-t_env	*get_env_var(t_env **env, char *var_name);
+t_env	*get_env_var(t_env *env, char *var_name);
 	//	->	Proccessing :
 int		proccess_cmd(t_shell *shell, char	*cmd);
 int		proccess_buff(t_shell *shell);
@@ -65,6 +72,9 @@ int		env_var(t_shell *shell);
 int		ft_export(t_shell *shell);
 //*	->	ft_cd :
 int		ft_cd(t_shell *shell);
+char	*get_wd(void);
+int		update_wd(t_env **env, char *old, char *current);
+int		check_path(char *path);
 //*	->	ft_unset :
 int		ft_unset(t_shell *shell);
 //*	->	ft_exit :

@@ -6,7 +6,7 @@
 #    By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 13:58:33 by abellakr          #+#    #+#              #
-#    Updated: 2022/06/29 14:34:32 by mbenbajj         ###   ########.fr        #
+#    Updated: 2022/07/02 00:35:40 by mbenbajj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,10 +51,11 @@ HEADS = headers/includes.h headers/macros.h headers/structs.h execution/headers/
 READ_FLAGS    =  -lreadline  -I .brew/opt/readline/include
 
 EXEC_SRC = execution/utils/proccess_buffer.c execution/utils/ft_check.c execution/utils/ft_utils.c execution/utils/ft_errors.c \
-			execution/builtins/ft_cd/ft_cd.c execution/builtins/ft_echo/ft_echo.c execution/builtins/ft_env/ft_env.c \
-			execution/builtins/ft_exit/ft_exit.c execution/builtins/ft_export/ft_export.c execution/builtins/ft_export/sort_env_utils.c \
+			execution/builtins/ft_echo/ft_echo.c execution/builtins/ft_env/ft_env.c execution/builtins/ft_exit/ft_exit.c \
+			execution/builtins/ft_export/ft_export.c execution/builtins/ft_export/sort_env_utils.c \
 			execution/builtins/ft_export/add_env_var.c execution/builtins/ft_export/add_var_utils.c execution/builtins/ft_export/sorted_env.c\
-			execution/builtins/ft_pwd/ft_pwd.c execution/builtins/ft_unset/ft_unset.c  
+			execution/builtins/ft_pwd/ft_pwd.c execution/builtins/ft_unset/ft_unset.c  \
+			execution/builtins/ft_cd/ft_cd.c execution/builtins/ft_cd/cd_utils.c
 
 LEX_SRC = minishell.c ./lexer/lexer_first_part.c ./lexer/lexer_utils.c ./lexer/tools.c ./lexer/syntax_error.c ./lexer/lexer_second_part.c \
 		./expander/expander.c ./expander/expander_utils1.c ./expander/get_env.c ./expander/expande_variable.c ./expander/expander_utils2.c \
@@ -71,7 +72,11 @@ all : $(NAME)
 
 $(NAME) : $(OBJ)
 	clear
-	@echo  $(BPurple)"minishell by group sbaksi : done! "$(Color_Off)
+	@echo  $(BPurple)"------------------------------------------------"$(Color_Off)
+	@echo
+	@echo  $(BPurple)"	minishell by group sbaksi : done! "$(Color_Off)
+	@echo
+	@echo  $(BPurple)"------------------------------------------------"$(Color_Off)
 	@make -C ./libft
 	@$(CC) $(CFlAGS) $(READ_FLAGS) $(OBJ) ./libft/libft.a -o $(NAME)
 	@make clean

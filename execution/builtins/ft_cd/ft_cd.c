@@ -6,124 +6,89 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:34 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/01 18:13:59 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/02 02:12:18 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/execution.h"
 
-int	check_path(char *path)
+int	chdir_home(t_shell *shell)
 {
-	if (path && path[0])
+	t_env	*var;
+	int		ch_stat;
+
+	var = get_env_var(shell->env, "HOME");
+	if (var)
 	{
-		if (path[0] == '-' && ft_strlen(path) > 1)
+		ch_stat = chdir(var->value);
+		if (ch_stat == -1 && (!var->value || var->value[0] == '\0'))
+		{
+			error_cd(&shell->env, var->value, HNS);
 			return (1);
+		}
+		else if (ch_stat == -1 && *(var->value) != '\0')
+		{
+			error_cd(&shell->env, var->value, NSFD);
+			return (1);
+		}
 	}
-	return (0);
-}
-
-int	update_wd(t_env **env, char *old, char *current)
-{
-	t_env	*old_pwd;
-	t_env	*pwd;
-	t_env	*head;
-
-	head = (*env);
-	if (get_env_var(&head, "OLDPWD"))
+	else
 	{
-		free(head->value);
-		head->value = ft_strdup(old);
+		error_cd(&shell->env, NULL, HNS);
+		return (1);
 	}
-	head = (*env);
-	if (get_env_var(&head, "PWD"))
-	// old_pwd = (*env);
-	// pwd = (*env);
-	// old_pwd = get_env_var(&old_pwd, "OLDPWD");
-	// if (old_pwd)
-	// {
-	// 	free(old_pwd->value);
-	// 	old_pwd->value = ft_strdup(old);
-	// }
-	// pwd = get_env_var(&pwd, "PWD");
-	// if (pwd)
-	// {
-	// 	free(pwd->value);
-	// 	pwd->value = current;
-	// }
+	ft_status(&shell->env, SUCC_STAT);
 	return (0);
 }
 
-int	change_dir(t_env **env, char *path)
+int	chdir_old(t_shell *shell)
 {
-	char	*old;
-	char	*current;
-	t_env	*head;
+	t_env	*var;
+	int		ch_stat;
 
-	
+	var = get_env_var(shell->env, "OLDPWD");
+	if (var)
+	{
+		ch_stat = chdir(var->value);
+		if (ch_stat == -1)
+		{
+			if ((!var->value || var->value[0] == '\0'))
+				error_cd(&shell->env, var->value, ONS);
+			else if (*(var->value) != '\0')
+				error_cd(&shell->env, var->value, NSFD);
+			return (1);
+		}
+	}
+	else
+	{
+		error_cd(&shell->env, NULL, HNS);
+		return (1);
+	}
+	ft_putendl_fd(var->value, 1);
+	ft_status(&shell->env, SUCC_STAT);
+	return (0);
 }
 
-int ft_cd(t_shell *shell)
+int	ft_cd(t_shell *shell)
 {
 	char	*path;
-	// char	*old;
-	// char	*current;
-	int		ch_stat;
-	// t_env	*var;
+	char	*old;
+	char	*current;
 
 	path = shell->cmd->cmd_flags[1];
 	if (check_path(path))
 	{
-		ft_status(&shell->env, "1");	
+		ft_status(&shell->env, "1");
 		return (1);
 	}
+	old = ft_strdup(get_wd());
 	if (!path)
-	{
-		path = get_env_var(&shell->env, "HOME")->value;
-		ch_stat = chdir("");
-		printf("- %s	->	[%d]\n", path, ch_stat);
-	}
-	else if (path && *path)
-	{
-		ch_stat = chdir(path);
-		printf("- %s	->	[%d]\n", path, ch_stat);
-		/* 	set -> NEW_ENV
-		{
-				set -> NEW_PWD
-				set -> NEW_OLDPWD
-		} */
-	}
-	// if (!path)
-	// {
-	// 	//	if !HOME -> bash : cd : HOME not set
-	// 	var = get_env_var(&shell->env, "HOME");
-	// 	if (var)
-	// 	{
-	// 		printf("***	%s : [ %s ]\n", var->var, var->value);
-			
-			
-	// 	}
-	// 	//	cd -> HOME
-	// 	/* 	set -> NEW_ENV
-	// 	{
-	// 			set -> NEW_PWD
-	// 			set -> NEW_OLDPWD
-	// 	} */
-	// }
-	// else if (!ft_strcmp(path, "-"))
-	// {
-	// 	//	if !OLDPWD -> bash : cd : OLDPWD not set
-	// 	var = get_env_var(&shell->env, "OLDPWD");
-	// 	if (var)
-	// 	{
-	// 		printf("***	%s : [ %s ]\n", var->var, var->value);
-			
-	// 	}
-	// 	//	cd -> OLDPWD
-	// 	/* 	set -> NEW_ENV
-	// 	{
-	// 			set -> NEW_PWD
-	// 			set -> NEW_OLDPWD
-	// 	} */
-	// }
+		chdir_home(shell);
+	else if (!ft_strcmp(path, "-"))
+		chdir_old(shell);
+	current = ft_strdup(get_wd());
+	update_wd(&shell->env, old, current);
+	free(old);
+	free(current);
 	return (0);
 }

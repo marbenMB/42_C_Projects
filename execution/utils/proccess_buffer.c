@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:45:06 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/06/29 14:40:06 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/02 02:14:15 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	proccess_buff(t_shell *shell)
 {
 	// while (shell->data)
 	// {
-		if (shell->data->token == 8)
-			proccess_cmd(shell, shell->cmd->cmd_flags[0]);
+	if (shell->data->token == 8)
+		proccess_cmd(shell, shell->cmd->cmd_flags[0]);
 	// 	shell->data = shell->data->next;
 	// }
 	return (0);
