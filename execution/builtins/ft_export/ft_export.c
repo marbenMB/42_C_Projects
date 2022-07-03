@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:42:14 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/03 16:49:33 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/03 17:07:45 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,22 @@ int	valid_export_name(char *var_str)
 int	env_var(t_shell *shell)
 {	
 	int		i;
+	char	*status;
 
 	i = 1;
+	status = SUCC_STAT;
 	while (shell->cmd->cmd_flags[i])
 	{
 		if (valid_export_name(shell->cmd->cmd_flags[i]))
+		{
 			error_cmd_arg(&shell->env, shell->cmd->cmd_flags[0], \
 							shell->cmd->cmd_flags[i], NVI);
+			status = FAIL_STAT;
+		}
 		else
 		{
 			parse_var_str(&shell->env, shell->cmd->cmd_flags[i]);
-			ft_status(&shell->env, SUCC_STAT);
+			ft_status(&shell->env, status);
 		}
 		i++;
 	}
