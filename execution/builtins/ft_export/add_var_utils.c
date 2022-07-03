@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:49:02 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/06/29 11:48:02 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/03 15:07:37 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*get_var_name(char *var_str)
 	idx = 0;
 	while (var_str[idx] && var_str[idx] != '=')
 		idx++;
-	if (var_str[idx - 1] == '+')
+	if (var_str[idx] == '=' && var_str[idx - 1] == '+')
 		idx--;
 	var = ft_substr(var_str, 0, idx);
 	return (var);

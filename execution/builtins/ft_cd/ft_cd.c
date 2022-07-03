@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:34 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/02 22:08:09 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/03 15:05:20 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	chdir_home(t_shell *shell)
 	if (var)
 	{
 		ch_stat = chdir(var->value);
-		if (ch_stat == -1 && (!var->value || var->value[0] == '\0'))
+		if (ch_stat == -1 && (!var->value))
 		{
 			error_cd(&shell->env, var->value, HNS);
 			return (1);
