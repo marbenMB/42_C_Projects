@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 06:58:44 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/01 15:34:10 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/03 16:36:40 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*after(char *str)
 	while (*backup && *backup != ' ' && *backup != '"' && \
 	*backup != '\'' && *backup != '$')
 	{
-		if (ft_is_operator(*backup) == 1)
+		if (ft_is_operator(*backup) == 1 || export_special_char(*backup) == 1)
 			break ;
 		backup++;
 	}
@@ -91,8 +91,8 @@ char	*in_var(char *str, t_env *env)
 	if(*str == '\0')
 		return (ft_strdup("$"));
 	var1 = ft_strdup(str);
-	while (*str != '$' && *str && *str != ' ' && *str != '"' \
-	&& *str != '\'' && ft_is_operator(*str) == 0)
+	while (*str && *str != '$' && *str && *str != ' ' && *str != '"' \
+	&& *str != '\'' && ft_is_operator(*str) == 0 && !export_special_char(*str))
 	{
 		i++;
 		str++;
