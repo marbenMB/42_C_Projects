@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_first.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:19:00 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/03 02:56:29 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/07/03 23:52:28 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,26 +84,29 @@ char  **create_files(int number)
 void	start_here_doc(char *file_name, char *limiter)
 {
 	char	*trim;
-	char	*line;
 	int		fd;
+	int		pid;
+	int tmp;
 	
+	pid = fork();
 	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
-	while (1)
+	if (pid == 0)
 	{
-		trim = readline (">>");
-		if(trim == NULL)
-			break;
-		line = ft_strtrim(trim, "\n");
-		free(trim);
-		if (ft_strcmp(limiter, line) == 0)
+		while (1)
 		{
-			free(line);
-			break ;
+			trim = readline (">>");
+			if (ft_strcmp(limiter, trim) == 0 || trim == NULL)
+			{
+				free(trim);
+				exit(1);
+			}
+			ft_putstr_fd(trim, fd);
+			free(trim);
 		}
-		ft_putendl_fd(line, fd);
-		free(line);
+		close(fd);
 	}
-	close(fd);
+	if(waitpid(pid, &tmp, 0) > 0 && tmp != 0)
+		kill(pid, SIGINT);
 }
 //-----------------------------------------------
 void	delete_here_doc_files(char **file_names)
