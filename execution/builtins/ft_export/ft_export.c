@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:42:14 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/03 03:31:52 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/03 16:49:33 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	valid_export_name(char *var_str)
 
 	idx = 0;
 	var = get_var_name(var_str);
-	if (ft_isdigit(var[idx]))
+	if (!var[idx] || ft_isdigit(var[idx]))
 	{
 		free(var);
 		return (1);
