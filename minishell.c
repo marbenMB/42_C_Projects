@@ -6,23 +6,20 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:59:05 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/02 23:49:32 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/03 03:16:14 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 //--------------------------------------------------------- main
-int	main(int ac, char **av, char **env)
+int	main(void)
 {
 	char	*buffer;
 	t_shell	shell;
+	extern char **environ; // test this system var 
 
-	if (!env || !env[0])
-		return (write(2, "empty env\n", 10), 1);
-	ac = 0;
-	av = NULL;
-	shell.env = get_env(env);
+	shell.env = get_env(environ);
 	check_in_env(&shell);
 	while (1)
 	{
@@ -38,6 +35,7 @@ int	main(int ac, char **av, char **env)
 			shell.env->value = ft_strdup("-1");
 		}
 		expander(&shell);
+		heredoc_first(&shell);
 		//----------------------------- print data
 		// printf("\n........................................................list of data\n");
 		// while(shell.data)
@@ -63,9 +61,12 @@ int	main(int ac, char **av, char **env)
 			proccess_buff(&shell);  // hadi rah kadir segfault f syntax error o chi cmd makhdamach
 		free_data(&(shell.data));
 		free_data3(&(shell.cmd));
-		printf("\033[0;33m----------------------------\n");
-		system("leaks minishell");
-		printf("\n----------------------------\n\033[0m");
+		delete_here_doc_files(shell.heredoc_files);
+		free_tab((shell.heredoc_files));
+		// -------------------------------------------------------------- check leaks
+		// printf("\033[0;33m----------------------------\n");
+		// system("leaks minishell");
+		// printf("\n----------------------------\n\033[0m");
 	}
 	free_data2(&(shell.env));
 	return (0);

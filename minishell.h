@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/28 23:41:21 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/07/03 03:17:05 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,10 @@ t_cmd	*ft_lstnew_cmd(char **cmd_flags);
 void	ft_lstadd_back_cmd(t_cmd **lst, t_cmd *new);
 t_cmd	*ft_lstlast_cmd(t_cmd **lst);
 void	free_data3(t_cmd **cmd);
+//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ new
+void    heredoc_first(t_shell *shell);
+int     file_number(t_data *data);
+char    **create_files(int number);
+void	start_here_doc(char *file_name, char *limiter);
+void	delete_here_doc_files(char **file_names);
 #endif
