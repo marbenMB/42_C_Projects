@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:59:05 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/03 17:26:14 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/03 20:32:11 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,30 +37,30 @@ int	main(void)
 		expander(&shell);
 		heredoc_first(&shell);
 		//----------------------------- print data
-		t_data	*head_data = shell.data;
-		t_cmd	*head_cmd = shell.cmd;
-		printf("\n........................................................list of data\n");
-		while(shell.data)
-		{
-			printf("[%s]\t%d\n", shell.data->str, shell.data->token);
-			shell.data = shell.data->next;
-		}
-		printf("\n........................................................table of cmds\n");
+		// t_data	*head_data = shell.data;
+		// t_cmd	*head_cmd = shell.cmd;
+		// printf("\n........................................................list of data\n");
+		// while(shell.data)
+		// {
+		// 	printf("[%s]\t%d\n", shell.data->str, shell.data->token);
+		// 	shell.data = shell.data->next;
+		// }
+		// printf("\n........................................................table of cmds\n");
 
-		while(shell.cmd)
-		{
-			int i = 0;
-			while(shell.cmd->cmd_flags[i])
-			{
-				printf("(%s)\t", shell.cmd->cmd_flags[i]);
-				i++;	
-			}
-			printf("\n");
-			shell.cmd = shell.cmd->next;
+		// while(shell.cmd)
+		// {
+		// 	int i = 0;
+		// 	while(shell.cmd->cmd_flags[i])
+		// 	{
+		// 		printf("(%s)\t", shell.cmd->cmd_flags[i]);
+		// 		i++;	
+		// 	}
+		// 	printf("\n");
+		// 	shell.cmd = shell.cmd->next;
 			
-		}
-		shell.data = head_data;
-		shell.cmd = head_cmd;
+		// }
+		// shell.data = head_data;
+		// shell.cmd = head_cmd;
 		//----------------------------------------- print data 
 		if (shell.data)
 			proccess_buff(&shell);  // hadi rah kadir segfault f syntax error o chi cmd makhdamach
@@ -69,9 +69,9 @@ int	main(void)
 		delete_here_doc_files(shell.heredoc_files);
 		free_tab((shell.heredoc_files));
 		// -------------------------------------------------------------- check leaks
-		// printf("\033[0;33m----------------------------\n");
-		// system("leaks minishell");
-		// printf("\n----------------------------\n\033[0m");
+		printf("\033[0;33m----------------------------\n");
+		system("leaks minishell");
+		printf("\n----------------------------\n\033[0m");
 	}
 	free_data2(&(shell.env));
 	return (0);
