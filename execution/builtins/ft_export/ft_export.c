@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:42:14 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/03 17:07:45 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/03 19:04:28 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	env_var(t_shell *shell)
 
 int	ft_export(t_shell *shell)
 {
-	if (!shell->cmd->cmd_flags[1])
+	if (!shell->cmd->cmd_flags[1] || !shell->cmd->cmd_flags[1][0])
 		print_sorted_env(shell->env);
 	else
 		env_var(shell);
