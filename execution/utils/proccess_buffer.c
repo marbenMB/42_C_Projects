@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:45:06 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/02 02:14:15 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/02 23:03:52 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	proccess_cmd(t_shell *shell, char *cmd)
 		ft_export(shell);
 	// else if (!ft_strcmp(cmd, "exit"))
 	// 	ft_exit(shell);
-	// else if (!ft_strcmp(cmd, "unset"))
-	// 	ft_unset(shell);
+	else if (!ft_strcmp(cmd, "unset"))
+		ft_unset(shell);
 	else
 	{
 		//	execve -> execution
