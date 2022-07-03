@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:53 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/03 03:41:41 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/03 17:18:50 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int valid_unset_name(char *name)
     int     idx;
 
     idx = 0;
-    if (ft_isdigit(name[idx]))
+    if (!name[idx] || ft_isdigit(name[idx]))
 		return (1);
 	while (name[idx])
 	{
@@ -48,8 +48,10 @@ int ft_unset(t_shell *shell)
 {
     int     idx;
     t_env   *var;
+    char    *status;
 
     idx = 1;
+    status = SUCC_STAT;
     while (shell->cmd->cmd_flags[idx])
     {
         var = shell->env->next;
@@ -59,10 +61,13 @@ int ft_unset(t_shell *shell)
                 var = var->next;
             if (var)
                 unset_var(&var);
-            ft_status(&shell->env, SUCC_STAT);
+            ft_status(&shell->env, status);
         }
         else
+        {
             error_cmd_arg(&shell->env, "unset", shell->cmd->cmd_flags[idx], NVI);
+            status = FAIL_STAT;
+        }
         idx++;
     }
     return (0);
