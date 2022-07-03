@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/03 03:17:05 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/03 20:19:35 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		dollar_var(char **str, t_env *env);
 char	*before(char *str);
 char	*after(char *str);
 char	*in_var(char *str, t_env *env);
-char	**command_filler(char *cmd, t_env *env);
+char	**command_filler(char *str, t_env *env);
 int		words_counter(char *cmd);
 void	count_words_witout_quotes(char **cmd, int *count);
 void	count_words_with_quotes(char **cmd, int *count, char *quote_type);
@@ -86,4 +86,6 @@ int     file_number(t_data *data);
 char    **create_files(int number);
 void	start_here_doc(char *file_name, char *limiter);
 void	delete_here_doc_files(char **file_names);
+//-----------------only test
+void	exapnde_dollar(char  **str, t_env *env);
 #endif

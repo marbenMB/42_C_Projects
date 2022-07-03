@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 13:13:17 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/03 03:19:17 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/03 20:20:18 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,17 @@ char	*expande_str_data(char *str, t_env *env, int token)
 }
 
 //-------------------------- return 2D tan of cmd and its flags
-char	**command_filler(char *cmd, t_env *env)
+char	**command_filler(char *str, t_env *env)
 {
 	int		words_number;
 	char	**cmd_table;
 	char	*rest;
+	char	*cmd;
 	int		i;
 
 	i = 0;
+	cmd = ft_strdup(str);
+	exapnde_dollar(&cmd, env);
 	words_number = words_counter(cmd);
 	cmd_table = (char **)malloc(words_number * sizeof(char *) + 1);
 	rest = ft_strdup(cmd);
@@ -89,6 +92,7 @@ char	**command_filler(char *cmd, t_env *env)
 	}
 	cmd_table[i] = NULL;
 	free(rest);
+	free(cmd);
 	return (cmd_table);
 }
 
@@ -143,4 +147,25 @@ char	*rest_finder(char **string)
 	free(str);
 	free(*string);
 	return (rest);
+}
+//-----------------------------------------------------
+void	exapnde_dollar(char  **str, t_env *env)
+{
+	char *new;
+	char quote_type;
+	int i;
+
+	new = ft_strdup(*str);
+	quote_type = 0;
+	i= 0;
+	while (new[i])
+	{
+		quotes_checker(new[i], &quote_type);
+		if (new[i] == '$' && quote_type != '\'')
+			i = dollar_var(&new, env);
+		i++;
+	}
+	free(*str);
+	*str = ft_strdup(new);
+	free(new);
 }
