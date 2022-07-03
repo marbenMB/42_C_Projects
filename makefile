@@ -6,7 +6,7 @@
 #    By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 13:58:33 by abellakr          #+#    #+#              #
-#    Updated: 2022/07/03 03:15:35 by mbenbajj         ###   ########.fr        #
+#    Updated: 2022/07/03 03:25:40 by mbenbajj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,7 @@ $(NAME) : $(OBJ)
 	@echo
 	@echo  $(BPurple)"------------------------------------------------"$(Color_Off)
 	@make -C ./libft
-	@$(CC) $(CFlAGS) $(READ_FLAGS) $(SRC) ./libft/libft.a -o $(NAME) -g
+	@$(CC) $(CFlAGS) $(READ_FLAGS) $(OBJ) ./libft/libft.a -o $(NAME)
 	@make clean
 	./minishell
 
