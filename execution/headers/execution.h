@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:58 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/03 03:43:21 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/03 15:17:17 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define STDOUT 1
 # define STDERROR 2
 # define NSFD "No such file or directory"
+# define TMA "Too many arguments"
 # define NVI "Not a valid identifier"
 # define HNS "HOME not set"
 # define ONS "OLDPWD not set"

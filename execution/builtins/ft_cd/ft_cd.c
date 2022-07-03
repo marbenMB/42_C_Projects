@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:34 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/03 15:05:20 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/03 15:18:12 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,11 @@ int	ft_cd(t_shell *shell)
 	char	*old;
 	char	*current;
 
-	old = NULL;
-	current = NULL;
 	path = shell->cmd->cmd_flags[1];
-	if (check_path(path))
+	if (check_path(path) || shell->cmd->cmd_flags[2])
 	{
+		if (shell->cmd->cmd_flags[2])
+			error_cd(&shell->env, NULL, TMA);
 		ft_status(&shell->env, "1");
 		return (1);
 	}
