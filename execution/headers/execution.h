@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:58 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/02 02:35:49 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/03 03:43:21 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_env	*get_existed_var(t_env **env, char *var);
 int		existed_var(t_env *env, char *var);
 void	parse_var_str(t_env **env, char *var_str);
 int		export_special_char(char c);
-int		valid_name(char *var_str);
+int		valid_export_name(char *var_str);
 int		env_var(t_shell *shell);
 int		ft_export(t_shell *shell);
 //*	->	ft_cd :
@@ -80,6 +80,9 @@ int		update_wd(t_env **env, char *old, char *current);
 int		check_path(char *path);
 //*	->	ft_unset :
 int		ft_unset(t_shell *shell);
+int 	valid_unset_name(char *name);
+void    unset_var(t_env **var);
+void    free_env_node(t_env *node);
 //*	->	ft_exit :
 int		ft_exit(t_shell *shell);
 #endif

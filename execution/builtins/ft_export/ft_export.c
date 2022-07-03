@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:42:14 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/06/29 11:58:32 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/03 03:31:52 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int	export_special_char(char c)
 {
-	if (ft_strchr("/|\\#`[]!{};()*&~,-+@%%^<>", c))
+	if (ft_strchr("/|\\#`[]!{};()*&~,-+@%%^<>=", c))
 		return (1);
 	return (0);
 }
 
-int	valid_name(char *var_str)
+int	valid_export_name(char *var_str)
 {
 	int		idx;
 	char	*var;
@@ -51,7 +51,7 @@ int	env_var(t_shell *shell)
 	i = 1;
 	while (shell->cmd->cmd_flags[i])
 	{
-		if (valid_name(shell->cmd->cmd_flags[i]))
+		if (valid_export_name(shell->cmd->cmd_flags[i]))
 			error_cmd_arg(&shell->env, shell->cmd->cmd_flags[0], \
 							shell->cmd->cmd_flags[i], NVI);
 		else
