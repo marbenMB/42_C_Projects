@@ -12,6 +12,9 @@
 
 #include "../headers/execution.h"
 
+// waitpid(pid, &status, 0);
+// WEXITSTATUS(status) ==> EXIT_STATUS ;
+
 int	proccess_cmd(t_shell *shell, char *cmd)
 {
 	if (!ft_strcmp(cmd, "cd"))
