@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:17:33 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/04 21:11:08 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/04 22:44:22 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,16 @@ void	error_cd(t_env **env, char *arg, char *msg)
 
 void	error_cd_access(t_env **env)
 {
-	ft_putstr_fd("cd: error retrieving current directory : ", 2);
-	ft_putstr_fd("getcwd: cannot access parent directories: ", 2);
-	ft_putendl_fd("No such file or directory", 2);
+	ft_putstr_fd("cd: error retrieving current directory : ", STDOUT);
+	ft_putstr_fd("getcwd: cannot access parent directories: ", STDOUT);
+	ft_putendl_fd("No such file or directory", STDOUT);
 	ft_status(env, SUCC_STAT);
+}
+
+void	error_internal_ft(t_env **env, char *ft, char *msg)
+{
+	ft_putstr_fd(ft, STDOUT);
+	ft_putstr_fd(" : ", STDOUT);
+	ft_putendl_fd(msg, STDOUT);
+	ft_status(env, FAIL_STAT);
 }

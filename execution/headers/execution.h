@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:58 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/04 21:20:39 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/04 22:59:10 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,14 @@
 # define HNS "HOME not set"
 # define ONS "OLDPWD not set"
 # define NAR "Numeric argument required"
+# define FIE "Failed in execution"
 
 //	***********		Functions	*********** :
 //	********		 ERRORS		******** :
 void	error_cmd_arg(t_env **env, char *cmd, char *arg, char *msg);
 void	error_cd(t_env **env, char *arg, char *msg);
 void	error_cd_access(t_env **env);
+void	error_internal_ft(t_env **env, char *ft, char *msg);
 //	********		 UTILS		******** :
 void	debug_print(char *str, int d);
 	//	->	utils :

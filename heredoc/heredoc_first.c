@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_first.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:19:00 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/04 01:23:24 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/07/04 23:06:57 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	start_here_doc(char *file_name, char *limiter)
 				free(trim);
 				exit(1);
 			}
-			ft_putstr_fd(trim, fd);
+			ft_putendl_fd(trim, fd);
 			free(trim);
 		}
 		close(fd);
