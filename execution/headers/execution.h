@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:58 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/04 21:08:50 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/04 21:20:39 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,9 @@ int		chdir_home(t_shell *shell);
 char	*get_wd(void);
 int		update_wd(t_env **env, char *old, char *current);
 int		check_path(char *path);
+void	dir_chr(t_shell *shell, char *path);
+void	chdir_cases(t_shell *shell, char *path);
+char	*path_join(char *old, char *path);
 //*	->	ft_unset :
 int		ft_unset(t_shell *shell);
 int		valid_unset_name(char *name);
