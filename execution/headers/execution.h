@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:58 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/03 15:17:17 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/04 00:38:31 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define NVI "Not a valid identifier"
 # define HNS "HOME not set"
 # define ONS "OLDPWD not set"
+# define NAR "Numeric argument required"
 
 //	***********		Functions	*********** :
 //	********		 ERRORS		******** :
@@ -85,5 +86,5 @@ int 	valid_unset_name(char *name);
 void    unset_var(t_env **var);
 void    free_env_node(t_env *node);
 //*	->	ft_exit :
-int		ft_exit(t_shell *shell);
+void	ft_exit(t_shell *shell);
 #endif
