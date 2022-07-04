@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:58 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/04 01:52:28 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/04 05:08:58 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 //	***********		Includes	*********** :
 # include "../../minishell.h"
-
+# include "paths.h"
 //	***********		DEFINES		*********** :
 # define SUCC_STAT "0"
 # define FAIL_STAT "1"
@@ -44,6 +44,7 @@ int		proccess_cmd(t_shell *shell, char	*cmd);
 int		proccess_buff(t_shell *shell);
 	//	->	Checking :
 void	check_in_env(t_shell *shell);
+void	check_set_env(t_shell *shell);
 //	********		BUILTINS	******** :
 //*	->	ft_echo :
 int		ft_echo(t_shell *shell);

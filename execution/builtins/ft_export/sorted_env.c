@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:22:47 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/06/28 16:23:35 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/04 05:07:01 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	**get_var_tab(t_env *env)
 
 	tab_var = (char **)malloc(sizeof(char *) * lst_size(env));
 	i = 0;
-	env = env ->next;
+	env = env ->next->next;
 	while (env)
 	{
 		tab_var[i] = ft_strdup(env->var);
@@ -51,14 +51,14 @@ int	print_sorted_env(t_env *env)
 	int		i;
 
 	tab_var = get_var_tab(env);
-	head = env->next;
+	head = env->next->next;
 	i = 0;
 	while (tab_var[i])
 	{
-		head = env->next;
+		head = env->next->next;
 		while (head)
 		{
-			if (!ft_strcmp(tab_var[i], head->var))
+			if (!ft_strcmp(tab_var[i], head->var) && (head->if_in_env == 0 || head->if_in_env == 1))
 				print_env_var(head->var, head->value);
 			head = head->next;
 		}
