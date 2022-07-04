@@ -6,17 +6,17 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:22:47 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/04 05:07:01 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/04 18:44:22 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/execution.h"
 
-void	print_env_var(char *var_name, char *value)
+void	print_env_var(char *var_name, char *value, int if_in)
 {
 	ft_putstr_fd("declare -x ", 1);
 	ft_putstr_fd(var_name, 1);
-	if (*value)
+	if (*value || if_in)
 	{
 		ft_putstr_fd("=\"", 1);
 		ft_putstr_fd(value, 1);
@@ -58,8 +58,9 @@ int	print_sorted_env(t_env *env)
 		head = env->next->next;
 		while (head)
 		{
-			if (!ft_strcmp(tab_var[i], head->var) && (head->if_in_env == 0 || head->if_in_env == 1))
-				print_env_var(head->var, head->value);
+			if (!ft_strcmp(tab_var[i], head->var) && \
+				(head->if_in_env == 0 || head->if_in_env == 1))
+				print_env_var(head->var, head->value, head->if_in_env);
 			head = head->next;
 		}
 		i++;

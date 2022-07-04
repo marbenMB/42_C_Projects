@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 02:41:00 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/04 06:57:08 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/04 18:23:47 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int	main(void)
 	{
 		buffer = readline ("minishell$ ");
 		add_history(buffer);
-		if (ft_strcmp(buffer, "exit") == 0)
-			exit(0);
+		if (!buffer)
+			break ;
 		shell.data = analyse_buffer(buffer);
 		// check exit status in syntax error messages
 		if(shell.data == NULL)

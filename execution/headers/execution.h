@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:58 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/04 05:08:58 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/04 18:46:25 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int		proccess_buff(t_shell *shell);
 	//	->	Checking :
 void	check_in_env(t_shell *shell);
 void	check_set_env(t_shell *shell);
+void	check_complete_env(t_shell *shell);
 //	********		BUILTINS	******** :
 //*	->	ft_echo :
 int		ft_echo(t_shell *shell);
@@ -60,7 +61,7 @@ size_t	tab_len(char **tab);
 void	free_tab(char **tab);
 char	**sort_tab(char **tab);
 char	**get_var_tab(t_env *env);
-void	print_env_var(char *var_name, char *value);
+void	print_env_var(char *var_name, char *value, int if_in);
 int		print_sorted_env(t_env *env);
 //*			add_env_var :
 int		add_env_var(t_env **env, char *var, char *value, int _if);

@@ -6,11 +6,33 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:45:02 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/04 05:08:44 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/04 18:43:06 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/execution.h"
+
+void	check_complete_env(t_shell *shell)
+{
+	t_env	*head;
+
+	head = get_env_var(shell->env, "PATH");
+	if (!head)
+		add_env_var(&shell->env, "PATH", _PATH_STDPATH, -1);
+	head = get_env_var(shell->env, "OLDPWD");
+	if (!head)
+		add_env_var(&shell->env, "OLDPWD", "", 0);
+	head = get_env_var(shell->env, "OLDPWD");
+	if (!head)
+		add_env_var(&shell->env, "OLDPWD", "", 0);
+	head = get_env_var(shell->env, "PWD");
+	if (!head)
+		add_env_var(&shell->env, "PWD", shell->env->next->value, 1);
+	head = get_env_var(shell->env, "SHLVL");
+	if (!head)
+		add_env_var(&shell->env, "SHLVL", "1", 1);
+		
+}
 
 void	check_set_env(t_shell *shell)
 {
@@ -25,12 +47,7 @@ void	check_set_env(t_shell *shell)
 	shell->env->next = set_pwd;
 	set_pwd->prev = shell->env;
 	set_pwd->next = head;
-	head = get_env_var(shell->env, "PATH");
-	if (!head)
-		add_env_var(&shell->env, "PATH", _PATH_STDPATH, 1);
-	head = get_env_var(shell->env, "OLDPWD");
-	if (!head)
-		add_env_var(&shell->env, "OLDPWD", "", 0);
+	check_complete_env(shell);
 }
 
 void	check_in_env(t_shell *shell)
