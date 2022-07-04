@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+         #
+#    By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 13:58:33 by abellakr          #+#    #+#              #
-#    Updated: 2022/07/04 01:08:36 by mbenbajj         ###   ########.fr        #
+#    Updated: 2022/07/03 01:38:39 by abellakr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,6 @@ OBJ = $(SRC:.c=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	clear
 	@echo  $(BPurple)"------------------------------------------------"$(Color_Off)
 	@echo
 	@echo  $(BPurple)"	minishell by group sbaksi : done! "$(Color_Off)

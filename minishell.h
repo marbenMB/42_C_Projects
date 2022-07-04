@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/03 20:19:35 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/04 01:17:35 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	check_flag(char **simple_command, int flag);
 int		files_lim_len(char **simple_command);
 t_data	*oranize_simple_command_list(t_data **simple_command_list);
 void	look_for_heredoc(t_data *backup, t_data **new_list);
-void	look_for_rip(t_data *backup, t_data **new_list);
 void	look_for_rop(t_data *backup, t_data **new_list);
 void	look_for_cmd(t_data *backup, t_data **new_list);
 t_data	*join_cmds(t_data **new_list_cmd);
@@ -80,12 +79,11 @@ t_cmd	*ft_lstnew_cmd(char **cmd_flags);
 void	ft_lstadd_back_cmd(t_cmd **lst, t_cmd *new);
 t_cmd	*ft_lstlast_cmd(t_cmd **lst);
 void	free_data3(t_cmd **cmd);
+void	exapnde_dollar(char	**str, t_env *env);
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ new
-void    heredoc_first(t_shell *shell);
-int     file_number(t_data *data);
-char    **create_files(int number);
+void	heredoc_first(t_shell *shell);
+int		file_number(t_data *data);
+char	**create_files(int number);
 void	start_here_doc(char *file_name, char *limiter);
 void	delete_here_doc_files(char **file_names);
-//-----------------only test
-void	exapnde_dollar(char  **str, t_env *env);
 #endif

@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:11:13 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/28 22:03:17 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/30 16:03:25 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ t_data	*analyse_buffer(char *buffer)
 	free(buffer);
 	buffer = ft_strtrim(str, " ");
 	if (check_syntax_error(buffer) == 1)
-		return (free(buffer), write (2, "syntax error", 12), NULL);
+		return (free(buffer), write (2, "syntax error\n", 13), NULL);
 	if (data_reconization1(buffer, &data) == 1)
 		return (free_data(&data), free(buffer), \
-		write (2, "syntax error", 12), NULL);
+		write (2, "syntax error\n", 13), NULL);
 	final_list = simple_command_analyser(&data);
 	return (free(buffer), free_data(&data), final_list);
 }
@@ -117,7 +117,7 @@ int	simple_command_check(t_data **new_data, char *simple_command)
 	if (data_reconization2(simple_command, &simple_command_list) == 1)
 	{
 		free_data(&simple_command_list);
-		write (2, "syntax error", 12);
+		write (2, "syntax error\n", 13);
 		return (1);
 	}
 	simple_command_list = oranize_simple_command_list(&simple_command_list);

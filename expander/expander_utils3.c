@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 16:46:03 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/28 23:27:08 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/07/04 01:11:57 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,26 @@ t_cmd	*ft_lstlast_cmd(t_cmd **lst)
 	while (backup->next != NULL)
 		backup = backup->next;
 	return (backup);
+}
+
+//-----------------------------------------------------
+void	exapnde_dollar(char	**str, t_env *env)
+{
+	char	*new;
+	char	quote_type;
+	int		i;
+
+	new = ft_strdup(*str);
+	quote_type = 0;
+	i = 0;
+	while (new[i])
+	{
+		quotes_checker(new[i], &quote_type);
+		if (new[i] == '$' && quote_type != '\'')
+			i = dollar_var(&new, env);
+		i++;
+	}
+	free(*str);
+	*str = ft_strdup(new);
+	free (new);
 }

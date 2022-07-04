@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 13:13:17 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/03 20:20:18 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/04 01:11:22 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,25 +147,4 @@ char	*rest_finder(char **string)
 	free(str);
 	free(*string);
 	return (rest);
-}
-//-----------------------------------------------------
-void	exapnde_dollar(char  **str, t_env *env)
-{
-	char *new;
-	char quote_type;
-	int i;
-
-	new = ft_strdup(*str);
-	quote_type = 0;
-	i= 0;
-	while (new[i])
-	{
-		quotes_checker(new[i], &quote_type);
-		if (new[i] == '$' && quote_type != '\'')
-			i = dollar_var(&new, env);
-		i++;
-	}
-	free(*str);
-	*str = ft_strdup(new);
-	free(new);
 }
