@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:58 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/04 00:38:31 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/04 01:52:28 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,11 @@ int		update_wd(t_env **env, char *old, char *current);
 int		check_path(char *path);
 //*	->	ft_unset :
 int		ft_unset(t_shell *shell);
-int 	valid_unset_name(char *name);
-void    unset_var(t_env **var);
-void    free_env_node(t_env *node);
+int		valid_unset_name(char *name);
+void	unset_var(t_env **var);
+void	free_env_node(t_env *node);
 //*	->	ft_exit :
 void	ft_exit(t_shell *shell);
+int		check_exit_args(char **cmd_flags);
+int		ft_atoi_max(const char *str);
 #endif

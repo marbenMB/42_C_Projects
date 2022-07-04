@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:43 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/04 01:25:13 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/04 01:50:40 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	check_exit_args(char **cmd_flags)
 {
 	int		idx;
-	
+
 	idx = 0;
 	if (cmd_flags[0] && cmd_flags[1])
 		return (2);
@@ -80,10 +80,4 @@ void	ft_exit(t_shell *shell)
 			status = (unsigned int)ft_atoi_max(shell->env->value);
 		exit (status % 256);
 	}
-	// if too many args -> print (exit  \n  bash: exit: too many arguments) -> do not exit -> exit_stat == 1
-	// if not num arg ->  print (exit  \n  bash: exit: arg: numeric argument required) -> exit with 255
-	// if no arg -> print (exit  \n) -> exit with the latest exit status
 }
-
-// waitpid(pid, &status, 0);
-// WEXITSTATUS(status) ==> EXIT_STATUS ;
