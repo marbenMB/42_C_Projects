@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:34 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/03 15:18:12 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/04 21:09:15 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,49 @@ int	chdir_path(t_shell *shell, char *path)
 		error_cd(&shell->env, path, NSFD);
 		return (1);
 	}
+	ft_status(&shell->env, SUCC_STAT);
 	return (0);
+}
+
+void	dir_chr(t_shell *shell, char *path)
+{
+	char	*old;
+	char	*tmp;
+	char	*current;
+
+	current = NULL;
+	old = NULL;
+	if (get_wd())
+		old = ft_strdup(get_wd());
+	else
+		old = ft_strdup(shell->env->next->value);
+	if (!path)
+		chdir_home(shell);
+	else if (!ft_strcmp(path, "-"))
+		chdir_old(shell);
+	else
+		chdir_path(shell, path);
+	if (get_wd())
+		current = ft_strdup(get_wd());
+	else
+	{
+		if (path)
+		{
+			error_cd_access(&shell->env);
+			tmp = ft_strjoin(shell->env->next->value, "/");
+			current = ft_strjoin(tmp, path);
+			free(tmp);
+		}
+	}
+	update_wd(&shell->env, old, current);
+	free(old);
+	free(current);
 }
 
 int	ft_cd(t_shell *shell)
 {
 	char	*path;
-	char	*old;
-	char	*current;
-
+	
 	path = shell->cmd->cmd_flags[1];
 	if (check_path(path) || shell->cmd->cmd_flags[2])
 	{
@@ -93,16 +127,6 @@ int	ft_cd(t_shell *shell)
 		ft_status(&shell->env, "1");
 		return (1);
 	}
-	old = ft_strdup(get_wd());
-	if (!path)
-		chdir_home(shell);
-	else if (!ft_strcmp(path, "-"))
-		chdir_old(shell);
-	else
-		chdir_path(shell, path);
-	current = ft_strdup(get_wd());
-	update_wd(&shell->env, old, current);
-	free(old);
-	free(current);
+	dir_chr(shell, path);
 	return (0);
 }

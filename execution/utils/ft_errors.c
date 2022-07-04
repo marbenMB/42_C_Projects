@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:17:33 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/02 02:23:31 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/04 21:11:08 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,12 @@ void	error_cd(t_env **env, char *arg, char *msg)
 	}
 	ft_putendl_fd(msg, STDERROR);
 	ft_status(env, FAIL_STAT);
+}
+
+void	error_cd_access(t_env **env)
+{
+	ft_putstr_fd("cd: error retrieving current directory : ", 2);
+	ft_putstr_fd("getcwd: cannot access parent directories: ", 2);
+	ft_putendl_fd("No such file or directory", 2);
+	ft_status(env, SUCC_STAT);
 }

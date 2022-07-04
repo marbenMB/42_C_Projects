@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:58 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/04 18:46:25 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/04 21:08:50 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 //	********		 ERRORS		******** :
 void	error_cmd_arg(t_env **env, char *cmd, char *arg, char *msg);
 void	error_cd(t_env **env, char *arg, char *msg);
+void	error_cd_access(t_env **env);
 //	********		 UTILS		******** :
 void	debug_print(char *str, int d);
 	//	->	utils :

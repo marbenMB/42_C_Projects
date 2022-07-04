@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 23:09:49 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/02 00:54:24 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/04 19:01:38 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ int	update_wd(t_env **env, char *old, char *current)
 	{
 		free(head->value);
 		head->value = ft_strdup(old);
+	}
+	head = get_env_var((*env), "?_PWD");
+	if (head)
+	{
+		free(head->value);
+		head->value = ft_strdup(current);
 	}
 	head = get_env_var((*env), "PWD");
 	if (head)
