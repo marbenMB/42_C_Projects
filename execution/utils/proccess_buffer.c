@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:45:06 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/04 22:59:46 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/05 01:09:08 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 int	proccess_cmd(t_shell *shell, char *cmd)
 {
 	int		pid;
-	
+
 	if (!ft_strcmp(cmd, "cd"))
 		ft_cd(shell);
 	else if (!ft_strcmp(cmd, "echo") || !ft_strcmp(cmd, "ECHO"))
@@ -60,14 +60,13 @@ int	proccess_buff(t_shell *shell)
 {
 	t_cmd	*cmd_head;
 	t_data	*data_head;
-	
+
 	cmd_head = shell->cmd;
 	data_head = shell->data;
 	while (shell->data)
 	{
-		// if (shell->data->token == 8)
-		// 	proccess_cmd(shell, shell->cmd->cmd_flags[0]);
 		debug_print(shell->data->str, shell->data->token);
+		// analyse_buffer(shell, shell->data);
 		shell->data = shell->data->next;
 	}
 	shell->data = data_head;

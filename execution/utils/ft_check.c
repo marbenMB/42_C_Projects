@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:45:02 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/04 18:43:06 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/05 01:07:16 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	check_complete_env(t_shell *shell)
 	head = get_env_var(shell->env, "SHLVL");
 	if (!head)
 		add_env_var(&shell->env, "SHLVL", "1", 1);
-		
 }
 
 void	check_set_env(t_shell *shell)
@@ -53,7 +52,7 @@ void	check_set_env(t_shell *shell)
 void	check_in_env(t_shell *shell)
 {
 	t_env	*back_up;
-	
+
 	shell->env->if_in_env = -1;
 	back_up = shell->env->next;
 	if (back_up)
