@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 02:41:00 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/05 15:58:07 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:02:25 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,13 @@ int	main(void)
 	char	*buffer;
 	t_shell	shell;
 	extern char **environ; // test this system var 
+	int	in;
+	int	out;
 
 	shell.env = get_env(environ);
 	check_in_env(&shell);
+	in = dup(STDIN_FILENO);
+	out  = dup(STDOUT_FILENO);
 	while (1)
 	{
 		buffer = readline ("minishell-6.9$ ");
@@ -76,9 +80,11 @@ int	main(void)
 		delete_here_doc_files(shell.heredoc_files);
 		free_tab((shell.heredoc_files));
 		// -------------------------------------------------------------- check leaks
-		// printf("\033[0;33m----------------------------\n");
-		// system("leaks minishell");
-		// printf("\n----------------------------\n\033[0m");
+		printf("\033[0;33m----------------------------\n");
+		system("leaks minishell");
+		printf("\n----------------------------\n\033[0m");
+		dup2(in, STDIN_FILENO);
+		dup2(out, STDOUT_FILENO);
 	}
 	free_data2(&(shell.env));
 	return (0);

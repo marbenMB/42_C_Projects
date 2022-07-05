@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:44:09 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/05 17:26:37 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:27:20 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ char	**incubate_env(t_env *env)
 	int		shlvl;
 	char	**incub_env;
 
-	env = env->next->next;
 	incub_env = (char **)malloc(sizeof(char *) * (lst_size(env) + 1));
 	if (!incub_env)
 		return (NULL);
@@ -92,10 +91,4 @@ char	**incubate_env(t_env *env)
 	}
 	incub_env[idx] = NULL;
 	return (incub_env);
-}
-
-void	debug_print(char *str, int d)
-{
-	printf("\033[1;33m	->	%s	****\n\033[0m", str);
-	printf("\033[1;33m	->	%d	****\n\033[0m", d);
 }

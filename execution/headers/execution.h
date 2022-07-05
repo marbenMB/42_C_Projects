@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:58 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/05 16:45:35 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:27:11 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	error_internal_ft(t_env **env, char *ft, char *msg);
 void	error_cmd_nf(t_env **env, char *cmd, char *msg);
 
 //	********		 UTILS		******** :
-void	debug_print(char *str, int d);
 
 //*		->	utils :		-----------------------------------------
 void	ft_status(t_env **env, char *stats);
@@ -53,6 +52,7 @@ char	**incubate_env(t_env *env);
 //*		->	Proccessing:-----------------------------------------
 int		proccess_cmd(t_shell *shell, char *cmd, char *cmd_path);
 int		proccess_buff(t_shell *shell);
+void	check_exit_stat(t_shell *shell, int i_stat);
 
 //*		->	Checking :	-----------------------------------------
 void	check_in_env(t_shell *shell);
@@ -61,9 +61,14 @@ void	check_complete_env(t_shell *shell);
 char	*check_cmd_access(char **env_paths, char *cmd);
 
 //*		->	Analyse Utils	: -----------------------------------
-int	    analyse_exec_buffer(t_shell *shell);
-int 	analyse_exec_cmd(t_shell *shell, t_data *elem);
-int 	analyse_red_io(t_shell *shell, t_data *elem);
+int		analyse_exec_buffer(t_shell *shell);
+int		analyse_exec_cmd(t_shell *shell, t_data *elem);
+int		analyse_red_io(t_shell *shell, t_data *elem);
+
+//*		->	Execute Cmd	: ---------------------------------------
+void	execute_builtin(t_shell *shell, char *cmd);
+void	execute_non_builtin(t_shell *shell, char *cmd_path);
+void	ft_dup_io(int in, int out);
 
 //	********		BUILTINS	******** :
 //*	->	ft_echo :		-----------------------------------------
