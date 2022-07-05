@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:44:09 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/05 15:15:48 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/05 17:26:37 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ char	**incubate_env(t_env *env)
 		env = env->next;
 		idx++;
 	}
+	incub_env[idx] = NULL;
 	return (incub_env);
 }
 

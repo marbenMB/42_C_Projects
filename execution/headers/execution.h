@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:58 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/05 04:23:46 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/05 16:45:35 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,9 @@ void	check_complete_env(t_shell *shell);
 char	*check_cmd_access(char **env_paths, char *cmd);
 
 //*		->	Analyse Utils	: -----------------------------------
-int		analyse_exec_buff(t_shell *shell, t_data *elem);
-int		analyse_red_io(t_shell *shell, t_data *elem);
+int	    analyse_exec_buffer(t_shell *shell);
+int 	analyse_exec_cmd(t_shell *shell, t_data *elem);
+int 	analyse_red_io(t_shell *shell, t_data *elem);
 
 //	********		BUILTINS	******** :
 //*	->	ft_echo :		-----------------------------------------

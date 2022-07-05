@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 13:03:28 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/03 01:49:21 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/07/05 17:56:07 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef struct shell
 	char	**heredoc_files;
 	t_data	*data;
 	t_env	*env;
+	int		in_fd;
+	int		out_fd;
 	t_cmd	*cmd;
 }t_shell;
 #	endif
