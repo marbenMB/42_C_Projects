@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:45:02 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/05 01:07:16 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/05 04:01:54 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,28 @@ void	check_in_env(t_shell *shell)
 		}
 	}
 	check_set_env(shell);
+}
+
+char	*check_cmd_access(char **env_paths, char *cmd)
+{
+	char	*tmp;
+	char	*path;
+	int		idx;
+
+	idx = -1;
+	if (cmd[0] == '.' || cmd[0] == '/')
+	{
+		if (access(cmd, X_OK) == 0)
+			return (ft_strdup(cmd));
+	}
+	while (env_paths[++idx])
+	{
+		tmp = ft_strjoin(env_paths[idx], "/");
+		path = ft_strjoin(tmp, cmd);
+		free(tmp);
+		if (access(path, X_OK) == 0)
+			return (path);
+		free(path);
+	}
+	return (NULL);
 }

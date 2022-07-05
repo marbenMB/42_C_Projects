@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:43 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/04 01:50:40 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/05 03:28:39 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ void	ft_exit(t_shell *shell)
 	check = check_exit_args(&shell->cmd->cmd_flags[1]);
 	ft_putendl_fd("exit", 1);
 	if (check == 2)
-		error_cmd_arg(&shell->env, "minishell", "exit", TMA);
+		error_cmd_arg(&shell->env, "Minishell", "exit", TMA);
 	else if (check == 1)
 	{
-		error_cmd_arg(&shell->env, "minishell", "exit", NAR);
+		error_cmd_arg(&shell->env, "Minishell", "exit", NAR);
 		exit (-1);
 	}
 	else

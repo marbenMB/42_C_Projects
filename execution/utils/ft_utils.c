@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:44:09 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/02 02:13:51 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/05 04:17:35 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,59 @@ t_env	*get_env_var(t_env *env, char *var_name)
 	while (head && ft_strcmp((head->var), var_name))
 		head = head->next;
 	return (head);
+}
+
+int	if_cmd_builtin(char *cmd)
+{
+	if (!ft_strcmp(cmd, "cd") || !ft_strcmp(cmd, "echo") || \
+		!ft_strcmp(cmd, "ECHO") || !ft_strcmp(cmd, "env") || \
+		!ft_strcmp(cmd, "ENV") || !ft_strcmp(cmd, "pwd") || \
+		!ft_strcmp(cmd, "PWD") || !ft_strcmp(cmd, "export") || \
+		!ft_strcmp(cmd, "exit") || !ft_strcmp(cmd, "unset"))
+		return (1);
+	return (0);
+}
+
+char	*get_cmd_path(t_env *env, char *cmd)
+{
+	t_env	*var;
+	char	**env_paths;
+	char	*path;
+
+	path = NULL;
+	env_paths = NULL;
+	var = get_env_var(env, "PATH");
+	if (var)
+		env_paths = ft_split(var->value, ':');
+	if (env_paths)
+		path = check_cmd_access(env_paths, cmd);
+	free_tab(env_paths);
+	if (!path)
+		error_cmd_nf(&env, cmd, CNF);
+	return (path);
+}
+
+char	**incubate_env(t_env *env)
+{
+	char	*tmp;
+	int		idx;
+	char	**incub_env;
+
+	env = env->next->next;
+	incub_env = (char **)malloc(sizeof(char *) * \
+				(lst_size(env) + 1));
+	if (!incub_env)
+		return (NULL);
+	idx = 0;
+	while (env)
+	{
+		tmp = ft_strjoin(env->var, "=");
+		incub_env[idx] = ft_strjoin(tmp, env->value);
+		free(tmp);
+		env = env->next;
+		idx++;
+	}
+	return (incub_env);
 }
 
 void	debug_print(char *str, int d)
