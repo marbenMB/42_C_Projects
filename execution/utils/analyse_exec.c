@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 00:56:27 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/05 04:59:07 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/05 14:51:37 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,16 @@ int	analyse_red_io(t_shell *shell, t_data *elem)
 		shell->data = shell->data->next;
 		return (-1);
 	}
-	else
+	else if (fd > 0)
 	{
 		if (elem->token == RIP)
 			dup2(fd, 0);
 		else if (elem->token == ROP || elem->token == APND)
 			dup2(fd, 1);
-		close(fd);
+		// close(fd);
 		shell->data = shell->data->next;
 	}
-	return (0);
+	return (fd);
 }
 
 int	analyse_cmd(t_shell *shell, t_data *elem)
@@ -64,8 +64,11 @@ int	analyse_cmd(t_shell *shell, t_data *elem)
 
 int	analyse_exec_buff(t_shell *shell, t_data *elem)
 {
-	if (analyse_red_io(shell, elem) == -1 || \
-		analyse_cmd(shell, elem) == -1)
+	int	fd;
+
+	fd = analyse_red_io(shell, elem);
+	if (fd == -1 || analyse_cmd(shell, elem) == -1)
 		return (-1);
+	// close (fd);
 	return (0);
 }

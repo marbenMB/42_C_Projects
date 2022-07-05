@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:45:06 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/05 05:01:10 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/05 14:56:17 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	proccess_cmd(t_shell *shell, char *cmd, char *cmd_path)
 		}
 
 		waitpid(pid, NULL, 0);
-		debug_print("----------", 0);
+		// debug_print("----------", 0);
 		// free_tab(incub_env);
 		return (1);
 	}
@@ -64,13 +64,13 @@ int	proccess_buff(t_shell *shell)
 	data_head = shell->data;
 	while (shell->data)
 	{
-		// debug_print(shell->data->str, shell->data->token);
+		// // debug_print(shell->data->str, shell->data->token);
+		// // if (analyse_exec_buff(shell, shell->data) == -1)
+		// // 	while (shell->data->next && shell->data->next->token != PIPE)
+		// // 		shell->data = shell->data->next;
 		// if (analyse_exec_buff(shell, shell->data) == -1)
-		// 	while (shell->data->next && shell->data->next->token != PIPE)
-		// 		shell->data = shell->data->next;
-		if (analyse_exec_buff(shell, shell->data) == -1)
-			return (1);
-		if (shell->data)
+		// 	return (1);
+		// if (shell->data)
 			shell->data = shell->data->next;
 	}
 	shell->data = data_head;

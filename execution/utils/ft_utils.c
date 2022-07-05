@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:44:09 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/05 04:17:35 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/05 14:57:04 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,24 @@ char	**incubate_env(t_env *env)
 {
 	char	*tmp;
 	int		idx;
+	int		shlvl;
 	char	**incub_env;
 
 	env = env->next->next;
-	incub_env = (char **)malloc(sizeof(char *) * \
-				(lst_size(env) + 1));
+	incub_env = (char **)malloc(sizeof(char *) * (lst_size(env) + 1));
 	if (!incub_env)
 		return (NULL);
 	idx = 0;
 	while (env)
 	{
 		tmp = ft_strjoin(env->var, "=");
-		incub_env[idx] = ft_strjoin(tmp, env->value);
+		if (!ft_strcmp(env->var, "SHLVL"))
+		{
+			shlvl = ft_atoi(env->value);
+			incub_env[idx] = ft_strjoin(tmp, ft_itoa(++shlvl));
+		}
+		else
+			incub_env[idx] = ft_strjoin(tmp, env->value);
 		free(tmp);
 		env = env->next;
 		idx++;
