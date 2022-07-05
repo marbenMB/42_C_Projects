@@ -6,16 +6,44 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:05:21 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/05 19:26:48 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/05 22:07:46 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/execution.h"
 
-void	ft_dup_io(int in, int out)
+void	ft_dup_io(t_shell *shell, int *pip_fd)
 {
-	dup2(in, 0);
-	dup2(out, 1);
+	if (shell->data->next)
+	{
+		if (shell->data->prev && (shell->data->prev->token == ROP || shell->data->prev->token == APND))
+		{
+			dup2(shell->in_fd, 0);
+			dup2(shell->out_fd, 1);		
+			close(pip_fd[1]);	
+		}
+		else
+		{
+			shell->out_fd = pip_fd[1];
+			dup2(shell->in_fd, 0);
+			dup2(shell->out_fd, 1);	
+			close(pip_fd[1]);
+		}
+	}
+	else
+	{
+		if (shell->data->prev && (shell->data->prev->token == ROP || shell->data->prev->token == APND))
+		{
+			dup2(shell->in_fd, 0);
+			dup2(shell->out_fd, 1);
+			close(pip_fd[1]);
+		}
+		else
+		{
+			dup2(shell->in_fd, 0);
+			close(pip_fd[1]);
+		}
+	}
 }
 
 void	execute_builtin(t_shell *shell, char *cmd)
@@ -36,7 +64,7 @@ void	execute_builtin(t_shell *shell, char *cmd)
 		ft_unset(shell);
 }
 
-void	execute_non_builtin(t_shell *shell, char *cmd_path)
+void	execute_non_builtin(t_shell *shell, char *cmd_path, int *pip_fd)
 {
 	pid_t	pid;
 	int		i_stat;
@@ -49,11 +77,15 @@ void	execute_non_builtin(t_shell *shell, char *cmd_path)
 		error_internal_ft(&shell->env, "fork", FIE);
 	else if (pid == 0)
 	{
-		ft_dup_io(shell->in_fd, shell->out_fd);
+		ft_dup_io(shell, pip_fd);
 		incub_env = incubate_env(shell->env->next->next);
 		execve(cmd_path, shell->cmd->cmd_flags, incub_env);
 		exit (127);
 	}
-	waitpid(pid, &i_stat, 0);
+	if (!shell->data->next)
+	{
+		waitpid(pid, &i_stat, 0);
+		wait(NULL);
+	}
 	check_exit_stat(shell, i_stat);
 }

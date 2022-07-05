@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 00:56:27 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/05 19:30:12 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/05 21:27:03 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,11 @@ int	analyse_red_io(t_shell *shell, t_data *elem)
 	else if (fd > 0)
 	{
 		if (elem->token == RIP)
+		{
+			if (shell->in_fd > 0)
+				close (shell->in_fd);
 			shell->in_fd = fd;
+		}
 		else if (elem->token == ROP || elem->token == APND)
 			shell->out_fd = fd;
 	}
@@ -41,11 +45,15 @@ int	analyse_red_io(t_shell *shell, t_data *elem)
 int	analyse_exec_cmd(t_shell *shell, t_data *elem)
 {
 	char	*cmd_path;
+	int		pip_fd[2];
 
 	if (elem->token == CMD)
 	{
+		pipe(pip_fd);
 		cmd_path = get_cmd_path(shell->env, shell->cmd->cmd_flags[0]);
-		proccess_cmd(shell, shell->cmd->cmd_flags[0], cmd_path);
+		proccess_cmd(shell, shell->cmd->cmd_flags[0], cmd_path, pip_fd);
+		close(pip_fd[1]);
+		shell->in_fd = pip_fd[0];
 		free(cmd_path);
 		shell->cmd = shell->cmd->next;
 	}

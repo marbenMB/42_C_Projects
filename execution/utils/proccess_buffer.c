@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:45:06 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/05 19:18:13 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:34:44 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ void	check_exit_stat(t_shell *shell, int i_stat)
 	free(s_stat);
 }
 
-int	proccess_cmd(t_shell *shell, char *cmd, char *cmd_path)
+int	proccess_cmd(t_shell *shell, char *cmd, char *cmd_path, int *pip_fd)
 {
 	if (if_cmd_builtin(cmd) == 1)
 	{
-		ft_dup_io(shell->in_fd, shell->out_fd);
+		ft_dup_io(shell, pip_fd);
 		execute_builtin(shell, cmd);
 	}
 	else
-		execute_non_builtin(shell, cmd_path);
+		execute_non_builtin(shell, cmd_path, pip_fd);
 	return (0);
 }
 

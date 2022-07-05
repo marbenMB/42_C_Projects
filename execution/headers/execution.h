@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:58 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/05 19:27:11 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:37:22 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*get_cmd_path(t_env *env, char *cmd);
 int		if_cmd_builtin(char *cmd);
 char	**incubate_env(t_env *env);
 //*		->	Proccessing:-----------------------------------------
-int		proccess_cmd(t_shell *shell, char *cmd, char *cmd_path);
+int		proccess_cmd(t_shell *shell, char *cmd, char *cmd_path, int *pip_fd);
 int		proccess_buff(t_shell *shell);
 void	check_exit_stat(t_shell *shell, int i_stat);
 
@@ -67,8 +67,8 @@ int		analyse_red_io(t_shell *shell, t_data *elem);
 
 //*		->	Execute Cmd	: ---------------------------------------
 void	execute_builtin(t_shell *shell, char *cmd);
-void	execute_non_builtin(t_shell *shell, char *cmd_path);
-void	ft_dup_io(int in, int out);
+void	execute_non_builtin(t_shell *shell, char *cmd_path, int *pip_fd);
+void	ft_dup_io(t_shell *shell, int *pip_fd);
 
 //	********		BUILTINS	******** :
 //*	->	ft_echo :		-----------------------------------------
