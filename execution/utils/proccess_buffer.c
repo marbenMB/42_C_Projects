@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:45:06 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/05 14:56:17 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/05 15:41:18 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	proccess_cmd(t_shell *shell, char *cmd, char *cmd_path)
 		else if (pid == 0)
 		{
 			incub_env = incubate_env(shell->env);
-			execve(cmd_path, &shell->cmd->cmd_flags[1], incub_env);
+			execve(cmd_path, shell->cmd->cmd_flags, incub_env);
 		}
 
 		waitpid(pid, NULL, 0);
@@ -64,14 +64,18 @@ int	proccess_buff(t_shell *shell)
 	data_head = shell->data;
 	while (shell->data)
 	{
-		// // debug_print(shell->data->str, shell->data->token);
-		// // if (analyse_exec_buff(shell, shell->data) == -1)
-		// // 	while (shell->data->next && shell->data->next->token != PIPE)
-		// // 		shell->data = shell->data->next;
-		// if (analyse_exec_buff(shell, shell->data) == -1)
-		// 	return (1);
+		char	*path_cmd;
+
+		if (shell->data->token == 8)
+		{
+			path_cmd = get_cmd_path(shell->env, shell->cmd->cmd_flags[0]);
+			proccess_cmd(shell, shell->cmd->cmd_flags[0], path_cmd);
+			if (path_cmd)
+				free(path_cmd);
+			shell->cmd = shell->cmd->next;
+		}
 		// if (shell->data)
-			shell->data = shell->data->next;
+		shell->data = shell->data->next;
 	}
 	shell->data = data_head;
 	shell->cmd = cmd_head;

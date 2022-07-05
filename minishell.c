@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 02:41:00 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/05 14:46:09 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/05 15:58:07 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(void)
 	check_in_env(&shell);
 	while (1)
 	{
-		buffer = readline ("minishell$ ");
+		buffer = readline ("minishell-6.9$ ");
 		add_history(buffer);
 		if (!buffer)
 			break ;

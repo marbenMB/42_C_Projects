@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:44:09 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/05 14:57:04 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/05 15:15:48 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,17 @@ char	*get_cmd_path(t_env *env, char *cmd)
 
 	path = NULL;
 	env_paths = NULL;
-	var = get_env_var(env, "PATH");
-	if (var)
-		env_paths = ft_split(var->value, ':');
-	if (env_paths)
-		path = check_cmd_access(env_paths, cmd);
-	free_tab(env_paths);
-	if (!path)
-		error_cmd_nf(&env, cmd, CNF);
+	if (!if_cmd_builtin(cmd))
+	{	
+		var = get_env_var(env, "PATH");
+		if (var)
+			env_paths = ft_split(var->value, ':');
+		if (env_paths)
+			path = check_cmd_access(env_paths, cmd);
+		free_tab(env_paths);
+		if (!path)
+			error_cmd_nf(&env, cmd, CNF);
+	}
 	return (path);
 }
 

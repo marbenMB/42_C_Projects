@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:17:33 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/05 03:28:13 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/05 15:25:32 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	error_cmd_nf(t_env **env, char *cmd, char *msg)
 	ft_putstr_fd("Minishell", STDERROR);
 	ft_putstr_fd(" : ", STDERROR);
 	ft_putstr_fd(cmd, STDERROR);
+		ft_putstr_fd(" : ", STDERROR);
 	ft_putendl_fd(msg, STDERROR);
 	ft_status(env, CNF_STAT);
 }
