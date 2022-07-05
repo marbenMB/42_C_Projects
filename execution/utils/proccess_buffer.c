@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:45:06 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/05 04:41:09 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/05 05:01:10 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,10 @@ int	proccess_cmd(t_shell *shell, char *cmd, char *cmd_path)
 			incub_env = incubate_env(shell->env);
 			execve(cmd_path, &shell->cmd->cmd_flags[1], incub_env);
 		}
-		else
-		{
-			waitpid(pid, NULL, 0);
-			free_tab(incub_env);
-		}
+
+		waitpid(pid, NULL, 0);
+		debug_print("----------", 0);
+		// free_tab(incub_env);
 		return (1);
 	}
 	return (0);
@@ -71,7 +70,8 @@ int	proccess_buff(t_shell *shell)
 		// 		shell->data = shell->data->next;
 		if (analyse_exec_buff(shell, shell->data) == -1)
 			return (1);
-		shell->data = shell->data->next;
+		if (shell->data)
+			shell->data = shell->data->next;
 	}
 	shell->data = data_head;
 	shell->cmd = cmd_head;

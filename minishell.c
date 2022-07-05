@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 02:41:00 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/04 22:32:33 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/05 04:56:46 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	main(void)
 		if (!buffer)
 			break ;
 		shell.data = analyse_buffer(buffer);
-		// check exit status in syntax error messages
 		if(shell.data == NULL)
 		{
 			free(shell.env->value);

@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 00:56:27 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/05 04:40:06 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/05 04:59:07 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	analyse_red_io(t_shell *shell, t_data *elem)
 	if (fd < 0 || !elem->str)
 	{
 		error_cmd_arg(&shell->env, "Minsishell", elem->str, NSFD);
+		shell->data = shell->data->next;
 		return (-1);
 	}
 	else
@@ -35,6 +36,7 @@ int	analyse_red_io(t_shell *shell, t_data *elem)
 		else if (elem->token == ROP || elem->token == APND)
 			dup2(fd, 1);
 		close(fd);
+		shell->data = shell->data->next;
 	}
 	return (0);
 }
