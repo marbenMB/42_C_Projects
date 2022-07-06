@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 02:41:00 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/06 01:25:54 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/06 03:24:53 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,72 +20,50 @@
 // signals of heredoc
 //	**************************
 
-//--------------------------------------------------------- main
-int	main(void)
+//--------------------------------------------------------- loop
+
+void	loop(t_shell *shell, int in, int out)
 {
 	char	*buffer;
-	t_shell	shell;
-	extern char **environ; // test this system var 
-	int	in;
-	int	out;
 
-	shell.env = get_env(environ);
-	check_in_env(&shell);
-	in = dup(STDIN_FILENO);
-	out  = dup(STDOUT_FILENO);
 	while (1)
 	{
 		buffer = readline ("minishell-6.9$ ");
 		add_history(buffer);
 		if (!buffer)
 			break ;
-		shell.data = analyse_buffer(buffer);
-		if(shell.data == NULL)
+		shell->data = analyse_buffer(buffer);
+		if (shell->data == NULL)
 		{
-			free(shell.env->value);
-			shell.env->value = ft_strdup("-1");
+			free(shell->env->value);
+			shell->env->value = ft_strdup("-1");
 		}
-		expander(&shell);
-		heredoc_first(&shell);
-		// //----------------------------- print data
-		// t_data	*head_data = shell.data;
-		// t_cmd	*head_cmd = shell.cmd;
-		// printf("\n........................................................list of data\n");
-		// while(shell.data)
-		// {
-		// 	printf("[%s]\t%d\n", shell.data->str, shell.data->token);
-		// 	shell.data = shell.data->next;
-		// }
-		// printf("\n........................................................table of cmds\n");
-
-		// while(shell.cmd)
-		// {
-		// 	int i = 0;
-		// 	while(shell.cmd->cmd_flags[i])
-		// 	{
-		// 		printf("(%s)\t", shell.cmd->cmd_flags[i]);
-		// 		i++;	
-		// 	}
-		// 	printf("\n");
-		// 	shell.cmd = shell.cmd->next;
-			
-		// }
-		// shell.data = head_data;
-		// shell.cmd = head_cmd;
-		// //----------------------------------------- print data 
-		if (shell.data)
-			proccess_buff(&shell);  // hadi rah kadir segfault f syntax error o chi cmd makhdamach
-		free_data(&(shell.data));
-		free_data3(&(shell.cmd));
-		delete_here_doc_files(shell.heredoc_files);
-		free_tab((shell.heredoc_files));
-		// -------------------------------------------------------------- check leaks
-		// printf("\033[0;33m----------------------------\n");
-		// system("leaks minishell");
-		// printf("\n----------------------------\n\033[0m");
+		expander(shell);
+		heredoc_first(shell);
+		if (shell->data)
+			proccess_buff(shell);
+		free_data(&(shell->data));
+		free_data3(&shell->cmd);
+		delete_here_doc_files(shell->heredoc_files);
+		free_tab((shell->heredoc_files));
 		dup2(in, STDIN_FILENO);
 		dup2(out, STDOUT_FILENO);
 	}
+}
+
+//--------------------------------------------------------- main
+int	main(void)
+{
+	t_shell		shell;
+	extern char	**environ;
+	int			in;
+	int			out;
+
+	shell.env = get_env(environ);
+	check_in_env(&shell);
+	in = dup(STDIN_FILENO);
+	out = dup(STDOUT_FILENO);
+	loop(&shell, in, out);
 	free_data2(&(shell.env));
 	return (0);
 }
