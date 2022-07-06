@@ -6,11 +6,27 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 00:56:27 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/05 21:27:03 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/06 01:10:42 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/execution.h"
+
+void	pipe_p(t_shell *shell)
+{
+	t_data *backup;
+
+	backup = shell->data;
+	while(backup)
+	{
+		if(backup->token == PIPE)
+		{
+			shell->pipe_p = 1;
+			break;
+		}
+		backup = backup->next;
+	}
+}
 
 int	analyse_red_io(t_shell *shell, t_data *elem)
 {
@@ -64,6 +80,7 @@ int	analyse_exec_buffer(t_shell *shell)
 {
 	shell->in_fd = 0;
 	shell->out_fd = 1;
+	pipe_p(shell);
 	while (shell->data)
 	{
 		if (analyse_red_io(shell, shell->data) == -1 || analyse_exec_cmd(shell, shell->data) == -1)

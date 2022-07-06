@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 13:03:28 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/05 17:56:07 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/06 01:07:21 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,7 @@ typedef struct shell
 	int		in_fd;
 	int		out_fd;
 	t_cmd	*cmd;
-}t_shell;
+	int		pipe_p;
+	
+}	t_shell;
 #	endif

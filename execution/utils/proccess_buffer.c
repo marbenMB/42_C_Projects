@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:45:06 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/05 20:34:44 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/06 01:08:02 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,18 @@ void	check_exit_stat(t_shell *shell, int i_stat)
 
 int	proccess_cmd(t_shell *shell, char *cmd, char *cmd_path, int *pip_fd)
 {
-	if (if_cmd_builtin(cmd) == 1)
+	if (if_cmd_builtin(cmd) == 1 && shell->pipe_p == 0)
 	{
 		ft_dup_io(shell, pip_fd);
 		execute_builtin(shell, cmd);
 	}
 	else
-		execute_non_builtin(shell, cmd_path, pip_fd);
+	{
+		if (if_cmd_builtin(cmd) == 1)
+			execute_builtin_child(shell, cmd, pip_fd);
+		else if (if_cmd_builtin(cmd) == 0)
+			execute_non_builtin(shell, cmd_path, pip_fd);
+	}
 	return (0);
 }
 
