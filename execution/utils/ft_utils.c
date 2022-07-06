@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:44:09 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/06 10:17:38 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/06 11:44:59 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,10 @@ char	*get_cmd_path(t_env *env, char *cmd)
 		if (var)
 			env_paths = ft_split(var->value, ':');
 		if (env_paths)
+		{
 			path = check_cmd_access(env_paths, cmd);
-		free_tab(env_paths);
+			free_tab(env_paths);
+		}
 		if (!path)
 			error_cmd_nf(&env, cmd, CNF);
 	}
