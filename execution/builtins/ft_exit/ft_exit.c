@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:43 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/05 17:57:50 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/06 01:25:08 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	ft_exit(t_shell *shell)
 	int				check;
 	unsigned int	status;
 
+	status = 0;
+	check = 0;
 	check = check_exit_args(&shell->cmd->cmd_flags[1]);
 	ft_putendl_fd("exit", 1);
 	if (check == 2)
@@ -72,11 +74,11 @@ void	ft_exit(t_shell *shell)
 		error_cmd_arg(&shell->env, "Minishell", "exit", NAR);
 		exit (-1);
 	}
-	else
+	else if (check == 0)
 	{
 		if (shell->cmd->cmd_flags[1])
 			status = (unsigned int)ft_atoi_max(shell->cmd->cmd_flags[1]);
-		else
+		else if (!shell->cmd->cmd_flags[1])
 			status = (unsigned int)ft_atoi_max(shell->env->value);
 		exit (status % 256);
 	}
