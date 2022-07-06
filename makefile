@@ -6,7 +6,7 @@
 #    By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 13:58:33 by abellakr          #+#    #+#              #
-#    Updated: 2022/07/06 12:03:44 by mbenbajj         ###   ########.fr        #
+#    Updated: 2022/07/06 13:09:27 by mbenbajj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ EXEC_SRC = execution/utils/proccess_buffer.c execution/utils/ft_check.c executio
 
 LEX_SRC = minishell.c ./lexer/lexer_first_part.c ./lexer/lexer_utils.c ./lexer/tools.c ./lexer/syntax_error.c ./lexer/lexer_second_part.c \
 		./expander/expander.c ./expander/expander_utils1.c ./expander/get_env.c ./expander/expande_variable.c ./expander/expander_utils2.c \
-		./expander/expander_utils3.c ./lexer/lexer_third_part.c ./lexer/lexer_part_four.c ./heredoc/heredoc_first.c
+		./expander/expander_utils3.c ./lexer/lexer_third_part.c ./lexer/lexer_part_four.c ./heredoc/heredoc_first.c ./heredoc/heredoc_sec.c
 
 SRC = $(LEX_SRC) $(EXEC_SRC)	
 

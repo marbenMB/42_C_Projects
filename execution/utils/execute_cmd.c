@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:05:21 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/06 12:40:56 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/06 13:04:35 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,7 @@ void	execute_non_builtin(t_shell *shell, char *cmd_path, int *pip_fd)
 	incub_env = NULL;
 	i_stat = 0;
 	pid = fork();
-	if (pid < 0)
-		error_internal_ft(&shell->env, "fork", FIE);
-	else if (pid == 0)
+	if (pid == 0)
 	{
 		show_ctrl_chars();
 		signal(SIGQUIT, SIG_DFL);

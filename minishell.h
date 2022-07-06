@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/06 12:33:32 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/06 13:08:16 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 // *********************************************************
 
 void	loop(t_shell *shell, int in, int out);
+void	exec_lunch(t_shell *shell, int in, int out);
 // ********************************************************* lexer 
 
 //------------------ utils
@@ -85,9 +86,10 @@ t_cmd	*ft_lstlast_cmd(t_cmd **lst);
 void	free_data3(t_cmd **cmd);
 void	exapnde_dollar(char	**str, t_env *env);
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ new
-int 	heredoc_first(t_shell *shell);
+void	finish_heredoc(char *str, int fd);
+int		heredoc_first(t_shell *shell);
 int		file_number(t_data *data);
 char	**create_files(int number);
-int    	start_here_doc(char *file_name, char *limiter);
+int		start_here_doc(char *file_name, char *limiter);
 void	delete_here_doc_files(char **file_names);
 #endif

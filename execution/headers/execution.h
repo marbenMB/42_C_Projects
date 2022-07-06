@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:58 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/06 12:16:09 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/06 13:02:42 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	dup_next(t_shell *shell, int *pip_fd);
 void	dup_no_next(t_shell *shell, int *pip_fd);
 
 //*		->	siganls func: ---------------------------------------
-void    handler(int signal);
+void	handler(int signal);
 void	hide_ctrl_chars(void);
 void	show_ctrl_chars(void);
 void	ft_s_exit(int status);

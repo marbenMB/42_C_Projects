@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:19:00 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/06 12:46:02 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/06 13:08:33 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,7 @@ int	start_here_doc(char *file_name, char *limiter)
 		{
 			trim = readline (">>");
 			if (ft_strcmp(limiter, trim) == 0 || trim == NULL)
-			{
-				free(trim);
-				close(fd);
-				ft_s_exit(1);
-			}
+				finish_heredoc(trim, fd);
 			ft_putendl_fd(trim, fd);
 			free(trim);
 		}

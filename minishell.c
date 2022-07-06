@@ -6,11 +6,24 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 02:41:00 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/06 12:36:36 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/06 13:01:00 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+//--------------------------------------------------------- exec
+void	exec_lunch(t_shell *shell, int in, int out)
+{
+	if (heredoc_first(shell) != 1 && shell->data)
+		proccess_buff(shell);
+	free_data(&(shell->data));
+	free_data3(&shell->cmd);
+	delete_here_doc_files(shell->heredoc_files);
+	free_tab((shell->heredoc_files));
+	dup2(in, STDIN_FILENO);
+	dup2(out, STDOUT_FILENO);
+}
 
 //--------------------------------------------------------- loop
 
@@ -34,18 +47,7 @@ void	loop(t_shell *shell, int in, int out)
 			shell->env->value = ft_strdup("-1");
 		}
 		expander(shell);
-		if (heredoc_first(shell) != 1 && shell->data)
-			proccess_buff(shell);
-		free_data(&(shell->data));
-		free_data3(&shell->cmd);
-		delete_here_doc_files(shell->heredoc_files);
-		free_tab((shell->heredoc_files));
-		dup2(in, STDIN_FILENO);
-		dup2(out, STDOUT_FILENO);
-		// -------------------------------------------------------------- check leaks
-		// printf("\033[0;33m----------------------------\n");
-		// system("leaks minishell");
-		// printf("\n----------------------------\n\033[0m");
+		exec_lunch(shell, in, out);
 	}
 }
 
