@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 13:03:28 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/06 10:34:11 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/06 10:58:46 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,12 @@ typedef struct cmd
 	struct cmd	*next;
 }t_cmd;
 //--------------------------- shell data
-typedef struct s_fd
-{
-	int			*fd;
-	struct s_fd	*next;
-}	t_fd;
-//--------------------------- shell data
 typedef struct shell
 {
 	char	**heredoc_files;
 	t_data	*data;
 	t_env	*env;
 	t_cmd	*cmd;
-	t_fd	*fd_lst;
 	int		in_fd;
 	int		out_fd;
 	int		pipe_p;

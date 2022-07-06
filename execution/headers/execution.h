@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:58 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/06 10:39:31 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/06 11:00:20 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	*check_cmd_access(char **env_paths, char *cmd);
 int		analyse_exec_buffer(t_shell *shell);
 int		analyse_exec_cmd(t_shell *shell, t_data *elem);
 int		analyse_red_io(t_shell *shell, t_data *elem);
-int		get_red_fd(t_shell *shell, t_data *elem);
+int		get_red_fd(t_data *elem);
 void	pipe_p(t_shell *shell);
 
 //*		->	Execute Cmd	: ---------------------------------------
@@ -78,11 +78,6 @@ void	execute_builtin_child(t_shell *shell, char *cmd, int *pip_fd);
 char	**incubate_env(t_env *env);
 void	dup_next(t_shell *shell, int *pip_fd);
 void	dup_no_next(t_shell *shell, int *pip_fd);
-
-//*		->	Execute Func: ---------------------------------------
-t_fd	*lst_fd_new(int fd);
-t_fd	*last_fd(t_fd *lst);
-void	add_fd_back(t_fd **lst, t_fd *new);
 
 //	********		BUILTINS	******** :
 //*	->	ft_echo :		-----------------------------------------

@@ -6,7 +6,7 @@
 #    By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 13:58:33 by abellakr          #+#    #+#              #
-#    Updated: 2022/07/06 10:40:06 by mbenbajj         ###   ########.fr        #
+#    Updated: 2022/07/06 10:58:12 by mbenbajj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ READ_FLAGS    =  -lreadline  -I .brew/opt/readline/include
 
 EXEC_SRC = execution/utils/proccess_buffer.c execution/utils/ft_check.c execution/utils/ft_utils.c \
 			execution/utils/ft_errors.c execution/utils/analyse_exec.c execution/utils/execute_cmd.c \
-			execution/utils/execution_func.c execution/utils/fd_func.c\
+			execution/utils/execution_func.c \
 			execution/builtins/ft_echo/ft_echo.c execution/builtins/ft_env/ft_env.c execution/builtins/ft_exit/ft_exit.c \
 			execution/builtins/ft_export/ft_export.c execution/builtins/ft_export/sort_env_utils.c \
 			execution/builtins/ft_export/add_env_var.c execution/builtins/ft_export/add_var_utils.c execution/builtins/ft_export/sorted_env.c\
