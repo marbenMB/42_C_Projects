@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 00:56:27 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/06 03:42:06 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/06 04:38:29 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,10 @@ int	analyse_exec_cmd(t_shell *shell, t_data *elem)
 		cmd_path = get_cmd_path(shell->env, shell->cmd->cmd_flags[0]);
 		proccess_cmd(shell, shell->cmd->cmd_flags[0], cmd_path, pip_fd);
 		close(pip_fd[1]);
+		// if (shell->out_fd > 1)
+		// 	close(shell->out_fd);
+		// if (shell->in_fd > 0)
+		// 		close (shell->in_fd);
 		shell->in_fd = pip_fd[0];
 		free(cmd_path);
 		shell->cmd = shell->cmd->next;
