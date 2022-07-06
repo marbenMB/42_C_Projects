@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 02:41:00 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/06 11:54:27 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/06 12:36:36 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ void	loop(t_shell *shell, int in, int out)
 
 	while (1)
 	{
+		signal(SIGINT, &handler);
+		signal(SIGQUIT, SIG_IGN);
+		hide_ctrl_chars();
 		buffer = readline ("minishell-6.9$ ");
 		add_history(buffer);
 		if (!buffer)
@@ -31,8 +34,7 @@ void	loop(t_shell *shell, int in, int out)
 			shell->env->value = ft_strdup("-1");
 		}
 		expander(shell);
-		heredoc_first(shell);
-		if (shell->data)
+		if (heredoc_first(shell) != 1 && shell->data)
 			proccess_buff(shell);
 		free_data(&(shell->data));
 		free_data3(&shell->cmd);

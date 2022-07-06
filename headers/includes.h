@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   includes.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 13:03:23 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/03 21:54:58 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/07/06 12:05:54 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,5 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h>
+# include <termios.h>
 #endif

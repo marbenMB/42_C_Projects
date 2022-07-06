@@ -6,14 +6,14 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:19:00 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/04 23:06:57 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/06 12:46:02 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 //------------------------ heredoc main function creation
-void	heredoc_first(t_shell *shell)
+int	heredoc_first(t_shell *shell)
 {
 	int		number;
 	t_data	*backup;
@@ -27,7 +27,8 @@ void	heredoc_first(t_shell *shell)
 	{
 		if (backup->token == HEREDOC)
 		{
-			start_here_doc(shell->heredoc_files[i], backup->str);
+			if (start_here_doc(shell->heredoc_files[i], backup->str))
+				return (1);
 			free(backup->str);
 			backup->str = ft_strdup(shell->heredoc_files[i]);
 			backup->token = RIP;
@@ -35,6 +36,7 @@ void	heredoc_first(t_shell *shell)
 		}
 		backup = backup->next;
 	}
+	return (0);
 }
 
 //--------------------------------------- count number of files we have
@@ -84,7 +86,7 @@ char	**create_files(int number)
 }
 
 //---------------------------------------------------------- only inspiration
-void	start_here_doc(char *file_name, char *limiter)
+int	start_here_doc(char *file_name, char *limiter)
 {
 	char	*trim;
 	int		fd;
@@ -95,21 +97,26 @@ void	start_here_doc(char *file_name, char *limiter)
 	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, 0666);
 	if (pid == 0)
 	{
+		signal(SIGINT, SIG_DFL);
 		while (1)
 		{
 			trim = readline (">>");
 			if (ft_strcmp(limiter, trim) == 0 || trim == NULL)
 			{
 				free(trim);
-				exit(1);
+				close(fd);
+				ft_s_exit(1);
 			}
 			ft_putendl_fd(trim, fd);
 			free(trim);
 		}
-		close(fd);
 	}
-	if (waitpid(pid, &tmp, 0) > 0 && tmp != 0)
-		kill(pid, SIGINT);
+	signal(SIGINT, SIG_IGN);
+	waitpid(pid, &tmp, 0);
+	if (WIFSIGNALED(tmp))
+		return (1);
+	signal(SIGINT, &handler);
+	return (0);
 }
 
 //-----------------------------------------------

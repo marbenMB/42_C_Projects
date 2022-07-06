@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:05:21 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/06 10:17:24 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/06 12:40:56 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,11 @@ void	execute_builtin_child(t_shell *shell, char *cmd, int *pip_fd)
 	{
 		ft_dup_io(shell, pip_fd);
 		execute_builtin(shell, cmd);
-		exit(ft_atoi(shell->env->value));
+		ft_s_exit(ft_atoi(shell->env->value));
 	}
+	signal(SIGINT, SIG_IGN);
 	waitpid(pid, &i_stat, 0);
+	signal(SIGINT, &handler);
 	check_exit_stat(shell, i_stat);
 }
 
@@ -70,15 +72,20 @@ void	execute_non_builtin(t_shell *shell, char *cmd_path, int *pip_fd)
 		error_internal_ft(&shell->env, "fork", FIE);
 	else if (pid == 0)
 	{
+		show_ctrl_chars();
+		signal(SIGQUIT, SIG_DFL);
 		ft_dup_io(shell, pip_fd);
 		incub_env = incubate_env(shell->env->next->next);
 		execve(cmd_path, shell->cmd->cmd_flags, incub_env);
-		exit (127);
+		ft_s_exit (127);
 	}
 	if (!shell->data->next)
 	{
+		signal(SIGINT, SIG_IGN);
 		waitpid(pid, &i_stat, 0);
 		wait(NULL);
+		hide_ctrl_chars();
+		signal(SIGINT, &handler);
 	}
 	check_exit_stat(shell, i_stat);
 }
