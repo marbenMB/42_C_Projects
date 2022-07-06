@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/04 01:17:35 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/07/06 03:41:00 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@
 # include "headers/macros.h"
 # include "headers/structs.h"
 # include "execution/headers/execution.h"
+// *********************************************************
+
+void	loop(t_shell *shell, int in, int out);
 // ********************************************************* lexer 
+
 //------------------ utils
 t_data	*ft_lstnew_lexer(char *data, int token);
 void	ft_lstadd_back_lexer(t_data **lst, t_data *new);

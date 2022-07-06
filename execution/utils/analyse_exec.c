@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 00:56:27 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/06 01:58:30 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/06 03:42:06 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 void	pipe_p(t_shell *shell)
 {
-	t_data *backup;
+	t_data	*backup;
 
 	backup = shell->data;
 	shell->pipe_p = 0;
-	while(backup)
+	while (backup)
 	{
-		if(backup->token == PIPE)
+		if (backup->token == PIPE)
 		{
 			shell->pipe_p = 1;
-			break;
+			break ;
 		}
 		backup = backup->next;
 	}
 }
 
-int	analyse_red_io(t_shell *shell, t_data *elem)
+int	get_red_fd(t_data *elem)
 {
 	int		fd;
 
@@ -40,6 +40,14 @@ int	analyse_red_io(t_shell *shell, t_data *elem)
 		fd = open(elem->str, O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	else if (elem->str && elem->token == APND)
 		fd = open(elem->str, O_WRONLY | O_CREAT | O_APPEND, 0666);
+	return (fd);
+}
+
+int	analyse_red_io(t_shell *shell, t_data *elem)
+{
+	int	fd;
+
+	fd = get_red_fd(elem);
 	if (fd < 0)
 	{
 		error_cmd_arg(&shell->env, "Minishell", elem->str, NSFD);
@@ -84,7 +92,8 @@ int	analyse_exec_buffer(t_shell *shell)
 	pipe_p(shell);
 	while (shell->data)
 	{
-		if (analyse_red_io(shell, shell->data) == -1 || analyse_exec_cmd(shell, shell->data) == -1)
+		if (analyse_red_io(shell, shell->data) == -1 \
+			|| analyse_exec_cmd(shell, shell->data) == -1)
 			while (shell->data->next && shell->data->next->token != PIPE)
 				shell->data = shell->data->next;
 		shell->data = shell->data->next;
