@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 02:41:00 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/06 04:00:34 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/06 10:14:06 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	loop(t_shell *shell, int in, int out)
 		dup2(in, STDIN_FILENO);
 		dup2(out, STDOUT_FILENO);
 		// -------------------------------------------------------------- check leaks
-		printf("\033[0;33m----------------------------\n");
-		system("leaks minishell");
-		printf("\n----------------------------\n\033[0m");
+		// printf("\033[0;33m----------------------------\n");
+		// system("leaks minishell");
+		// printf("\n----------------------------\n\033[0m");
 	}
 }
 

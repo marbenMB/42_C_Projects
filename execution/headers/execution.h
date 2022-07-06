@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:58 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/06 03:53:07 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/06 10:16:25 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	ft_status(t_env **env, char *stats);
 t_env	*get_env_var(t_env *env, char *var_name);
 char	*get_cmd_path(t_env *env, char *cmd);
 int		if_cmd_builtin(char *cmd);
-char	**incubate_env(t_env *env);
+char	*get_incubate_tab(t_env *env);
+
 //*		->	Proccessing:-----------------------------------------
 int		proccess_cmd(t_shell *shell, char *cmd, char *cmd_path, int *pip_fd);
 int		proccess_buff(t_shell *shell);
@@ -74,6 +75,7 @@ void	ft_dup_io(t_shell *shell, int *pip_fd);
 void	execute_builtin_child(t_shell *shell, char *cmd, int *pip_fd);
 
 //*		->	Execute Func: ---------------------------------------
+char	**incubate_env(t_env *env);
 void	dup_next(t_shell *shell, int *pip_fd);
 void	dup_no_next(t_shell *shell, int *pip_fd);
 

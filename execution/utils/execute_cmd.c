@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:05:21 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/06 04:08:31 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/06 10:17:24 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	execute_builtin_child(t_shell *shell, char *cmd, int *pip_fd)
 		exit(ft_atoi(shell->env->value));
 	}
 	waitpid(pid, &i_stat, 0);
-	
 	check_exit_stat(shell, i_stat);
 }
 

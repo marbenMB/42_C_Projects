@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 20:44:09 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/05 19:27:20 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/06 10:17:38 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,31 +64,24 @@ char	*get_cmd_path(t_env *env, char *cmd)
 	return (path);
 }
 
-char	**incubate_env(t_env *env)
+char	*get_incubate_tab(t_env *env)
 {
+	char	*tab;
 	char	*tmp;
-	int		idx;
 	int		shlvl;
-	char	**incub_env;
 
-	incub_env = (char **)malloc(sizeof(char *) * (lst_size(env) + 1));
-	if (!incub_env)
-		return (NULL);
-	idx = 0;
-	while (env)
+	tab = NULL;
+	if (env->if_in_env == 1)
 	{
 		tmp = ft_strjoin(env->var, "=");
 		if (!ft_strcmp(env->var, "SHLVL"))
 		{
 			shlvl = ft_atoi(env->value);
-			incub_env[idx] = ft_strjoin(tmp, ft_itoa(++shlvl));
+			tab = ft_strjoin(tmp, ft_itoa(++shlvl));
 		}
 		else
-			incub_env[idx] = ft_strjoin(tmp, env->value);
+			tab = ft_strjoin(tmp, env->value);
 		free(tmp);
-		env = env->next;
-		idx++;
 	}
-	incub_env[idx] = NULL;
-	return (incub_env);
+	return (tab);
 }
