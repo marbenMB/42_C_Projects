@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 00:56:27 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/06 11:40:28 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/06 11:49:00 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	analyse_exec_cmd(t_shell *shell, t_data *elem)
 		error_cmd_nf(&shell->env, shell->cmd->cmd_flags[0], CNF);
 		return (-1);
 	}
-	if ( shell->cmd->cmd_flags[0] && elem->token == CMD)
+	if (shell->cmd->cmd_flags[0] && elem->token == CMD)
 	{
 		pipe(pip_fd);
 		cmd_path = get_cmd_path(shell->env, shell->cmd->cmd_flags[0]);
