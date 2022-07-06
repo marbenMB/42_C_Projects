@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 00:56:27 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/06 10:17:54 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/06 10:38:53 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	pipe_p(t_shell *shell)
 	}
 }
 
-int	get_red_fd(t_data *elem)
+int	get_red_fd(t_shell *shell, t_data *elem)
 {
 	int		fd;
 
@@ -40,6 +40,7 @@ int	get_red_fd(t_data *elem)
 		fd = open(elem->str, O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	else if (elem->str && elem->token == APND)
 		fd = open(elem->str, O_WRONLY | O_CREAT | O_APPEND, 0666);
+	add_fd_back(&shell->fd_lst, lst_fd_new(fd));
 	return (fd);
 }
 
@@ -47,7 +48,7 @@ int	analyse_red_io(t_shell *shell, t_data *elem)
 {
 	int	fd;
 
-	fd = get_red_fd(elem);
+	fd = get_red_fd(shell, elem);
 	if (fd < 0)
 	{
 		error_cmd_arg(&shell->env, "Minishell", elem->str, NSFD);
@@ -75,6 +76,8 @@ int	analyse_exec_cmd(t_shell *shell, t_data *elem)
 	if (elem->token == CMD)
 	{
 		pipe(pip_fd);
+		add_fd_back(&shell->fd_lst, lst_fd_new(pip_fd[0]));
+		add_fd_back(&shell->fd_lst, lst_fd_new(pip_fd[1]));
 		cmd_path = get_cmd_path(shell->env, shell->cmd->cmd_flags[0]);
 		proccess_cmd(shell, shell->cmd->cmd_flags[0], cmd_path, pip_fd);
 		close(pip_fd[1]);
@@ -87,6 +90,7 @@ int	analyse_exec_cmd(t_shell *shell, t_data *elem)
 
 int	analyse_exec_buffer(t_shell *shell)
 {
+	shell->fd_lst = NULL;
 	shell->in_fd = 0;
 	shell->out_fd = 1;
 	pipe_p(shell);
@@ -97,6 +101,14 @@ int	analyse_exec_buffer(t_shell *shell)
 			while (shell->data->next && shell->data->next->token != PIPE)
 				shell->data = shell->data->next;
 		shell->data = shell->data->next;
+	}
+	t_fd	*head;
+
+	head = shell->fd_lst;
+	while (head)
+	{
+		printf("\n	-> %d\n", *head->fd);
+		head = head->next;
 	}
 	return (0);
 }
