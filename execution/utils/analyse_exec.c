@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 00:56:27 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/06 01:10:42 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/06 01:58:30 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	pipe_p(t_shell *shell)
 	t_data *backup;
 
 	backup = shell->data;
+	shell->pipe_p = 0;
 	while(backup)
 	{
 		if(backup->token == PIPE)
