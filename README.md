@@ -1,2 +1,3 @@
-# Ft_Printf_110%
-Write a library that contains ft_printf, a function that will mimic the real printf in c.
+# Ft_Printf
+---
+The goal of this project is pretty straightforward. You will recode printf(). You will mainly learn about using a variable number of arguments. You will discover variadic functions in C.
