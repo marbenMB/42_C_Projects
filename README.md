@@ -9,7 +9,7 @@ First include the ft_printf header
 
 Create the libftprintf.a library by makine the makefile rules run: 
 
-		make
+	make
 
 ![make](imgs/Screen%20Shot%202022-07-09%20at%2004.43.18.png)
 
@@ -19,8 +19,8 @@ Then compile your main.c with the libftprintf.a library
 
 To delete object files after making (files.o) run :
 
-		make clean
+	make clean
 
 To delete the library.a run : 
 
-		make fclean
+	make fclean
