@@ -25,20 +25,21 @@ SRC_BNS = bonus/so_long.c bonus/error_handling.c bonus/ft_check.c bonus/draw_map
 OBJ_BNS = $(SRC_BNS:.c=.o)
 
 CFLAGS = -Wall -Wextra -Werror
-FRAM = -lmlx -framework OpenGL -framework AppKit
+FRAM =  -framework OpenGL -framework AppKit
+LIB = /Users/marouanebenbajja/MiniLibX/minilibx_macos/libmlx.a
 
 all : $(NAME)
 
 $(NAME) : $(OBJ) manda/so_long.h
 	make bonus -C ./libft
-	cc $(OBJ) $(FRAM) -o $(NAME) ./libft/libft.a
+	cc $(OBJ) $(FRAM) -o $(NAME) ./libft/libft.a $(LIB)
 
 %.o : %.c manda/so_long.h bonus/so_long.h
 	cc $(CFLAGS) -c $< -o $@
 
 bonus : $(OBJ_BNS) bonus/so_long.h
 	make bonus -C ./libft
-	cc $(OBJ_BNS) $(FRAM) -o $(NAME) ./libft/libft.a
+	cc $(OBJ_BNS) $(FRAM) -o $(NAME) ./libft/libft.a $(LIB)
 
 clean :
 	make clean -C ./libft

@@ -22,7 +22,7 @@
 # include <limits.h>
 # include "../libft/libft.h"
 # include "../get_next_line/get_next_line.h"
-# include <mlx.h>
+# include </Users/marouanebenbajja/MiniLibX/minilibx_macos/mlx.h>
 
 //	***********		Structs		*********** :
 typedef struct compo
