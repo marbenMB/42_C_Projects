@@ -14,11 +14,10 @@ Repos containing all common core 42 project that are implemented in C.
 - **cub3d** : About ray-casting , inspired from 1st FPS 90's game.
 
 ### Map of this Repos :
-Each porject of these has a dedicated branch so if you want to take a look of a certain project by executing this command on your terminal :
+Each porject of these has a dedicated branch so if you want to take a look of a certain project by executing this command on your terminal.
 
-	```bash
 	git checkout PROJECT_NAME
-	```
+
 
 - **Example**.
 
